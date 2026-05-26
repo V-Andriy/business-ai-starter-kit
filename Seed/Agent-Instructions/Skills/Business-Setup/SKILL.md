@@ -54,7 +54,8 @@ Hi, I am your AI partner for this workspace.
 First, let's make me useful for you.
 
 1. What would you like to call me?
-   You can keep the default if you want.
+   Default: Bob.
+   You can keep Bob or choose any name you want.
 
 2. What style should I use?
    - Default: calm, direct, practical business partner
