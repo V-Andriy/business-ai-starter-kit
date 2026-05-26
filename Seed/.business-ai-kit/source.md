@@ -1,7 +1,7 @@
 # Business AI Kit Source
 
 Public kit:
-https://github.com/scalebound/business-ai-starter-kit
+https://github.com/V-Andriy/business-ai-starter-kit
 
 Local ignored cache:
 .business-ai-kit/source/
