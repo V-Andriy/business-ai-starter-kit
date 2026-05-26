@@ -1,0 +1,36 @@
+# Local secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+venv/
+
+# Node/web artifacts
+node_modules/
+.next/
+dist/
+build/
+coverage/
+
+# Local caches and OS files
+.cache/
+.DS_Store
+Thumbs.db
+.obsidian/
+20??-??-??.md
+Planning/
+
+# Local Business AI Kit workspace caches
+.business-ai-kit/source/
+.business-ai-kit/backups/
