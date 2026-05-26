@@ -10,6 +10,7 @@
 - `SECURITY.md` - security reporting and secret-handling notes.
 - `CONTRIBUTING.md` - contribution and release-check guidance.
 - `Seed/AGENTS.md` - live workspace agent instructions after install.
+- `Seed/Agent-Instructions/Soul.md` - durable assistant identity, tone, durability, and first-run conversation rules.
 - `Seed/Agent-Instructions/Skills/Business-Setup/SKILL.md` - first-run onboarding.
 - `Seed/Agent-Instructions/Skills/Workspace-Heartbeat/SKILL.md` - hourly heartbeat behavior.
 - `Seed/Agent-Instructions/Skills/Update-Review/SKILL.md` - source cache refresh and update review.
@@ -20,6 +21,7 @@
 ## Workspace Seed
 
 - `Seed/` - ready-to-copy starter files for the user's private workspace.
+- `Seed/Agent-Instructions/Soul.md` - default AI partner personality and user experience rules.
 - `Seed/Agent-Instructions/Skills/` - canonical skills folder.
 
 ## Templates

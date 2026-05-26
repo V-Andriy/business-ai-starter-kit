@@ -10,6 +10,7 @@ Status: early open-source MVP for guided pilots and first users.
 
 - Codex-first setup instructions.
 - A ready-to-copy private workspace seed in `Seed/`.
+- Durable assistant identity and communication behavior through `Seed/Agent-Instructions/Soul.md`.
 - Safe public/private separation through `.business-ai-kit/source/`.
 - Strong `.gitignore` and `.env.example` defaults.
 - Secret scanning and pre-commit hook installer.
@@ -23,7 +24,7 @@ Status: early open-source MVP for guided pilots and first users.
 1. Open Codex in the folder where you want to create your private AI workspace.
 2. Paste the short install instruction from [Install.md](Install.md).
 
-Codex will inspect the folder, copy `Seed/`, initialize local Git, install safety hooks, gather your business context, create a private source cache, and create the hourly heartbeat automation. After installation, the ongoing setup, update, safety, and heartbeat rules live inside the copied seed workspace.
+Codex will inspect the folder, copy `Seed/`, initialize local Git, install safety hooks, calibrate the assistant's name and style, gather business context from references you provide, create a private source cache, and create the hourly heartbeat automation. After installation, the ongoing setup, update, safety, and heartbeat rules live inside the copied seed workspace.
 
 If you get stuck or something feels too technical, you can contact Andrii:
 
