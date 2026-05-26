@@ -4,9 +4,12 @@ This is your private Business AI Starter Kit workspace.
 
 Use it to organize business context, projects, workflows, research, documents, decisions, and AI-assisted work in one local folder.
 
+The AI should start by helping you calibrate your assistant: what to call it, how it should speak, how much technical detail you want, and which references it should inspect before asking you to explain everything manually.
+
 ## Main Areas
 
 - `Agent-Instructions/` - the AI's operating context, memory, skills, safety notes, and workspace state.
+- `Agent-Instructions/Soul.md` - the assistant's identity, tone, and plain-language behavior.
 - Project folders - created in the root when real work starts.
 - `.business-ai-kit/` - internal source reference for updates and kit instructions.
 

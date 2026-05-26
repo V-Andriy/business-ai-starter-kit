@@ -5,68 +5,193 @@ description: Use during first-run onboarding or when the user wants to improve b
 
 # Business Setup
 
-Use this skill to gather enough business context for the AI to be useful without overwhelming the user.
+Use this skill to calibrate the assistant and gather enough user/business context for the workspace to become useful without overwhelming the user.
+
+This is a conversation-first flow. Do not make the user manage files, folders, Git, or setup mechanics.
 
 ## Behavior
 
-- Ask in small groups.
+- Treat first setup as assistant calibration, not a technical questionnaire.
+- Start by helping the user shape the assistant's name, style, and technical detail level.
+- Ask for references before asking the user to explain everything manually.
+- Inspect links, files, screenshots, notes, websites, public profiles, and writing samples when available.
+- Show the user what you understood, then ask what is wrong or missing.
+- Ask in small groups when questions are needed.
 - Prefer business language over technical language.
 - Lead with the practical next step instead of giving the user technical choices.
 - Inspect any existing files the user points to before asking them to repeat context.
+- Record durable assistant identity preferences in `Agent-Instructions/Soul.md`.
 - Record stable facts in `Agent-Instructions/User-Dossier.md` and `Agent-Instructions/Business-Dossier.md`.
 - Record current priorities in `Agent-Instructions/Current-Focus.md`.
 - Record durable preferences in `Agent-Instructions/Memory.md`.
 - Record setup status and blockers in `Agent-Instructions/Agent-State.md`.
 - Do not store secrets or raw private dumps.
-- Keep the first conversation short. Gather only enough context to make the workspace immediately useful.
+- Keep the first conversation short and engaging. Gather only enough context to make the workspace immediately useful.
 
 ## First-Run Flow
 
-1. Confirm the workspace path in plain language.
-2. Check setup state: Git, source cache, secret scanner hook, heartbeat automation.
-3. Ask the minimum context questions.
-4. Fill the dossiers and workspace state files.
-5. Create or confirm the hourly heartbeat automation.
-6. Explain what is private, what is safe to commit, and what the workspace will do next.
+1. Confirm setup in plain language without making the user care about technical details.
+2. Calibrate the assistant identity:
+   - What would you like to call me?
+   - Which style should I use?
+   - How technical should my explanations be?
+   - What chat and documentation languages should I use?
+3. Ask for references instead of asking the user to explain from scratch.
+4. Inspect available references and workspace context before asking follow-up questions.
+5. Create a first dossier preview with facts, assumptions, gaps, and likely AI opportunities.
+6. Ask the user what you got wrong.
+7. Fill `Soul.md`, `User-Dossier.md`, `Business-Dossier.md`, `Current-Focus.md`, `Active-Threads.md`, `Workspace-Map.md`, `Memory.md`, `Decisions.md`, and `Agent-State.md`.
+8. Create or confirm the hourly heartbeat automation.
+9. Explain what is private, what was captured, and the recommended first useful project or workflow.
+
+## Opening Script
+
+Use a warm, simple opening like this. Adapt language to the user.
+
+```text
+Hi, I am your AI partner for this workspace.
+
+First, let's make me useful for you.
+
+1. What would you like to call me?
+   You can keep the default if you want.
+
+2. What style should I use?
+   - Default: calm, direct, practical business partner
+   - Chief of Staff: structured, focused, keeps work moving
+   - Creative Strategist: more ideas, positioning, and content
+   - Operator: more process, tasks, and execution
+   - Coach: explains more and helps you learn
+
+3. How technical should I be?
+   - No technical detail
+   - Simple explanations
+   - Details only when they matter
+   - I am technical; you can go deeper
+
+If you are not sure, I will use the default style and simple explanations.
+```
+
+Then move to references:
+
+```text
+Now give me 1-3 sources where I can learn about you or your business.
+
+Useful sources:
+- LinkedIn profile
+- website
+- company page
+- social profile
+- pitch deck
+- notes
+- screenshots
+- a document or proposal
+- a writing sample you like
+
+I will inspect what I can, build a first understanding, and then ask you what I got wrong.
+```
+
+## Reference-First Discovery
+
+Prefer sources over manual explanation.
+
+Good sources:
+
+- LinkedIn or public profile
+- personal or company website
+- company page
+- social media profiles
+- public posts or articles
+- pitch deck
+- proposal
+- notes
+- screenshots
+- voice transcript
+- writing sample the user likes
+- existing project files in the workspace
+
+If a source cannot be opened, do not stop. Ask for an alternative in plain language:
+
+```text
+Simple version: I cannot open that profile from here.
+Why it matters: I do not want to guess your role or business context.
+What I need from you: paste the profile text, share screenshots, or send another source.
+After that, I will build the first dossier for you to review.
+```
+
+## First Dossier Preview
+
+After reviewing references, show a short preview before treating anything as confirmed:
+
+```text
+Here is what I understood so far.
+
+About you:
+- ...
+
+About the business:
+- ...
+
+Communication style I noticed:
+- ...
+
+Where I can probably help:
+- ...
+
+Unclear or assumed:
+- ...
+
+What did I get wrong?
+```
+
+Use this correction step to distinguish confirmed facts from assumptions.
+
+## Capability Menu
+
+After the first dossier preview, show concrete possibilities the user may not know to ask for:
+
+```text
+Based on this, I can help in a few practical ways:
+
+1. Clarity: offers, audience, priorities, positioning.
+2. Content: LinkedIn, website copy, emails, proposals, reports.
+3. Client work: discovery calls, audits, recommendations, delivery docs.
+4. Operations: SOPs, checklists, notes, repeatable workflows.
+5. Tools later: small apps, dashboards, automations, integrations once the workflow is clear.
+
+Recommended first move: ...
+```
+
+Always include an option like:
+
+```text
+Show me what is possible from what you already know.
+```
 
 ## Minimum Questions
 
+Ask these only if the answer cannot be inferred from references or the user's corrections:
+
 - What should I call you?
+- What should you call me?
 - What business or project is this workspace for?
-- What do you do?
-- What are you trying to use AI for first?
+- What source material should I inspect?
+- What communication style do you prefer?
+- How much technical detail should I show?
 - What information is private or sensitive?
-- What style of communication do you prefer?
-- What source material can I inspect?
-- What decision or outcome would make this workspace valuable in the next week?
-
-## Better Questions For Business Users
-
-Use these as short groups, not a long form:
-
-```text
-First, I need enough context to make this workspace useful.
-
-1. What should I call you, and what business is this for?
-2. What are the 1-2 most useful things AI could help with first?
-3. What information should stay private or be handled carefully?
-```
-
-Then ask only what is needed next:
-
-- Which files, websites, notes, or tools should I inspect?
-- What communication style do you prefer: brief, balanced, or detailed?
-- Is this workspace only local for now, or do you want private backup later?
-- What result would make the first week successful?
+- What outcome would make this workspace useful soon?
 
 ## First Executive Brief
 
 After onboarding, give the user a concise setup brief:
 
 ```text
-Workspace is ready enough to start.
+Your AI partner is ready enough to start.
 
 What I captured:
+- ...
+
+What I am not sure about:
 - ...
 
 First useful project:
@@ -96,6 +221,7 @@ If the user has existing notes, project folders, previous AI instructions, Herme
 ## Done Criteria
 
 - User and business dossiers have useful first-pass content.
+- `Soul.md` has useful first-pass assistant identity and communication preferences.
 - Current focus has a clear next action.
 - Active threads include setup status.
 - Agent state records whether Git hooks, source cache, and heartbeat are configured.

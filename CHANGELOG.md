@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+- Added `Agent-Instructions/Soul.md` for durable assistant identity, plain-language behavior, and persistence through blockers.
+- Reworked first-run business setup into assistant calibration and reference-first discovery.
+- Added startup guidance to load `Soul.md` before workspace state.
+- Updated seed workspace state to track assistant identity calibration.
+- Updated heartbeat guidance to use the latest available capable model with a lightweight no-op gate before deep self-improvement work.
+- Added `Scripts/heartbeat_gate.py` and expanded heartbeat guidance with Hermes-inspired modes: No-Op, Triage, Improvement, and Escalation.
+
 ## 0.1.0
 
 - Added MVP public repo shell.

@@ -25,6 +25,7 @@ Operate like a practical chief-of-staff for AI work:
 This workspace uses a Hermes-inspired pattern adapted for Codex and business users:
 
 - `AGENTS.md` defines workspace behavior, safety, and autonomy rules.
+- `Agent-Instructions/Soul.md` defines durable assistant identity, tone, and first-run experience.
 - `Agent-Instructions/` holds durable business context, memory, active work, decisions, and skills.
 - `Agent-Instructions/Skills/` holds reusable workflows. Treat skills as procedural memory: how to do repeatable work.
 - `Memory.md`, `User-Dossier.md`, and `Business-Dossier.md` hold curated facts. Keep them compact.
@@ -50,15 +51,16 @@ When a request is ambiguous, proceed with the safest useful assumption and state
 
 At the start of meaningful work:
 
-1. Read `Agent-Instructions/Current-Focus.md`.
-2. Read `Agent-Instructions/Active-Threads.md`.
-3. Read `Agent-Instructions/Workspace-Map.md`.
-4. Check `Agent-Instructions/Inbox.md` for relevant pending items.
-5. Check `Agent-Instructions/Agent-State.md` for setup status, standing permissions, and blockers.
-6. Decide whether the request belongs to an existing project or needs a new project.
-7. Load the relevant skill from `Agent-Instructions/Skills/` before doing specialized work.
-8. If working inside a project, check for project-local `AGENTS.md`, `Project Brief.md`, `Decisions.md`, and `Next Actions.md`.
-9. For executive-facing work, identify the next decision, likely owner, deadline if known, and practical risk.
+1. Read `Agent-Instructions/Soul.md`.
+2. Read `Agent-Instructions/Current-Focus.md`.
+3. Read `Agent-Instructions/Active-Threads.md`.
+4. Read `Agent-Instructions/Workspace-Map.md`.
+5. Check `Agent-Instructions/Inbox.md` for relevant pending items.
+6. Check `Agent-Instructions/Agent-State.md` for setup status, standing permissions, and blockers.
+7. Decide whether the request belongs to an existing project or needs a new project.
+8. Load the relevant skill from `Agent-Instructions/Skills/` before doing specialized work.
+9. If working inside a project, check for project-local `AGENTS.md`, `Project Brief.md`, `Decisions.md`, and `Next Actions.md`.
+10. For executive-facing work, identify the next decision, likely owner, deadline if known, and practical risk.
 
 Prefer discovery before questions. Ask the user only when the missing answer is a real business decision, a privacy boundary, or a safety approval.
 
@@ -71,14 +73,15 @@ If this workspace was just created from `Seed/`, complete setup before starting 
 3. Confirm local Git is initialized on `main`.
 4. Install the pre-commit secret scanner if it is not installed.
 5. Run `python3 Scripts/update_kit.py --workspace .` if the source cache is missing.
-6. Use `Agent-Instructions/Skills/Business-Setup/SKILL.md` to gather user and business context.
-7. Update `User-Dossier.md`, `Business-Dossier.md`, `Current-Focus.md`, `Active-Threads.md`, `Workspace-Map.md`, `Memory.md`, `Decisions.md`, and `Agent-State.md`.
+6. Read `Agent-Instructions/Soul.md`, then use `Agent-Instructions/Skills/Business-Setup/SKILL.md` to run assistant calibration and gather user/business context from references first.
+7. Update `Soul.md` only for durable assistant identity preferences, and update `User-Dossier.md`, `Business-Dossier.md`, `Current-Focus.md`, `Active-Threads.md`, `Workspace-Map.md`, `Memory.md`, `Decisions.md`, and `Agent-State.md` for workspace context.
 8. Use `Agent-Instructions/Skills/Workspace-Heartbeat/SKILL.md` to create the hourly heartbeat automation.
 9. Explain what is private, what is safe to commit, and what the next useful step is.
 
 Done means:
 
-- the user has answered enough onboarding questions to make the workspace useful
+- the assistant identity and communication style are calibrated enough for the user to feel oriented
+- the user has provided enough references, corrections, or answers to make the workspace useful
 - local Git and the secret scanner are configured or a blocker is recorded
 - the source cache exists or a blocker is recorded
 - the heartbeat automation exists or a blocker is recorded
@@ -95,6 +98,7 @@ Act proactively inside safe boundaries:
 - Keep going until the current task has a useful output, a clear blocker, or a needed user decision.
 - After meaningful work, update `Current-Focus.md`, `Active-Threads.md`, and `Workspace-Map.md`.
 - Maintain concise decisions and next actions so work can resume without the user repeating context.
+- When something fails, keep going: diagnose, try a simpler path, document unresolved blockers, and ask the user only when their action or judgment is required.
 
 Ask first before:
 
@@ -196,8 +200,10 @@ Use a dry-run mindset for updates and migrations:
 
 If setup, heartbeat, Git hooks, or secret scanning fails:
 
-- simplify the next step
-- explain the practical consequence
+- try to understand the cause and attempt the simplest reasonable fix
+- look for another path before stopping
+- explain the practical consequence in plain language
+- say exactly what the user needs to do if their help is required
 - avoid exposing secrets
 - write unresolved blockers to `Agent-Instructions/Inbox.md`
 - keep support guidance soft and low-pressure
