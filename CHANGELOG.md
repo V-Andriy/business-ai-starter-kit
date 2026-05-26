@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Added a first-install warning for iCloud/Desktop/Documents cloud-offload workspace locations.
 - Added `Agent-Instructions/Soul.md` for durable assistant identity, plain-language behavior, and persistence through blockers.
 - Reworked first-run business setup into assistant calibration and reference-first discovery.
 - Added startup guidance to load `Soul.md` before workspace state.

@@ -69,14 +69,15 @@ Prefer discovery before questions. Ask the user only when the missing answer is 
 If this workspace was just created from `Seed/`, complete setup before starting project work:
 
 1. Confirm the workspace path.
-2. Confirm `.business-ai-kit/source/` exists or create it as the ignored source cache.
-3. Confirm local Git is initialized on `main`.
-4. Install the pre-commit secret scanner if it is not installed.
-5. Run `python3 Scripts/update_kit.py --workspace .` if the source cache is missing.
-6. Read `Agent-Instructions/Soul.md`, then use `Agent-Instructions/Skills/Business-Setup/SKILL.md` to run assistant calibration and gather user/business context from references first.
-7. Update `Soul.md` only for durable assistant identity preferences, and update `User-Dossier.md`, `Business-Dossier.md`, `Current-Focus.md`, `Active-Threads.md`, `Workspace-Map.md`, `Memory.md`, `Decisions.md`, and `Agent-State.md` for workspace context.
-8. Use `Agent-Instructions/Skills/Workspace-Heartbeat/SKILL.md` to create the hourly heartbeat automation.
-9. Explain what is private, what is safe to commit, and what the next useful step is.
+2. If the workspace is inside iCloud Drive, Desktop, Documents, or another cloud-synced folder, warn that cloud storage may remove local copies and make Codex unable to access files; recommend a local folder that stays on this computer or keeping the workspace downloaded locally.
+3. Confirm `.business-ai-kit/source/` exists or create it as the ignored source cache.
+4. Confirm local Git is initialized on `main`.
+5. Install the pre-commit secret scanner if it is not installed.
+6. Run `python3 Scripts/update_kit.py --workspace .` if the source cache is missing.
+7. Read `Agent-Instructions/Soul.md`, then use `Agent-Instructions/Skills/Business-Setup/SKILL.md` to run assistant calibration and gather user/business context from references first.
+8. Update `Soul.md` only for durable assistant identity preferences, and update `User-Dossier.md`, `Business-Dossier.md`, `Current-Focus.md`, `Active-Threads.md`, `Workspace-Map.md`, `Memory.md`, `Decisions.md`, and `Agent-State.md` for workspace context.
+9. Use `Agent-Instructions/Skills/Workspace-Heartbeat/SKILL.md` to create the hourly heartbeat automation.
+10. Explain what is private, what is safe to commit, and what the next useful step is.
 
 Done means:
 
@@ -201,6 +202,7 @@ Use a dry-run mindset for updates and migrations:
 If setup, heartbeat, Git hooks, or secret scanning fails:
 
 - try to understand the cause and attempt the simplest reasonable fix
+- if a file appears in Finder but Codex cannot read it, check whether iCloud or cloud storage offloaded it and ask the user to download or keep it locally
 - look for another path before stopping
 - explain the practical consequence in plain language
 - say exactly what the user needs to do if their help is required
