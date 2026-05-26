@@ -41,7 +41,9 @@ def status_path_mtime(workspace: Path, status_line: str) -> float:
     try:
         return path.stat().st_mtime
     except OSError:
-        return 0.0
+        # Deleted, renamed, or shell-escaped paths still represent activity.
+        # Keep them visible instead of filtering them out as stale.
+        return float("inf")
 
 
 def git_status(workspace: Path, since: float) -> list[str]:
