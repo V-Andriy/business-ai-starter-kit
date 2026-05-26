@@ -7,6 +7,7 @@
 - Added startup guidance to load `Soul.md` before workspace state.
 - Updated seed workspace state to track assistant identity calibration.
 - Updated heartbeat guidance to use the latest available capable model with a lightweight no-op gate before deep self-improvement work.
+- Added `Scripts/heartbeat_gate.py` and expanded heartbeat guidance with Hermes-inspired modes: No-Op, Triage, Improvement, and Escalation.
 
 ## 0.1.0
 

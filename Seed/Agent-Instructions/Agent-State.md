@@ -18,6 +18,8 @@ Purpose: concise operating state for agents and automations.
 - Startup should read soul, current focus, active threads, workspace map, inbox, and agent state.
 - Heartbeat should process inbox, update workspace state, maintain compact memory, and log useful changes.
 - Heartbeat should first check for new chats/session evidence, workspace changes, inbox items, active-thread changes, Signals, and blockers. If nothing changed, it should stop after a short log entry.
+- Heartbeat can use `Scripts/heartbeat_gate.py --workspace .` as a lightweight activity snapshot before deep review.
+- Heartbeat should choose No-Op, Triage, Improvement, or Escalation mode based on evidence.
 - Skills are procedural memory and should be updated only when a workflow improvement is durable.
 - Facts belong in dossiers or memory. Procedures belong in skills. Active work belongs in active threads and project files.
 - Executive-facing work should keep facts, assumptions, decisions, risks, and next actions distinct.

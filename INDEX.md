@@ -34,5 +34,6 @@
 These scripts live inside `Seed/` because they are copied into the user's workspace.
 
 - `Seed/Scripts/secret_scan.py` - local secret scanner for staged files or paths.
+- `Seed/Scripts/heartbeat_gate.py` - lightweight heartbeat activity snapshot for inbox, signals, git changes, and recent Codex session candidates.
 - `Seed/Scripts/install_git_hooks.py` - installs a pre-commit hook that runs the scanner.
 - `Seed/Scripts/update_kit.py` - refreshes `.business-ai-kit/source/`.
