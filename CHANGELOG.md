@@ -6,6 +6,7 @@
 - Reworked first-run business setup into assistant calibration and reference-first discovery.
 - Added startup guidance to load `Soul.md` before workspace state.
 - Updated seed workspace state to track assistant identity calibration.
+- Updated heartbeat guidance to use the latest available capable model with a lightweight no-op gate before deep self-improvement work.
 
 ## 0.1.0
 

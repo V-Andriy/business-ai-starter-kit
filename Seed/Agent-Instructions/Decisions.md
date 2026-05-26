@@ -8,6 +8,7 @@ Purpose: approved decisions that affect the whole workspace.
 - Project folders are created in the root only when real work starts.
 - `Agent-Instructions/Skills/` is the canonical skills folder.
 - The hourly heartbeat processes `Inbox.md` and records handled work in `Outbox.md`.
+- The hourly heartbeat uses the latest available capable model, but starts with a lightweight activity gate and stops when there is no meaningful work.
 - Real secrets are not stored in markdown files.
 - Hermes best practices are adapted into this workspace structure without requiring Hermes runtime.
 - `Agent-Instructions/Soul.md` stores durable assistant identity and communication behavior.

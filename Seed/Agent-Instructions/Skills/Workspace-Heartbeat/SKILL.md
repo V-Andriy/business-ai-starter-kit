@@ -10,6 +10,7 @@ This skill keeps the workspace alive between sessions.
 ## Read First
 
 - `AGENTS.md`
+- `Agent-Instructions/Soul.md`
 - `Agent-Instructions/Current-Focus.md`
 - `Agent-Instructions/Active-Threads.md`
 - `Agent-Instructions/Inbox.md`
@@ -19,35 +20,69 @@ This skill keeps the workspace alive between sessions.
 
 ## Work Loop
 
-1. Read the workspace state and decide whether anything changed since the last run.
-2. Process `Inbox.md`.
-3. Move handled items to `Outbox.md` with a short note.
-4. Update active threads and current focus.
-5. Refresh workspace map if files or projects changed.
-6. Add durable lessons to memory only when stable and compact.
-7. Review whether a skill needs a small update from repeated corrections or proven workflow improvements.
-8. Log the run in `Automation-Log.md`.
-9. Log instruction or skill improvements in `Improvement-Log.md`.
-10. Create signals for anything needing follow-up.
-11. If there is a clear next decision for the user, make it visible in `Current-Focus.md` or `Signals/Incoming.md`.
+1. Run the lightweight activity gate first.
+2. Check whether anything meaningful changed since the last heartbeat:
+   - new or changed workspace files
+   - pending `Inbox.md` items
+   - active thread changes
+   - new `Signals/`
+   - unresolved blockers
+   - recent Codex/session evidence for this workspace when available
+3. If nothing changed and no maintenance is pending, write at most one short `Automation-Log.md` entry and stop.
+4. If there is meaningful activity, analyze only the relevant chats, session evidence, diffs, inbox items, and active threads.
+5. Process `Inbox.md`.
+6. Move handled items to `Outbox.md` with a short note.
+7. Update active threads and current focus.
+8. Refresh workspace map if files or projects changed.
+9. Add durable lessons to memory only when stable and compact.
+10. Review whether a skill needs a small update from repeated corrections or proven workflow improvements.
+11. Log the run in `Automation-Log.md`.
+12. Log instruction or skill improvements in `Improvement-Log.md`.
+13. Create signals for anything needing follow-up.
+14. If there is a clear next decision for the user, make it visible in `Current-Focus.md` or `Signals/Incoming.md`.
+
+## Automation Model
+
+Use the latest available capable model for the heartbeat automation.
+
+The heartbeat is allowed to use a strong model because it must be smart enough to decide when not to work. Token control should come from the activity gate, not from using a weaker model.
+
+Recommended default:
+
+```text
+model: latest available GPT-5.x model
+reasoning effort: medium
+schedule: hourly
+```
+
+Use higher reasoning only if the workspace is large or the heartbeat is doing substantial self-improvement analysis. Do not spend deep reasoning on no-op checks.
 
 ## Heartbeat Judgment
 
 Do not create noise. If there is nothing useful to change:
 
-- write a short `Automation-Log.md` entry
+- write at most one short `Automation-Log.md` entry
 - leave user-facing files alone
 - do not invent work
 - do not repeatedly ask the same question
+- stop after the lightweight check
 
 Wake the user only when there is a decision, blocker, risk, or useful next action.
 
 ## Prompt To Use For Automation
 
 ```text
-Review this Business AI Starter Kit workspace.
+Review this Business AI Starter Kit workspace with a change-gated heartbeat loop.
 
-Read AGENTS.md and the Agent-Instructions files. Process Agent-Instructions/Inbox.md, append handled items to Agent-Instructions/Outbox.md, update Current-Focus.md, Active-Threads.md, Workspace-Map.md, Memory.md, Automation-Log.md, Improvement-Log.md, and Signals when useful.
+First run a lightweight activity gate before deep work:
+- Read AGENTS.md, Agent-Instructions/Soul.md if present, Agent-Instructions/Agent-State.md, Agent-Instructions/Current-Focus.md, Agent-Instructions/Active-Threads.md, Agent-Instructions/Inbox.md, Agent-Instructions/Automation-Log.md, and Agent-Instructions/Workspace-Map.md.
+- Check whether there were meaningful changes since the last heartbeat: new or changed workspace files, pending Inbox items, active-thread changes, Signals, unresolved blockers, or new Codex/session evidence available in local session logs for this workspace.
+- If there is no meaningful new activity and no pending maintenance, do not perform deep analysis. Append at most one short Automation-Log entry saying the heartbeat checked and found no actionable changes, then stop.
+
+If there is meaningful activity:
+- Analyze relevant recent chats/session evidence and workspace diffs when available.
+- Process Agent-Instructions/Inbox.md, append handled items to Agent-Instructions/Outbox.md, update Current-Focus.md, Active-Threads.md, Workspace-Map.md, Memory.md, Automation-Log.md, Improvement-Log.md, and Signals when useful.
+- Look for durable self-improvement opportunities: repeated user corrections, confusing onboarding moments, stale instructions, useful workflow patterns, memory cleanup, or skill updates.
 
 Use Hermes-style discipline adapted for this workspace: keep memory compact, treat skills as reusable procedures, preserve user context, and do not make noisy changes.
 
