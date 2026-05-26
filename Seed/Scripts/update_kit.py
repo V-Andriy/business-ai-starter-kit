@@ -11,7 +11,7 @@ from datetime import datetime
 from pathlib import Path
 
 
-DEFAULT_REPO = "https://github.com/scalebound/business-ai-starter-kit.git"
+DEFAULT_REPO = "https://github.com/V-Andriy/business-ai-starter-kit.git"
 
 
 def run(cmd: list[str], cwd: Path | None = None) -> int:

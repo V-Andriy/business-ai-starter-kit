@@ -5,7 +5,7 @@ Paste this into Codex from the folder where you want your private AI workspace:
 ```text
 Set up my Business AI Starter Kit workspace from this repository.
 
-Source repository: https://github.com/scalebound/business-ai-starter-kit
+Source repository: https://github.com/V-Andriy/business-ai-starter-kit
 
 Use the source repository's Seed/ folder as the workspace starter. If the source repository is not already available locally, clone it first into a temporary location or into .business-ai-kit/source/ after confirming the target workspace folder is safe.
 
