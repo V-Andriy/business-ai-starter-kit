@@ -87,6 +87,7 @@ Expected result:
 - Prefer clear markdown instructions over hidden behavior.
 - Write instructions in the voice the agent should inherit: simple, calm, direct, practical, and free of hype.
 - Replace stale instruction text with the new truth. Do not describe the edit inside the instruction.
+- When debugging an installed test workspace, inspect it as evidence only. Do not change its files, automations, Git state, secrets, or account connections unless the user explicitly asks to fix that workspace.
 - Use plain JavaScript `.mjs` for local scripts. Do not add TypeScript just for small helper scripts.
 - Use `pnpm` instead of `npm` for development and project scripts. `npm` is allowed only as a temporary bootstrap tool to install pnpm when corepack is not available.
 - Do not store user-specific context in this repo.

@@ -27,7 +27,7 @@ The heartbeat runs in autonomous mode. It should do low-risk maintenance, look f
 Create three daily checkpoint automations by default:
 
 - morning: 09:30
-- midday: 12:00
+- late morning: 11:30
 - late afternoon: 16:00
 
 Use the user's locale and working pattern when known. Do not create hourly automations by default.
@@ -210,7 +210,7 @@ Recommended default:
 ```text
 model: latest available capable model
 reasoning effort: medium
-schedule: 09:30, 12:00, 16:00 local time on workdays
+schedule: 09:30, 11:30, 16:00 local time every day
 ```
 
 Use higher reasoning only when the workspace is large or the heartbeat is doing real self-improvement analysis.

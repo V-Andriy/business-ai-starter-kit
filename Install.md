@@ -32,13 +32,13 @@ After copying, read these installed workspace files and treat them as the source
 - `Agent-Instructions/Active-Threads.md`
 - `Agent-Instructions/Skills/`
 
-Run `Agent-Instructions/Setup-Plan.md` exactly as the setup checklist. Use the installed skills when the setup plan points to them.
+Run `Agent-Instructions/Setup-Plan.md` exactly as the setup checklist. When the setup plan points to a skill, follow that skill as the source of truth.
 
 Do not duplicate or improvise setup rules from memory. Follow the installed files.
 
-Complete the technical setup steps from `Setup-Plan.md`, including local tools, local Git, secret scanning, source cache, heartbeat setup, optional private GitHub backup prompt, onboarding, feedback prompt, inbox/outbox cleanup, and deleting `Setup-Plan.md` after setup is complete.
+Complete `Setup-Plan.md` end to end. Do not restate skill rules inside the install flow.
 
-Do not stop at "installation complete." Start the live onboarding conversation from `Setup-Plan.md` and adapt to my language.
+Do not stop at "installation complete." Start the live onboarding conversation from `Setup-Plan.md`, ask one useful question at a time, and adapt to my language.
 
 Keep `.business-ai-kit/source/` ignored by Git. Do not add analytics, telemetry, tracking, or background reporting.
 ```

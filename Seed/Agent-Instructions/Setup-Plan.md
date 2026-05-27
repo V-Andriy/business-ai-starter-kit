@@ -35,6 +35,7 @@ The user should end setup with:
 Start like a human, not a setup form.
 
 The first exchange should feel useful, warm, and a little engaging. Keep it natural. Do not overdo jokes, hype, or personality performance.
+Ask one useful question at a time. Respond to the user's answer before moving to the next setup step.
 
 Begin by introducing the agent, showing what it can help with, and asking what the user wants to call it. Let the user keep the default name Bob or choose a new name.
 
@@ -146,7 +147,6 @@ After the user confirms or corrects the preview, update:
 ## Finish Setup
 
 1. Create or confirm the daily checkpoint heartbeat automations with `Agent-Instructions/Skills/Workspace-Heartbeat/SKILL.md`.
-   - Default checkpoints: 09:30, 12:00, and 16:00 local time on workdays.
 2. Ask whether the user wants a private GitHub cloud backup for this workspace.
 3. If yes, use `Agent-Instructions/Skills/GitHub-Backup/SKILL.md`.
 4. If no, record that cloud backup was declined for now.
