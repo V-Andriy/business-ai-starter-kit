@@ -43,6 +43,7 @@ flowchart TD
   AgentInstructions --> Signals["Signals/ coordination pointers"]
 
   Skills --> BusinessSetup["Business-Setup/SKILL.md"]
+  Skills --> CodexLearner["Codex-Learner/SKILL.md"]
   Skills --> Heartbeat["Workspace-Heartbeat/SKILL.md"]
   Skills --> Feedback["Kit-Feedback/SKILL.md"]
   Skills --> Planning["Project-Planning/SKILL.md"]

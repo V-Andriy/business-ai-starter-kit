@@ -24,6 +24,7 @@ sequenceDiagram
   end
 
   Codex->>Workspace: Create workspace root if needed
+  Codex->>User: Give short plain-language progress updates during setup
   Codex->>Workspace: Verify Node.js, npm, and pnpm; install or record blocker if missing
   Codex->>Workspace: Create .business-ai-kit/
   Codex->>PublicRepo: Clone public repo into .business-ai-kit/source/
@@ -49,9 +50,15 @@ sequenceDiagram
 
   Codex->>Workspace: Read installed AGENTS.md and Agent-Instructions/
   Codex->>AgentFiles: Load Business-Setup skill
-  Codex->>User: Ask small onboarding question group
-  User->>Codex: Provide business context and privacy boundaries
-  Codex->>AgentFiles: Update User-Dossier, Business-Dossier, Current-Focus, Active-Threads, Workspace-Map, Memory, Decisions, Agent-State
+  Codex->>User: Start live onboarding handoff, not just "install complete"
+  Codex->>AgentFiles: Load Codex-Learner skill for optional first-time Codex orientation
+  Codex->>User: Explain chat, project folder, voice dictation, Plan mode, review, permissions, and docs-backed tips when relevant
+  Codex->>User: Ask name, assistant name, style, detail level, and reference sources
+  User->>Codex: Provide links, files, screenshots, voice-dictated note, or business context
+  Codex->>Codex: Inspect sources before asking follow-up questions
+  Codex->>User: Show dossier preview with facts, assumptions, gaps, opportunities, and recommended first project
+  User->>Codex: Confirm, correct, remove sensitive details, or add context
+  Codex->>AgentFiles: Update Soul, User-Dossier, Business-Dossier, Current-Focus, Active-Threads, Workspace-Map, Memory, Decisions, Agent-State
 
   Codex->>AgentFiles: Load Workspace-Heartbeat skill
   Codex->>User: Explain heartbeat frequency, safe writes, reporting, and how to turn it off
@@ -62,5 +69,5 @@ sequenceDiagram
     Codex->>AgentFiles: Record heartbeat blocker in Agent-State.md and Inbox.md
   end
 
-  Codex->>User: Explain what is private, what is safe to commit, and the next useful step
+  Codex->>User: Explain what is private, what was captured, and the next useful step
 ```

@@ -34,6 +34,7 @@ mindmap
         Private notes
         Secrets vault metadata
         Skills canonical folder
+          Codex-Learner teaches Codex usage
         Signals pointers
       Scripts copied helpers
       Project folders on demand
@@ -47,7 +48,12 @@ mindmap
       Init local Git on main
       Install scanner hook
       Read installed instructions
-      Onboard user lightly
+      Explain progress in plain language
+      Start live onboarding handoff
+      Teach basic Codex usage with Codex-Learner
+      Ask user name assistant name style detail level
+      Gather links files screenshots or voice note
+      Preview dossier before durable writes
       Fill workspace state
       Create mandatory hourly heartbeat
       Record blockers instead of hiding failures

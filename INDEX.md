@@ -14,6 +14,7 @@
 - [Seed/AGENTS.md](Seed/AGENTS.md) - live workspace agent instructions after install.
 - [Seed/Agent-Instructions/Soul.md](Seed/Agent-Instructions/Soul.md) - durable assistant identity, tone, durability, and first-run conversation rules.
 - [Seed/Agent-Instructions/Skills/Business-Setup/SKILL.md](Seed/Agent-Instructions/Skills/Business-Setup/SKILL.md) - first-run onboarding.
+- [Seed/Agent-Instructions/Skills/Codex-Learner/SKILL.md](Seed/Agent-Instructions/Skills/Codex-Learner/SKILL.md) - plain-language Codex usage guidance for first-time or non-technical users.
 - [Seed/Agent-Instructions/Skills/Workspace-Heartbeat/SKILL.md](Seed/Agent-Instructions/Skills/Workspace-Heartbeat/SKILL.md) - hourly heartbeat behavior.
 - [Seed/Agent-Instructions/Skills/Kit-Feedback/SKILL.md](Seed/Agent-Instructions/Skills/Kit-Feedback/SKILL.md) - user-approved feedback and upstream improvement workflow.
 - [Seed/Agent-Instructions/Skills/Update-Review/SKILL.md](Seed/Agent-Instructions/Skills/Update-Review/SKILL.md) - source cache refresh and update review.

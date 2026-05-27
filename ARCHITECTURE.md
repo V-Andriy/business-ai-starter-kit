@@ -51,13 +51,15 @@ flowchart TD
   Context --> SecretMeta["Secrets-Vault.md metadata only"]
 
   Skills --> BusinessSetup["Business setup"]
+  Skills --> CodexLearner["Codex learner"]
   Skills --> Heartbeat["Workspace heartbeat"]
   Skills --> KitFeedback["Kit feedback"]
   Skills --> ProjectPlanning["Project planning"]
   Skills --> SecretsVault["Secrets vault"]
   Skills --> UpdateReview["Update review"]
 
-  BusinessSetup --> Onboarding["First-run onboarding and state fill"]
+  BusinessSetup --> CodexLearner
+  CodexLearner --> Onboarding["First-run onboarding and state fill"]
   Onboarding --> HeartbeatSetup["Mandatory hourly heartbeat automation"]
   HeartbeatSetup --> Loop["Workspace self-improvement loop"]
   Loop --> Queue
@@ -116,7 +118,7 @@ Included now:
 - Local Git and pre-commit secret scanning.
 - `.business-ai-kit/source/` ignored source-cache update model.
 - `Agent-Instructions/` context, memory, inbox/outbox, signal, feedback, and state system.
-- Skills for setup, heartbeat, kit feedback, project planning, secrets, and updates.
+- Skills for setup, Codex learning, heartbeat, kit feedback, project planning, secrets, and updates.
 - Mandatory hourly workspace heartbeat instructions.
 - Local `.env` fallback and Doppler guidance for secrets.
 - Future templates placeholder.

@@ -6,6 +6,8 @@ Use it to organize business context, projects, workflows, research, documents, d
 
 You do not need to manage the files manually. Ask the AI for the outcome you want; it should keep the workspace organized and explain only what matters.
 
+The AI should keep explanations short, practical, and step-by-step. It should start with the simple version, then tell you the next useful action.
+
 ## Start Here
 
 Ask:
@@ -26,6 +28,14 @@ Good first inputs:
 - a messy note, transcript, or screenshot
 - a business idea you want to turn into a project
 - a workflow you repeat and want to make easier
+
+If Codex itself feels unfamiliar, ask:
+
+```text
+Show me how to use Codex for this workspace in plain language.
+```
+
+The AI should explain only what helps the next step, such as the voice recording button, planning before building, reviewing changes, permissions, or using Codex from another device when available.
 
 ## What The AI Should Do
 

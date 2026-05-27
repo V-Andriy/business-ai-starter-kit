@@ -11,7 +11,8 @@ This project is early. Feedback is welcome and useful. Andrii is actively helpin
 ## What It Does
 
 - Creates a private local workspace from the files in `Seed/`.
-- Helps Codex ask a few useful onboarding questions instead of a long technical questionnaire.
+- Helps Codex start a live onboarding conversation instead of ending at a technical install.
+- Teaches first-time Codex users small practical habits in plain language, including the voice recording button, planning, review, permissions, and mobile access when relevant.
 - Keeps user context, decisions, memory, inbox/outbox, and reusable workflows organized.
 - Adds safety defaults for secrets, local Git, and private files.
 - Creates project folders only when real work starts.
@@ -22,9 +23,11 @@ This project is early. Feedback is welcome and useful. Andrii is actively helpin
 
 1. Open Codex in the folder where you want to create your private AI workspace.
 2. Paste the short install instruction from [Install.md](Install.md).
-3. Let Codex do the setup, then answer the first small onboarding questions.
+3. Let Codex do the setup, then use the first onboarding conversation to give links, files, screenshots, or a voice recording where you explain things in your own words.
 
-Codex will inspect the folder, copy `Seed/`, initialize local Git, install safety hooks, gather useful business context, create a private source cache, and set up the heartbeat routine if available.
+Codex will inspect the folder, copy `Seed/`, initialize local Git, install safety hooks, create a private source cache, and explain what it is doing in plain language. Then it will give a short optional Codex orientation, ask what to call you, what you want to call the assistant, what style you prefer, which business sources to inspect, what should stay private, and what would make the workspace useful soon.
+
+After reviewing the sources, Codex should show a short dossier preview for you to confirm or correct before it writes durable user and business context into the workspace.
 
 The first useful request after setup is:
 
