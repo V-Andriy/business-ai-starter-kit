@@ -201,6 +201,7 @@ If something needs the user's judgment, write a clear note in Inbox.md or Signal
 - add compact durable memory after stable evidence
 - apply low-risk improvements to AI-owned skill instructions
 - propose larger skill or instruction changes instead of applying them silently
+- propose public kit feedback through the Kit Feedback skill when a local improvement may help other users
 - create project-local notes when a project already exists and the update is clearly relevant
 - tidy stale setup items after they are handled
 

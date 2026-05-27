@@ -67,6 +67,7 @@ mindmap
       Create signals
       Log low-noise audit trail
       Ask before risky work
+      Suggest user-approved kit feedback
     Updates
       Refresh ignored source cache
       Recover broken cache by backup and reclone

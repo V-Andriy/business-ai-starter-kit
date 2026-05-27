@@ -24,6 +24,7 @@ flowchart TD
   ItemType -- "Needs judgment or approval" --> DecisionNote["Write clear blocker or decision request to Inbox.md"]
   ItemType -- "Agent handoff" --> Signal["Create or update Signals/ pointer"]
   ItemType -- "Kit update request" --> UpdateReview["Run Update-Review flow"]
+  ItemType -- "Reusable kit feedback" --> KitFeedback["Draft user-approved feedback or small upstream proposal"]
 
   SkillReview --> SkillRisk{"Skill change risk"}
   SkillRisk -- "Small AI-owned wording or proven workflow" --> SkillApply["Apply skill update"]
@@ -34,8 +35,11 @@ flowchart TD
   ProjectNote --> SafetyCheck
   Signal --> SafetyCheck
   UpdateReview --> SafetyCheck
+  KitFeedback --> Approval{"User approved sharing?"}
   SkillApply --> ImprovementLog["Log skill or memory improvement in Improvement-Log.md"]
   SkillPropose --> DecisionNote
+  Approval -- "No" --> DecisionNote
+  Approval -- "Yes" --> SafetyCheck
 
   SafetyCheck -- "No" --> Outbox["Move handled inbox items to Outbox.md"]
   SafetyCheck -- "Yes" --> DecisionNote
@@ -57,3 +61,4 @@ Rules:
 - Secrets never belong in markdown.
 - Noisy heartbeat runs should log briefly and leave files alone.
 - Project-specific autonomous work needs explicit user authorization.
+- Public kit feedback is opt-in only: draft a LinkedIn message or one focused PR after user approval.

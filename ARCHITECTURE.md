@@ -44,7 +44,7 @@ flowchart TD
 
   Context --> Dossiers["User and business dossiers"]
   Context --> Continuity["Current focus, active threads, workspace map"]
-  Context --> Queue["Inbox, outbox, signals"]
+  Context --> Queue["Inbox, outbox, signals, feedback notes"]
   Context --> Logs["Automation log and improvement log"]
   Context --> Memory["Compact memory and decisions"]
   Context --> Skills["Skills as reusable workflows"]
@@ -52,6 +52,7 @@ flowchart TD
 
   Skills --> BusinessSetup["Business setup"]
   Skills --> Heartbeat["Workspace heartbeat"]
+  Skills --> KitFeedback["Kit feedback"]
   Skills --> ProjectPlanning["Project planning"]
   Skills --> SecretsVault["Secrets vault"]
   Skills --> UpdateReview["Update review"]
@@ -63,13 +64,17 @@ flowchart TD
   Loop --> Continuity
   Loop --> Memory
   Loop --> Skills
+  Loop --> KitFeedback
 
   UpdateReview --> Refresh["Refresh ignored source cache"]
   Refresh --> Compare["Compare useful source changes"]
   Compare --> Approval["Apply approved workspace changes only"]
 
   SecretsVault --> SecretSafety["Raw secrets stay in .env or managed vault"]
-  SecretSafety --> Scanner["Secret scanner before commit, push, deploy, publish, or support handoff"]
+  SecretSafety --> Scanner["Explicit secret scan before commit, push, deploy, publish, or support handoff"]
+
+  KitFeedback --> UserApproval["User approval before feedback leaves workspace"]
+  UserApproval --> FeedbackPath["LinkedIn message or small upstream PR"]
 
   Templates -. "MVP placeholder, not install dependency" .-> Projects
 ```
@@ -110,12 +115,13 @@ Included now:
 - Private workspace seed with real starter files, not `.template` files.
 - Local Git and pre-commit secret scanning.
 - `.business-ai-kit/source/` ignored source-cache update model.
-- `Agent-Instructions/` context, memory, inbox/outbox, signal, and state system.
-- Skills for setup, heartbeat, project planning, secrets, and updates.
+- `Agent-Instructions/` context, memory, inbox/outbox, signal, feedback, and state system.
+- Skills for setup, heartbeat, kit feedback, project planning, secrets, and updates.
 - Mandatory hourly workspace heartbeat instructions.
 - Local `.env` fallback and Doppler guidance for secrets.
 - Future templates placeholder.
 - Soft support references.
+- User-approved feedback path for LinkedIn messages or focused upstream PRs.
 
 Deferred:
 

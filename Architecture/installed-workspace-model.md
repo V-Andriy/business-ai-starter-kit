@@ -44,6 +44,7 @@ flowchart TD
 
   Skills --> BusinessSetup["Business-Setup/SKILL.md"]
   Skills --> Heartbeat["Workspace-Heartbeat/SKILL.md"]
+  Skills --> Feedback["Kit-Feedback/SKILL.md"]
   Skills --> Planning["Project-Planning/SKILL.md"]
   Skills --> Secrets["Secrets-Vault/SKILL.md"]
   Skills --> UpdateReview["Update-Review/SKILL.md"]

@@ -12,7 +12,7 @@ Use this skill to keep secrets out of workspace files and Git history.
 - local `.env`
 - Doppler setup and usage guidance
 - `Agent-Instructions/Secrets-Vault.md` metadata
-- Python secret scanner and pre-commit hook
+- local secret scanner and pre-commit hook
 
 ## Rules
 

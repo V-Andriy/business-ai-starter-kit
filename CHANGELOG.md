@@ -11,6 +11,9 @@
 - Migrated local helper scripts from Python to plain Node.js `.mjs` scripts and added pnpm package commands.
 - Added `scripts/audit-files.mjs` for file-size and documentation-graph checks with explicit exceptions.
 - Added `Scripts/heartbeat_gate.mjs` and expanded heartbeat guidance with Hermes-inspired modes: No-Op, Triage, Improvement, and Escalation.
+- Added a user-approved kit feedback workflow for LinkedIn feedback and small upstream improvement proposals.
+- Simplified first-user README, install handoff, and seed workspace guidance for non-technical business users.
+- Added alpha pilot language that invites early users to share what they are trying to build and request workflow or template support.
 
 ## 0.1.0
 

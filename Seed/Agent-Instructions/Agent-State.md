@@ -23,6 +23,7 @@ Purpose: concise operating state for agents and automations.
 - Skills are procedural memory and should be updated only when a workflow improvement is durable.
 - Facts belong in dossiers or memory. Procedures belong in skills. Active work belongs in active threads and project files.
 - Executive-facing work should keep facts, assumptions, decisions, risks, and next actions distinct.
+- Feedback to the public kit is user-approved only. No analytics, telemetry, or background reporting.
 
 ## Safety Boundaries
 
