@@ -12,7 +12,7 @@ The daily checkpoint heartbeat should process this file, turn items into active 
 - Ask what information should not be used in public or client-facing outputs.
 - Ask for the user's email only if they want it stored for workspace context.
 - Preview user/business context before writing durable files.
-- Create or confirm the daily checkpoint heartbeat automations.
+- Create or confirm heartbeat automations with `Agent-Instructions/Skills/Workspace-Heartbeat/SKILL.md`.
 - After setup is complete, ask whether the user wants a private GitHub cloud backup for this workspace.
 - After setup is fully complete, ask once whether the user wants to send Andrii feedback about onboarding.
 - Identify the first useful business project, workflow, or decision to organize in this workspace.

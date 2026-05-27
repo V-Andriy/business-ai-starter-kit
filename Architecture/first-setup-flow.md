@@ -66,7 +66,7 @@ sequenceDiagram
 
   Codex->>AgentFiles: Load Workspace-Heartbeat skill
   Codex->>User: Explain daily checkpoint heartbeat, safe writes, reporting, and how to turn it off
-  Codex->>Heartbeat: Create morning, midday, and late-afternoon workspace heartbeats
+  Codex->>Heartbeat: Create workspace heartbeats from Workspace-Heartbeat skill
   alt Heartbeat created
     Codex->>AgentFiles: Mark heartbeat configured
   else Heartbeat not available
