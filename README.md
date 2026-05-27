@@ -21,9 +21,20 @@ This project is early. Feedback is welcome, especially when it points to clearer
 
 ## Quick Start
 
-1. Open Codex in the folder where you want to create your private AI workspace.
-2. Paste the short install instruction from [Install.md](Install.md).
-3. Let Codex do the setup, then use the first onboarding conversation to give links, files, screenshots, or a voice recording where you explain things in your own words.
+1. Download and open [Codex](https://openai.com/codex/).
+2. Create or open the folder where you want your private AI workspace.
+3. Open a new Codex chat in that folder.
+4. Paste this message:
+
+```text
+Set up my Business AI Starter Kit workspace using the official install instructions:
+
+https://github.com/V-Andriy/business-ai-starter-kit/blob/main/Install.md
+
+Follow that file exactly. After installation, guide me through the first onboarding conversation.
+```
+
+5. Let Codex guide you. It will inspect the folder, set up the workspace, and ask for a few useful links, files, screenshots, notes, or a voice recording so it can understand you and your work.
 
 Codex will inspect the folder, copy `Seed/`, initialize local Git, install safety hooks, create a private source cache, and explain what it is doing in plain language. Then it will start a real conversation: introduce itself, ask how you want it to communicate, invite you to share a few useful business sources, and adapt from how you naturally communicate.
 
