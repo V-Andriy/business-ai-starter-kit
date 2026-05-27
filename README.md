@@ -46,6 +46,26 @@ The first useful request after setup is:
 Help me organize my current AI priorities and pick the first project.
 ```
 
+## Share
+
+To share Business AI Starter Kit with a friend, send them this repository and the install prompt below.
+
+Repository:
+
+```text
+https://github.com/V-Andriy/business-ai-starter-kit
+```
+
+Install prompt:
+
+```text
+Set up my Business AI Starter Kit workspace using the official install instructions:
+
+https://raw.githubusercontent.com/V-Andriy/business-ai-starter-kit/refs/heads/main/Install.md
+
+Follow that file exactly. After installation, guide me through the first onboarding conversation.
+```
+
 ## Privacy
 
 Your private workspace is separate from this public repository. Business context, client files, `.env`, private notes, and project work should stay in the private workspace.
