@@ -1,12 +1,13 @@
 # User Dossier
 
-Purpose: stable information about the user and how they prefer to work.
+Purpose: useful information about the user and how they prefer to work.
 
-The AI should fill this during first-run onboarding and update it only when preferences are stable.
+The AI should fill this during setup and keep it current when the user shares useful durable context.
 
 ## User
 
 - Name:
+- Email or preferred contact:
 - Preferred form of address:
 - Role:
 - Communication preference:
@@ -22,8 +23,16 @@ The AI should fill this during first-run onboarding and update it only when pref
 - Things to avoid:
 - Reference sources inspected:
 
+## Personal Context
+
+- Goals:
+- Current constraints:
+- Important preferences:
+- Relevant background:
+- Useful recurring details:
+
 ## Notes
 
-- Keep this concise.
-- Do not store secrets here.
+- Keep this concise, but detailed enough to help future work.
+- Use `Secrets-Vault.md` and the Secrets Vault skill for credentials, tokens, passwords, API keys, and private keys.
 - Store assistant identity and personality preferences in `Soul.md`; store user-specific working preferences here.

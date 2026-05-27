@@ -21,6 +21,7 @@ When studying the repo:
 - Start with `README.md`, `INDEX.md`, `Install.md`, and `Seed/AGENTS.md`.
 - Read `Seed/AGENTS.md` to understand the private workspace behavior users receive.
 - Read `Seed/Agent-Instructions/Skills/Secrets-Vault/SKILL.md` before reviewing anything related to secrets.
+- Read `Skills/Instruction-Governance/SKILL.md` before changing durable instructions.
 - Do not assume `AGENTS.md` is user-facing. The user-facing agent instructions are in `Seed/AGENTS.md`.
 
 The core product model:
@@ -47,7 +48,9 @@ private user workspace = separate local workspace
 - `Install.md` is the only external setup instruction.
 - `Seed/` files are copied into private user workspaces. They must be real starter files, not `.template` files.
 - `Templates/` is a public source library area for future reusable templates. Keep it empty except documentation until templates are intentionally introduced.
-- Ongoing setup, update, safety, heartbeat, troubleshooting, and support behavior should live in `Seed/`, mainly `Seed/AGENTS.md` and `Seed/Agent-Instructions/Skills/`.
+- First-run setup lives in `Install.md`, `Seed/Agent-Instructions/Setup-Plan.md`, `Seed/Agent-Instructions/Inbox.md`, and `Seed/Agent-Instructions/Active-Threads.md`.
+- Daily workspace behavior lives in `Seed/AGENTS.md`.
+- Update, safety, heartbeat, troubleshooting, and support workflows live in `Seed/Agent-Instructions/Skills/`.
 - `Seed/Agent-Instructions/Soul.md` is only for durable assistant identity and felt user experience. It is a philosophical file for how the agent should feel. Change it carefully only for assistant name, personality, tone, relationship, or core-principle updates; do not put setup steps, onboarding scripts, troubleshooting flows, project instructions, examples, or skill workflows there.
 - `Seed/Agent-Instructions/Skills/` is the canonical skills folder for user workspaces.
 - If another harness needs a skills path, instructions should create a symlink to `Agent-Instructions/Skills/` instead of copying skills.
@@ -82,6 +85,8 @@ Expected result:
 
 - Keep files ASCII unless there is a clear reason not to.
 - Prefer clear markdown instructions over hidden behavior.
+- Write instructions in the voice the agent should inherit: simple, calm, direct, practical, and free of hype.
+- Replace stale instruction text with the new truth. Do not describe the edit inside the instruction.
 - Use plain JavaScript `.mjs` for local scripts. Do not add TypeScript just for small helper scripts.
 - Use `pnpm` instead of `npm` for development and project scripts. `npm` is allowed only as a temporary bootstrap tool to install pnpm when corepack is not available.
 - Do not store user-specific context in this repo.
@@ -103,6 +108,7 @@ Expected result:
 - Avoid orphan docs and link dumps. Link files from the closest logical parent or index.
 - Do not duplicate canonical rules across files. Link to the source document instead.
 - Preserve file responsibilities. If a rule belongs in setup, skills, memory, dossiers, decisions, or soul, put it only in that layer.
+- Use `Skills/Instruction-Governance/SKILL.md` for instruction edits.
 - File audit exceptions must be explicit in `scripts/audit-files.mjs` and include a reason.
 - `pnpm audit:files` is audit-only and may report existing cleanup targets without failing. Use `pnpm audit:files:strict` when the current change is expected to leave the repository clean.
 

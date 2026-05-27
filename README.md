@@ -6,7 +6,7 @@ It is not a prompt pack. It gives Codex a simple workspace structure, clear oper
 
 Status: alpha open-source MVP for guided pilots and first users.
 
-This project is early. Feedback is welcome and useful. Andrii is actively helping early users shape this into a system that supports real business work, including workflow improvements, starter templates, and clearer instructions.
+This project is early. Feedback is welcome, especially when it points to clearer setup, better workflows, useful starter templates, or simpler instructions.
 
 ## What It Does
 
@@ -62,7 +62,7 @@ If you get stuck, something feels too technical, or you want help shaping what t
 
 This version focuses on install, private workspace behavior, safety, update flow, heartbeat, project organization, and feedback.
 
-Project templates, app templates, full Hermes runtime compatibility, all secret-provider adapters, a UI, SaaS backend, and full autonomous project execution are intentionally deferred.
+Project templates, app templates, full external-runtime compatibility, all secret-provider adapters, a UI, SaaS backend, and full autonomous project execution are intentionally deferred.
 
 The private user workspace is local-first by default. Private GitHub backup can be added later by user request after safety checks.
 

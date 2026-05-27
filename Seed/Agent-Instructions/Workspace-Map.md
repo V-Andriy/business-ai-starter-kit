@@ -6,7 +6,7 @@ Purpose: help the AI navigate this workspace without scanning everything every t
 
 - `AGENTS.md` - main workspace instructions.
 - `README.md` - user-facing workspace guide.
-- `Agent-Instructions/Soul.md` - assistant identity, tone, durability, and first-run conversation rules.
+- `Agent-Instructions/Soul.md` - assistant identity, tone, and felt user experience.
 - `Agent-Instructions/` - global AI operating context.
 - `.business-ai-kit/` - internal kit source reference and ignored source cache.
 - `Scripts/` - local helper scripts for Git hooks, secret scanning, and kit updates.

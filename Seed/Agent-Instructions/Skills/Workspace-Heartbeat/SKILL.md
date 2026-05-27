@@ -5,12 +5,9 @@ description: Use for the hourly workspace review automation and manual workspace
 
 # Workspace Heartbeat
 
-This skill keeps the workspace alive between sessions.
+Use this skill to keep the workspace current between sessions without creating noise.
 
-The heartbeat is inspired by the useful parts of Hermes Agent: durable identity,
-context files, skills, curated memory, active work tracking, signals, scheduled
-review, and safe state separation. Do not copy the Hermes runtime into MVP.
-Adapt the operating loop for Codex and non-technical business users.
+The heartbeat checks for meaningful change, performs low-risk maintenance, and leaves a compact audit trail.
 
 ## Read First
 
@@ -23,128 +20,106 @@ Adapt the operating loop for Codex and non-technical business users.
 - `Agent-Instructions/Memory.md`
 - `Agent-Instructions/Agent-State.md`
 
-## Optional Helper Script
+## Activity Gate
 
-If available, run this before deep review:
+Run this first when available:
 
 ```text
 pnpm heartbeat:gate
 ```
 
-Use the JSON output as a cheap activity snapshot. The script can flag pending
-inbox items, signals, git changes, and recent Codex session candidates. If the
-script is missing or fails, continue with the manual activity gate instead of
-stopping.
+Use the JSON output as a cheap activity snapshot. If the script is missing or fails, continue with a manual check.
+
+Meaningful activity includes:
+
+- new or changed workspace files
+- pending `Inbox.md` items
+- active thread changes
+- new `Signals/`
+- unresolved blockers
+- recent Codex/session evidence for this workspace when available
+
+If nothing meaningful changed, write at most one short `Automation-Log.md` entry and stop.
 
 ## Work Loop
 
-Use this operating shape:
+Use the lightest mode that fits the evidence.
 
 ```text
-activity evidence -> heartbeat mode -> focused action -> compact log
+activity evidence -> mode -> focused action -> compact log
 ```
 
-1. Run the lightweight activity gate first.
-2. Check whether anything meaningful changed since the last heartbeat:
-   - new or changed workspace files
-   - pending `Inbox.md` items
-   - active thread changes
-   - new `Signals/`
-   - unresolved blockers
-   - recent Codex/session evidence for this workspace when available
-3. If nothing changed and no maintenance is pending, write at most one short `Automation-Log.md` entry and stop.
-4. If there is meaningful activity, analyze only the relevant chats, session evidence, diffs, inbox items, and active threads.
-5. Process `Inbox.md`.
-6. Move handled items to `Outbox.md` with a short note.
-7. Update active threads and current focus.
-8. Refresh workspace map if files or projects changed.
-9. Add durable lessons to memory only when stable and compact.
-10. Review whether a skill needs a small update from repeated corrections or proven workflow improvements.
-11. Log the run in `Automation-Log.md`.
-12. Log instruction or skill improvements in `Improvement-Log.md`.
-13. Create signals for anything needing follow-up.
-14. If there is a clear next decision for the user, make it visible in `Current-Focus.md` or `Signals/Incoming.md`.
+1. Run the activity gate.
+2. Choose a mode.
+3. Analyze only relevant files, diffs, inbox items, active threads, and session evidence.
+4. Process `Inbox.md`.
+5. Move handled items to `Outbox.md`.
+6. Update `Current-Focus.md`, `Active-Threads.md`, and `Workspace-Map.md` when useful.
+7. Add durable memory only when it is stable and compact.
+8. Update skills only from strong evidence.
+9. Log the run in `Automation-Log.md`.
+10. Log instruction or skill improvements in `Improvement-Log.md`.
+11. Create signals for decisions or blockers.
 
-## Heartbeat Modes
+## Modes
 
-Choose the lightest mode that can do the job.
+### No-Op
 
-### No-Op Mode
+Use when there is no meaningful new evidence.
 
-Use when the activity gate finds no meaningful new evidence.
+- Append at most one short automation log entry.
+- Do not update memory, skills, active threads, or user-facing files.
+- Stop.
 
-Allowed work:
+### Triage
 
-- append one short automation log entry
-- stop
-
-Do not update memory, skills, active threads, or user-facing files in no-op mode.
-
-### Triage Mode
-
-Use when there are small changes, pending inbox items, stale active threads, or
-minor state cleanup.
-
-Allowed work:
+Use for small changes, pending inbox items, stale active threads, or minor state cleanup.
 
 - process inbox/outbox
 - update current focus and active threads
 - refresh workspace map
 - create signals for decisions or blockers
-- write compact automation and improvement logs
+- write compact logs
 
-### Improvement Mode
+### Improvement
 
-Use when there is real evidence from recent chats, repeated user corrections,
-workspace changes, or project activity.
-
-Allowed work:
+Use when recent chats, repeated corrections, workspace changes, or project activity show a real improvement opportunity.
 
 - update compact durable memory
 - make small low-risk updates to AI-owned skill instructions
 - consolidate stale or duplicated state
-- propose larger instruction, privacy, or workflow changes instead of applying them silently
+- propose larger instruction, external-sharing, or workflow changes before applying them
 
-### Escalation Mode
+### Escalation
 
-Use when the heartbeat finds a decision, risk, blocker, private-data concern,
-project-specific autonomous work, deployment, publishing, paid service, external
-account, or secret-handling change.
-
-Allowed work:
+Use when there is a decision, risk, blocker, public-output concern, project-specific autonomous work, deployment, publishing, paid service, external account, or secret-handling change.
 
 - document the issue in `Signals/Incoming.md` or `Inbox.md`
-- explain the decision needed in plain language
+- explain the needed decision in plain language
 - stop before risky action
 
 ## Evidence Rules
 
-Use evidence before changing durable instructions.
-
 Strong evidence:
 
 - explicit user correction
-- repeated pattern across multiple sessions
-- clear workspace diff showing an accepted workflow
+- repeated pattern across sessions
+- accepted workflow in workspace diffs
 - approved decision in `Decisions.md`
 - active thread state that needs maintenance
 
 Weak evidence:
 
 - one ambiguous assistant output
-- a guess about what the user prefers
-- a single unfinished idea
-- private context that should not become a general rule
+- a guess about user preference
+- one unfinished idea
+- personal or business context that belongs in dossiers instead of general rules
 
-Low-risk AI-owned files can be updated from strong evidence. Sensitive user or
-business context should be updated conservatively. Major behavior changes should
-be proposed before writing.
+Use strong evidence for durable instruction changes. Update user and business dossiers when new useful context is stable enough to help future work.
 
 ## Automation Model
 
 Use the latest available capable model for the heartbeat automation.
-
-The heartbeat is allowed to use a strong model because it must be smart enough to decide when not to work. Token control should come from the activity gate, not from using a weaker model.
 
 Recommended default:
 
@@ -154,56 +129,30 @@ reasoning effort: medium
 schedule: hourly
 ```
 
-Use higher reasoning only if the workspace is large or the heartbeat is doing substantial self-improvement analysis. Do not spend deep reasoning on no-op checks.
+Use higher reasoning only when the workspace is large or the heartbeat is doing real self-improvement analysis.
 
-## Heartbeat Judgment
-
-Do not create noise. If there is nothing useful to change:
-
-- write at most one short `Automation-Log.md` entry
-- leave user-facing files alone
-- do not invent work
-- do not repeatedly ask the same question
-- stop after the lightweight check
-
-Wake the user only when there is a decision, blocker, risk, or useful next action.
-
-## Prompt To Use For Automation
+## Prompt For Automation
 
 ```text
 Review this Business AI Starter Kit workspace with a change-gated heartbeat loop.
 
-First run a lightweight activity gate before deep work:
+First run a lightweight activity gate:
 - If Scripts/heartbeat_gate.mjs exists, run: pnpm heartbeat:gate.
-- Read AGENTS.md, Agent-Instructions/Soul.md if present, Agent-Instructions/Agent-State.md, Agent-Instructions/Current-Focus.md, Agent-Instructions/Active-Threads.md, Agent-Instructions/Inbox.md, Agent-Instructions/Automation-Log.md, and Agent-Instructions/Workspace-Map.md.
-- Check whether there were meaningful changes since the last heartbeat: new or changed workspace files, pending Inbox items, active-thread changes, Signals, unresolved blockers, or new Codex/session evidence available in local session logs for this workspace.
-- If there is no meaningful new activity and no pending maintenance, do not perform deep analysis. Append at most one short Automation-Log entry saying the heartbeat checked and found no actionable changes, then stop.
+- Read AGENTS.md, Agent-Instructions/Soul.md, Agent-Instructions/Agent-State.md, Agent-Instructions/Current-Focus.md, Agent-Instructions/Active-Threads.md, Agent-Instructions/Inbox.md, Agent-Instructions/Automation-Log.md, and Agent-Instructions/Workspace-Map.md.
+- Check for meaningful changes: workspace files, Inbox items, active threads, Signals, blockers, or recent local session evidence for this workspace.
+- If there is no meaningful new activity and no pending maintenance, append at most one short Automation-Log entry and stop.
 
 If there is meaningful activity:
-- Analyze relevant recent chats/session evidence and workspace diffs when available.
-- Process Agent-Instructions/Inbox.md, append handled items to Agent-Instructions/Outbox.md, update Current-Focus.md, Active-Threads.md, Workspace-Map.md, Memory.md, Automation-Log.md, Improvement-Log.md, and Signals when useful.
-- Look for durable self-improvement opportunities: repeated user corrections, confusing onboarding moments, stale instructions, useful workflow patterns, memory cleanup, or skill updates.
-- Choose No-Op, Triage, Improvement, or Escalation mode. Use the lightest mode that fits the evidence.
-- Use evidence thresholds before changing durable instructions. Make small low-risk AI-owned instruction updates only when evidence is clear. Propose larger or sensitive changes first.
+- Analyze only relevant recent evidence.
+- Process Inbox.md, append handled items to Outbox.md, and update Current-Focus.md, Active-Threads.md, Workspace-Map.md, Memory.md, Automation-Log.md, Improvement-Log.md, and Signals when useful.
+- Choose No-Op, Triage, Improvement, or Escalation mode.
+- Make low-risk AI-owned instruction updates only from strong evidence.
+- Propose larger or external-facing changes first.
 
-Use Hermes-style discipline adapted for this workspace: keep memory compact, treat skills as reusable procedures, preserve user context, and do not make noisy changes.
+Do not publish, deploy, spend money, share workspace context externally, change secrets, connect accounts, or continue project-specific autonomous work unless the user explicitly authorized it.
 
-Perform only low-risk maintenance automatically. Do not publish, deploy, spend money, expose private data, change secrets, connect external accounts, or continue project-specific work unless the user explicitly authorized it.
-
-If something needs the user's judgment, write a clear note in Inbox.md or Signals/Incoming.md and report it. Keep any user-facing summary brief: what changed, what matters next, and what decision is needed.
+Keep any user-facing summary brief: what changed, what matters next, and what decision is needed.
 ```
-
-## Safe Automatic Work
-
-- update workspace state files
-- summarize completed inbox items
-- mark stale threads as paused or waiting
-- add compact durable memory after stable evidence
-- apply low-risk improvements to AI-owned skill instructions
-- propose larger skill or instruction changes instead of applying them silently
-- propose public kit feedback through the Kit Feedback skill when a local improvement may help other users
-- create project-local notes when a project already exists and the update is clearly relevant
-- tidy stale setup items after they are handled
 
 ## Must Ask First
 
@@ -211,14 +160,14 @@ If something needs the user's judgment, write a clear note in Inbox.md or Signal
 - deployment
 - paid services
 - deleting user work
-- exposing private data
+- sharing workspace context externally
 - changing secret storage
 - project-specific autonomous execution
 - connecting accounts or granting permissions
 
 ## Output Rules
 
-Every run should leave an audit trail:
+Every run should leave a compact audit trail:
 
 - `Automation-Log.md`: what was checked, what changed, what needs review
 - `Outbox.md`: inbox items that were handled
@@ -231,5 +180,5 @@ Keep entries short. The heartbeat is an operating loop, not a diary.
 
 - Mark a thread as waiting when the next step needs user input.
 - Mark a thread as paused when there is no current action and no deadline.
-- Do not close a thread unless the objective is complete or the user abandoned it.
-- Do not repeatedly re-add the same inbox item after it has been moved to outbox.
+- Close a thread only when the objective is complete or abandoned by the user.
+- Do not re-add the same inbox item after it has been moved to outbox.

@@ -26,7 +26,7 @@ Check whether Node.js, npm, and pnpm are available by running node --version, np
 
 Copy the contents of Seed/ into the workspace, including hidden files like .gitignore and .env.example. Then initialize local Git on main, run pnpm hooks:install, and run pnpm kit:update so .business-ai-kit/source/ exists as an ignored source cache.
 
-Read the copied AGENTS.md and Agent-Instructions files. Then run first-run onboarding in plain business language. Do not stop at "installation complete." Start a real conversation that helps me use the workspace, with short steps instead of a lecture.
+Read the copied AGENTS.md, Agent-Instructions/Inbox.md, Agent-Instructions/Active-Threads.md, and Agent-Instructions/Setup-Plan.md. Then run the setup plan in plain business language. Do not stop at "installation complete." Start a real conversation that helps me use the workspace, with short steps instead of a lecture.
 
 Open with a short welcome in this spirit, adapted to my language:
 
@@ -62,9 +62,11 @@ After inspecting sources, show a short dossier preview with facts, assumptions, 
 
 Update the workspace state files and set up the hourly workspace heartbeat automation when available. Explain that the heartbeat is local workspace maintenance, not analytics.
 
-Explain that this is an alpha kit and Andrii is actively looking for feedback from early users. If I get stuck, find something confusing, or want the kit to support a workflow/template/app, offer to draft a short LinkedIn message to Andrii.
+When setup is complete, move handled setup items from Inbox.md to Outbox.md, update Active-Threads.md, and delete Agent-Instructions/Setup-Plan.md.
+
+Mention that Andrii welcomes practical feedback from early users. If I get stuck, find something confusing, or want the kit to support a workflow/template/app, offer to draft a short LinkedIn message to Andrii.
 
 Do not copy repository maintenance files into the workspace unless they are inside Seed/. Do not store secrets in markdown files. Keep .business-ai-kit/source/ ignored by Git. Do not add analytics, telemetry, tracking, or background reporting.
 ```
 
-After installation, all ongoing setup, update, safety, heartbeat, and support instructions live inside the copied workspace.
+After installation, ongoing workspace behavior, update, safety, heartbeat, and support instructions live inside the copied workspace.

@@ -49,7 +49,6 @@ const exceptions = {
   },
   largeDocs: {
     'Seed/AGENTS.md': 'Canonical private workspace behavior contract; split only when behavior boundaries are clearer.',
-    'Seed/Agent-Instructions/Skills/Business-Setup/SKILL.md': 'Canonical first-run setup workflow; split only when reusable subflows are clearer.',
     'Seed/Agent-Instructions/Skills/Workspace-Heartbeat/SKILL.md': 'Canonical heartbeat workflow; split only when reusable subflows are clearer.',
   },
   tinyCode: {},

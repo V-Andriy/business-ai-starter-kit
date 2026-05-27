@@ -8,12 +8,13 @@ Purpose: current workstreams the agent should track across sessions and heartbea
 
 - Project: Workspace setup
 - Status: Active
-- Current objective: Complete onboarding and create the hourly heartbeat automation.
-- Next useful action: Fill the user and business dossiers.
+- Current objective: Complete the temporary setup plan, then remove setup from active work.
+- Next useful action: Follow `Agent-Instructions/Setup-Plan.md`.
 - Blockers:
 - Last updated:
-- Decision needed: First useful business project or workflow.
+- Decision needed: Communication style, useful references, public-output boundaries, and first useful business project or workflow.
 - Related files:
+  - Agent-Instructions/Setup-Plan.md
   - Agent-Instructions/User-Dossier.md
   - Agent-Instructions/Business-Dossier.md
 - Automation: Hourly Workspace Heartbeat

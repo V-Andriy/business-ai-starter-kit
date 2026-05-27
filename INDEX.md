@@ -10,10 +10,11 @@
 - [SECURITY.md](SECURITY.md) - security reporting and secret-handling notes.
 - [CONTRIBUTING.md](CONTRIBUTING.md) - contribution and release-check guidance.
 - [CHANGELOG.md](CHANGELOG.md) - release history.
+- [Skills/Instruction-Governance/SKILL.md](Skills/Instruction-Governance/SKILL.md) - maintainer skill for clear, non-duplicated instruction changes.
 - [Seed/README.md](Seed/README.md) - private workspace starter readme.
 - [Seed/AGENTS.md](Seed/AGENTS.md) - live workspace agent instructions after install.
-- [Seed/Agent-Instructions/Soul.md](Seed/Agent-Instructions/Soul.md) - durable assistant identity, tone, durability, and first-run conversation rules.
-- [Seed/Agent-Instructions/Skills/Business-Setup/SKILL.md](Seed/Agent-Instructions/Skills/Business-Setup/SKILL.md) - first-run onboarding.
+- [Seed/Agent-Instructions/Soul.md](Seed/Agent-Instructions/Soul.md) - durable assistant identity, tone, and felt user experience.
+- [Seed/Agent-Instructions/Setup-Plan.md](Seed/Agent-Instructions/Setup-Plan.md) - temporary first-run setup plan deleted after setup.
 - [Seed/Agent-Instructions/Skills/Codex-Learner/SKILL.md](Seed/Agent-Instructions/Skills/Codex-Learner/SKILL.md) - plain-language Codex usage guidance for first-time or non-technical users.
 - [Seed/Agent-Instructions/Skills/Workspace-Heartbeat/SKILL.md](Seed/Agent-Instructions/Skills/Workspace-Heartbeat/SKILL.md) - hourly heartbeat behavior.
 - [Seed/Agent-Instructions/Skills/Kit-Feedback/SKILL.md](Seed/Agent-Instructions/Skills/Kit-Feedback/SKILL.md) - user-approved feedback and upstream improvement workflow.
@@ -26,6 +27,7 @@
 
 - [Seed/](Seed/) - ready-to-copy starter files for the user's private workspace.
 - [Seed/Agent-Instructions/Soul.md](Seed/Agent-Instructions/Soul.md) - default AI partner personality and user experience rules.
+- [Seed/Agent-Instructions/Setup-Plan.md](Seed/Agent-Instructions/Setup-Plan.md) - temporary setup checklist for new workspaces.
 - [Seed/Agent-Instructions/Agent-State.md](Seed/Agent-Instructions/Agent-State.md) - setup status, permissions, and blockers.
 - [Seed/Agent-Instructions/Current-Focus.md](Seed/Agent-Instructions/Current-Focus.md) - current workspace focus.
 - [Seed/Agent-Instructions/Active-Threads.md](Seed/Agent-Instructions/Active-Threads.md) - ongoing work continuity.

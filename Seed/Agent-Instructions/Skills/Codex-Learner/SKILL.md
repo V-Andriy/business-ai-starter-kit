@@ -23,6 +23,7 @@ The goal is not to turn the user into a developer. The goal is to help them feel
 - When the detail may have changed, check official OpenAI Codex documentation first.
 - Link to official docs when useful.
 - Offer screenshots or step-by-step guidance when the user seems stuck.
+- After a meaningful learning milestone, rarely ask whether the user wants to send Andrii feedback about the learning experience.
 
 ## Documentation Standard
 
@@ -31,7 +32,7 @@ Codex changes over time. Before giving specific instructions about current Codex
 Preferred official docs:
 
 - Codex app: `https://developers.openai.com/codex/app`
-- Codex best practices: `https://developers.openai.com/codex/learn/best-practices`
+- Codex usage guidance: `https://developers.openai.com/codex/learn/best-practices`
 - Remote connections and mobile access: `https://developers.openai.com/codex/remote-connections`
 - Codex prompting: `https://developers.openai.com/codex/prompting`
 - Codex skills: `https://developers.openai.com/codex/skills`
@@ -123,7 +124,7 @@ Plain-language explanation:
 Small Codex tip: you may be able to control Codex from your phone. The computer still provides the files and tools, while the phone sends prompts, approvals, and follow-up messages.
 ```
 
-Mention current documented requirements carefully. As of the current official docs reviewed for this skill, mobile setup starts from the Codex App on a macOS host and uses the ChatGPT mobile app. Windows support may differ, so verify before giving setup steps.
+Mention current documented requirements carefully. Verify host, device, and app requirements before giving setup steps.
 
 ## Voice Guidance
 
@@ -161,3 +162,4 @@ Plan this before building anything. Tell me the steps, risks, and what you need 
 - Any specific Codex UI or feature guidance was checked against official OpenAI docs when it could be stale.
 - The user knows the next practical action.
 - The user was not overloaded with a full manual unless they asked for one.
+- If the user completed a meaningful learning milestone and has not been asked for feedback recently, offer to draft feedback through `Kit-Feedback`.

@@ -49,7 +49,7 @@ sequenceDiagram
   end
 
   Codex->>Workspace: Read installed AGENTS.md and Agent-Instructions/
-  Codex->>AgentFiles: Load Business-Setup skill
+  Codex->>AgentFiles: Read Setup-Plan.md, Inbox.md, and Active-Threads.md
   Codex->>User: Start live onboarding handoff, not just "install complete"
   Codex->>AgentFiles: Load Codex-Learner skill for optional first-time Codex orientation
   Codex->>User: Explain chat, project folder, voice recording, Plan mode, review, permissions, and docs-backed tips when relevant
@@ -71,5 +71,7 @@ sequenceDiagram
     Codex->>AgentFiles: Record heartbeat blocker in Agent-State.md and Inbox.md
   end
 
+  Codex->>AgentFiles: Move handled setup items from Inbox.md to Outbox.md
+  Codex->>AgentFiles: Delete Setup-Plan.md after setup is complete
   Codex->>User: Explain what is private, what was captured, and the next useful step
 ```

@@ -5,28 +5,72 @@ description: Use when the user wants to send feedback to Andrii or propose an im
 
 # Kit Feedback
 
-Use this skill to turn real user experience into useful feedback without
-analytics, telemetry, or background reporting.
+Use this skill to turn real user experience into useful feedback without analytics, telemetry, or background reporting.
 
 Nothing leaves the private workspace unless the user explicitly approves it.
 
-This kit is in alpha. Andrii wants practical feedback from early users and is
-willing to help shape workflows, instructions, and future templates around what
-they are trying to build.
+Andrii welcomes practical feedback from early users.
 
 ## When To Use
 
 Use this workflow when:
 
 - the user asks to send feedback to Andrii
+- setup is fully complete and onboarding feedback has not been requested yet
+- the first project reaches a useful result and project feedback has not been requested yet
+- the user completes a meaningful learning or workflow milestone and it has been a while since the last feedback request
 - setup instructions are confusing, stale, or wrong
 - the workspace discovers a bug in the starter kit
 - a local skill, template, or instruction improvement could help other users
 - the user wants to contribute a small fix upstream
 - the user describes something they wish the kit helped them build
 
-Do not use this for private business context, client material, secrets, or raw
-project files.
+Do not include private business context, client material, secrets, or raw project files in feedback unless the user explicitly approves that exact content.
+
+## Feedback Timing
+
+Ask rarely.
+
+Good moments:
+
+- after onboarding is fully done
+- after the first project produces a useful result
+- after a meaningful learning or workflow milestone
+
+Do not ask:
+
+- during setup before the user has value
+- repeatedly in the same project
+- when the user is blocked, frustrated, or trying to finish urgent work
+- after the user already declined the same feedback moment
+
+If the user declines, record the decline in `Outbox.md` or the relevant project notes and move on.
+
+## Trigger Prompts
+
+After onboarding:
+
+```text
+Before we move on: would you like to send Andrii quick feedback about the onboarding?
+
+Useful feedback would be what felt clear, what was confusing, what you liked, and what made setup harder than it should be. I can draft a short LinkedIn message for you, or we can skip it.
+```
+
+After the first project has a useful result:
+
+```text
+You now have a first useful result from this workspace. Would you like to send Andrii quick feedback about how creating this project went?
+
+Useful feedback would be what helped, what was confusing, and what would make the first-project experience smoother. I can draft the message, or we can skip it.
+```
+
+After a later meaningful milestone:
+
+```text
+Quick check: would you like to send Andrii feedback about this experience?
+
+Only if useful. I can draft a short message with what worked, what did not, and what would make the kit better.
+```
 
 ## Feedback Paths
 
@@ -37,7 +81,7 @@ Choose the smallest useful path.
 Use when the feedback is a note, question, bug report, or testimonial.
 
 1. Summarize the feedback in 3-6 bullets.
-2. Remove private business details, client names, secrets, and internal numbers.
+2. Remove private business details, client names, secrets, and internal numbers unless the user explicitly approves them.
 3. Draft a short LinkedIn message to Andrii:
    `https://www.linkedin.com/in/andrii-veselov/`
 4. Ask the user to approve or edit it before they send it.
@@ -73,8 +117,7 @@ Use when there is a concrete public-kit improvement.
 7. Run the secret scanner on the changed files.
 8. Create one focused pull request per issue when GitHub access is available.
 
-If GitHub access is unavailable, prepare a concise patch summary and LinkedIn
-message instead.
+If GitHub access is unavailable, prepare a concise patch summary and LinkedIn message instead.
 
 ## PR Rules
 
@@ -82,8 +125,7 @@ message instead.
 - Prefer documentation and seed instruction fixes before new machinery.
 - Do not include private workspace context.
 - Do not add analytics, telemetry, tracking, or hidden reporting.
-- Do not change safety hooks or secret-scanning behavior unless the proposed
-  improvement is explicitly about that safety layer.
+- Do not change safety hooks or secret-scanning behavior unless the improvement is about that safety layer.
 - Keep the PR title concrete, for example:
   `Clarify iCloud install warning`
   `Fix Secrets Vault scanner instructions`
@@ -102,16 +144,14 @@ The proposed public change is:
 Private details I will leave out:
 - ...
 
-Do you want me to prepare a small contribution for the public project, or would
-you rather send Andrii a short LinkedIn message?
+Do you want me to prepare a small contribution for the public project, or would you rather send Andrii a short LinkedIn message?
 ```
 
 ## Done Criteria
 
 - The user approved the feedback path.
+- Or the user declined and the decline was recorded.
 - Private details were removed.
-- Simple feedback is ready as a LinkedIn message, or the upstream change is a
-  small focused branch/PR.
+- Simple feedback is ready as a LinkedIn message, or the upstream change is a small focused branch/PR.
 - The secret scanner was run on any files being contributed.
-- Any follow-up is recorded in `Agent-Instructions/Outbox.md` or the relevant
-  project notes.
+- Any follow-up is recorded in `Agent-Instructions/Outbox.md` or the relevant project notes.

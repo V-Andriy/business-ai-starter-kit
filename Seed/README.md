@@ -97,7 +97,7 @@ If something here could improve the public kit for other users, the AI should as
 
 ## Feedback
 
-This kit is in alpha. Andrii is actively looking for feedback from early users.
+Andrii welcomes practical feedback from early users.
 
 Useful feedback:
 

@@ -44,6 +44,7 @@ When creating these files, use the starter files in `starter-files/` if present.
 - Update `Workspace-Map.md`, `Current-Focus.md`, and `Active-Threads.md`.
 - Ask before making a project public, sharing files externally, deploying apps, or connecting real accounts.
 - Keep `Executive Brief.md` short: objective, current status, key decisions, risks, and next action.
+- After the first project reaches a useful result, ask once whether the user wants to send Andrii feedback about the first-project experience.
 
 ## Project Autonomy
 
@@ -80,7 +81,7 @@ Working files:
 Done criteria:
 ```
 
-This mirrors Hermes-style progressive context without making the user manage agent infrastructure.
+Keep this file practical. The user should not need to manage agent infrastructure.
 
 ## First Project Brief
 

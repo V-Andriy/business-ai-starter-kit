@@ -60,4 +60,4 @@ Before publishing, deploying, pushing, support handoff, or connecting external t
 1. Run the scanner on relevant files.
 2. Check `.env`, logs, exported data, screenshots, and generated reports are not being included.
 3. Explain the practical risk in one sentence.
-4. Ask for approval if private data, credentials, customer data, or business-sensitive material could leave the local workspace.
+4. Ask for approval if credentials, customer data, or business-sensitive material could leave the local workspace.

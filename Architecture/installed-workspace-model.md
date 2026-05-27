@@ -39,10 +39,10 @@ flowchart TD
   AgentInstructions --> ImprovementLog["Improvement-Log.md"]
   AgentInstructions --> PrivateNotes["Private-Notes.md private context"]
   AgentInstructions --> SecretsVault["Secrets-Vault.md secret metadata only"]
+  AgentInstructions --> SetupPlan["Setup-Plan.md temporary first-run checklist"]
   AgentInstructions --> Skills["Skills/ canonical workflows"]
   AgentInstructions --> Signals["Signals/ coordination pointers"]
 
-  Skills --> BusinessSetup["Business-Setup/SKILL.md"]
   Skills --> CodexLearner["Codex-Learner/SKILL.md"]
   Skills --> Heartbeat["Workspace-Heartbeat/SKILL.md"]
   Skills --> Feedback["Kit-Feedback/SKILL.md"]

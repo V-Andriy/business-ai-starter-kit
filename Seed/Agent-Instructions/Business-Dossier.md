@@ -1,6 +1,8 @@
 # Business Dossier
 
-Purpose: stable context about the user's business.
+Purpose: useful context about the user's business.
+
+The AI should keep this detailed enough to make future work better.
 
 ## Business
 
@@ -10,6 +12,10 @@ Purpose: stable context about the user's business.
 - Business model:
 - Main customers:
 - Main offers:
+- Positioning:
+- Competitors or alternatives:
+- Current channels:
+- Operating constraints:
 
 ## Current Priorities
 
@@ -19,6 +25,11 @@ Purpose: stable context about the user's business.
 
 - 
 
-## Private Or Sensitive Context
+## Useful Business Context
 
-Summarize sensitivity boundaries here. Put detailed sensitive notes in `Private-Notes.md`.
+- Customer details:
+- Internal assumptions:
+- Pricing or packaging notes:
+- Delivery model:
+- Recurring workflows:
+- Public-output boundaries:

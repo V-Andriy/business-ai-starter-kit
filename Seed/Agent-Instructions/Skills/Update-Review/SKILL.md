@@ -11,7 +11,7 @@ Use this skill when the user asks to update the kit or when the heartbeat checks
 
 1. Refresh `.business-ai-kit/source/`.
 2. Read source `CHANGELOG.md`, `INDEX.md`, and `VERSION`.
-3. Read changed source guidance in `Seed/AGENTS.md`, `Seed/Agent-Instructions/Skills/`, and `Seed/Scripts/`.
+3. Read source guidance in `Seed/AGENTS.md`, `Seed/Agent-Instructions/Skills/`, and `Seed/Scripts/`.
 4. Compare new guidance against the current workspace.
 5. Classify files as kit-owned, user-owned, or hybrid.
 6. Identify only useful updates.
@@ -29,10 +29,10 @@ Use this skill when the user asks to update the kit or when the heartbeat checks
 
 - Do not overwrite user context.
 - Do not silently change `AGENTS.md`.
-- Do not change privacy boundaries without approval.
-- Do not update secret behavior without approval.
+- Do not change external-sharing boundaries without approval.
+- Do not change secret behavior without approval.
 - Use proposals when a change is meaningful.
-- Treat updates like a dry run first: inspect, summarize, then apply.
+- Inspect and summarize before applying changes.
 - Preserve local user edits even when kit guidance changed.
 - Back up or clearly preserve content before replacing hybrid files.
 
@@ -43,7 +43,7 @@ Kit-owned:
 - generic skills
 - helper scripts
 - `.env.example`
-- generic setup/update/safety instructions
+- generic setup, update, and safety instructions
 
 User-owned:
 
@@ -64,13 +64,13 @@ Hybrid:
 
 For hybrid files, merge useful guidance into the user's current file instead of replacing it wholesale.
 
-## Hermes Compatibility Review
+## Harness Compatibility Review
 
-When kit updates mention Hermes, OpenClaw, other AI harnesses, skills, memory, context files, or automation:
+When kit updates mention another AI harness, skills, memory, context files, or automation:
 
 - adapt the concept to this workspace structure
 - keep user-facing language business-friendly
-- do not add Hermes runtime requirements unless the user asks
+- do not add runtime requirements unless the user asks
 - prefer symlinks for skills compatibility instead of copying skill folders
 - keep procedures in skills and facts in memory/dossiers
 
