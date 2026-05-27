@@ -7,6 +7,8 @@ Set up my Business AI Starter Kit workspace from this repository.
 
 Source repository: https://github.com/V-Andriy/business-ai-starter-kit
 
+If you are running in an AI coding harness other than Codex, adapt the workspace to that harness. Identify the harness, read its relevant local or official documentation, map the starter-kit rules to its instruction, skill, automation, memory, and permission model, and solve compatibility issues yourself. Keep the user-facing behavior the same, but do not blindly apply Codex-specific setup when the harness needs a different mechanism.
+
 Use the source repository's `Seed/` folder as the workspace starter. If the source repository is not already available locally, clone it first into a temporary location or into `.business-ai-kit/source/` after confirming the target workspace folder is safe.
 
 First inspect the current folder. If it is not empty or not clearly safe, ask me where to create the workspace before copying anything. Do not overwrite existing files unless I explicitly approve it.
