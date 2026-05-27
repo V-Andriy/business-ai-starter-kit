@@ -29,7 +29,7 @@ This project is early. Feedback is welcome, especially when it points to clearer
 ```text
 Set up my Business AI Starter Kit workspace using the official install instructions:
 
-https://github.com/V-Andriy/business-ai-starter-kit/blob/main/Install.md
+https://raw.githubusercontent.com/V-Andriy/business-ai-starter-kit/refs/heads/main/Install.md
 
 Follow that file exactly. After installation, guide me through the first onboarding conversation.
 ```
