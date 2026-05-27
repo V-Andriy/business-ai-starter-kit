@@ -48,6 +48,7 @@ private user workspace = separate local workspace
 - `Seed/` files are copied into private user workspaces. They must be real starter files, not `.template` files.
 - `Templates/` is a public source library area for future reusable templates. Keep it empty except documentation until templates are intentionally introduced.
 - Ongoing setup, update, safety, heartbeat, troubleshooting, and support behavior should live in `Seed/`, mainly `Seed/AGENTS.md` and `Seed/Agent-Instructions/Skills/`.
+- `Seed/Agent-Instructions/Soul.md` is only for durable assistant identity and felt user experience. It is a philosophical file for how the agent should feel. Change it carefully only for assistant name, personality, tone, relationship, or core-principle updates; do not put setup steps, onboarding scripts, troubleshooting flows, project instructions, examples, or skill workflows there.
 - `Seed/Agent-Instructions/Skills/` is the canonical skills folder for user workspaces.
 - If another harness needs a skills path, instructions should create a symlink to `Agent-Instructions/Skills/` instead of copying skills.
 - `Seed/Scripts/` should stay small, local, auditable, and dependency-light.
@@ -101,6 +102,7 @@ Expected result:
 - Treat documentation as a graph. Important Markdown files should be reachable from a logical root such as `AGENTS.md`, `README.md`, `INDEX.md`, or `Seed/AGENTS.md`.
 - Avoid orphan docs and link dumps. Link files from the closest logical parent or index.
 - Do not duplicate canonical rules across files. Link to the source document instead.
+- Preserve file responsibilities. If a rule belongs in setup, skills, memory, dossiers, decisions, or soul, put it only in that layer.
 - File audit exceptions must be explicit in `scripts/audit-files.mjs` and include a reason.
 - `pnpm audit:files` is audit-only and may report existing cleanup targets without failing. Use `pnpm audit:files:strict` when the current change is expected to leave the repository clean.
 

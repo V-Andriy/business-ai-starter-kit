@@ -25,7 +25,7 @@ This project is early. Feedback is welcome and useful. Andrii is actively helpin
 2. Paste the short install instruction from [Install.md](Install.md).
 3. Let Codex do the setup, then use the first onboarding conversation to give links, files, screenshots, or a voice recording where you explain things in your own words.
 
-Codex will inspect the folder, copy `Seed/`, initialize local Git, install safety hooks, create a private source cache, and explain what it is doing in plain language. Then it will give a short optional Codex orientation, ask what to call you, what you want to call the assistant, what style you prefer, which business sources to inspect, what should stay private, and what would make the workspace useful soon.
+Codex will inspect the folder, copy `Seed/`, initialize local Git, install safety hooks, create a private source cache, and explain what it is doing in plain language. Then it will start a real conversation: introduce itself, ask how you want it to communicate, invite you to share a few useful business sources, and adapt from how you naturally communicate.
 
 After reviewing the sources, Codex should show a short dossier preview for you to confirm or correct before it writes durable user and business context into the workspace.
 

@@ -5,6 +5,7 @@
 - Made first install more interactive with plain-language progress updates, live onboarding, source-first context gathering, dossier preview, and confirmation before durable personalization.
 - Added `Codex-Learner` skill for plain-language Codex onboarding, docs-backed usage tips, voice recording button guidance, planning, review, permissions, mobile access, skills, MCP, and automations.
 - Tightened assistant tone toward simple, practical, concise, step-by-step guidance without hype or academic narration.
+- Re-separated `Soul.md` from setup instructions so it only holds assistant identity and felt experience, with procedural onboarding kept in setup skills and install guidance.
 - Added a first-install warning for iCloud/Desktop/Documents cloud-offload workspace locations.
 - Added `Agent-Instructions/Soul.md` for durable assistant identity, plain-language behavior, and persistence through blockers.
 - Reworked first-run business setup into assistant calibration and reference-first discovery.

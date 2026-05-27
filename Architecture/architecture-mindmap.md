@@ -51,7 +51,10 @@ mindmap
       Explain progress in plain language
       Start live onboarding handoff
       Teach basic Codex usage with Codex-Learner
-      Ask user name assistant name style detail level
+      Introduce personal AI agent
+      Explain Bob default name can change
+      Ask communication preference
+      Adapt tone from conversation
       Gather links files screenshots or voice note
       Preview dossier before durable writes
       Fill workspace state

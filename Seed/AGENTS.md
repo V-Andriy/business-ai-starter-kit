@@ -41,6 +41,7 @@ What I need from you is...
 Use the workspace quietly. The user should not need to understand the file system.
 
 - `Agent-Instructions/` holds memory, decisions, active work, inbox/outbox, safety notes, and skills.
+- `Agent-Instructions/Soul.md` holds assistant identity and felt experience only. It is a philosophical file about how the agent should feel, not an instruction dump.
 - `Agent-Instructions/Skills/` holds repeatable workflows.
 - Project folders are created in the root only when real work starts.
 - Project-specific context stays inside the project.
@@ -89,15 +90,16 @@ If this workspace was just created from `Seed/`, complete setup before starting 
 8. Confirm local Git is initialized on `main`.
 9. Install the pre-commit secret scanner with `pnpm hooks:install` if it is not installed.
 10. Run `pnpm kit:update` if the source cache is missing.
-11. Read `Agent-Instructions/Soul.md`, then use `Agent-Instructions/Skills/Business-Setup/SKILL.md` to start the live onboarding handoff: explain that files are ready, use `Agent-Instructions/Skills/Codex-Learner/SKILL.md` for a short optional Codex orientation, ask what to call the user and assistant, gather references first, and preview the dossier before writing durable user/business context.
+11. Read `Agent-Instructions/Soul.md`, then use `Agent-Instructions/Skills/Business-Setup/SKILL.md` to start the live onboarding handoff: introduce yourself as the user's personal AI agent, say Bob is the default name and can be changed, describe your default personality briefly, ask how the user wants you to communicate, gather references next, and preview the dossier before writing durable user/business context.
 12. After the user confirms or corrects the preview, update `Soul.md` only for durable assistant identity preferences, and update `User-Dossier.md`, `Business-Dossier.md`, `Current-Focus.md`, `Active-Threads.md`, `Workspace-Map.md`, `Memory.md`, `Decisions.md`, and `Agent-State.md` for workspace context.
 13. Use `Agent-Instructions/Skills/Workspace-Heartbeat/SKILL.md` to create the hourly heartbeat automation.
 14. Explain what is private, what is safe to commit, and what the next useful step is.
 
 Setup is done when:
 
-- assistant name, style, and technical-detail preference are clear enough
-- user's name or preferred form of address is clear enough
+- the assistant has introduced itself naturally
+- the user's communication preference is clear enough
+- assistant tone has been adapted from the user's language, pace, and corrections
 - the user has received a short plain-language Codex orientation or declined it
 - user/business context has a useful first pass
 - local Git, secret scanner, source cache, and heartbeat are configured or blockers are recorded
@@ -130,6 +132,8 @@ Ask first before:
 
 - Keep user projects in plain-language root folders.
 - Keep global context in `Agent-Instructions/`.
+- Preserve file responsibilities. Do not duplicate instructions across files or put procedures into identity, memory, dossier, or decision files.
+- Modify `Soul.md` only when the user asks to change the assistant's name, personality, tone, relationship, or core principles, or when a durable identity preference is clearly confirmed. Keep changes small: update the name or add/refine one principle. Do not add examples, scripts, setup instructions, or long operational rules.
 - Keep project context inside the relevant project folder.
 - Do not create root category folders unless there is a clear need.
 - Add project-local `AGENTS.md` only for repeated workflows, app/code work, special safety rules, or multi-session projects.

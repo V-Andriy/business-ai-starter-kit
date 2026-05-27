@@ -52,9 +52,11 @@ sequenceDiagram
   Codex->>AgentFiles: Load Business-Setup skill
   Codex->>User: Start live onboarding handoff, not just "install complete"
   Codex->>AgentFiles: Load Codex-Learner skill for optional first-time Codex orientation
-  Codex->>User: Explain chat, project folder, voice dictation, Plan mode, review, permissions, and docs-backed tips when relevant
-  Codex->>User: Ask name, assistant name, style, detail level, and reference sources
-  User->>Codex: Provide links, files, screenshots, voice-dictated note, or business context
+  Codex->>User: Explain chat, project folder, voice recording, Plan mode, review, permissions, and docs-backed tips when relevant
+  Codex->>User: Introduce personal AI agent, default Bob name, default personality, and communication preference question
+  User->>Codex: Describe preferred communication style
+  Codex->>User: Invite reference sources
+  User->>Codex: Provide links, files, screenshots, voice recording, or business context
   Codex->>Codex: Inspect sources before asking follow-up questions
   Codex->>User: Show dossier preview with facts, assumptions, gaps, opportunities, and recommended first project
   User->>Codex: Confirm, correct, remove sensitive details, or add context
