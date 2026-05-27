@@ -24,6 +24,7 @@ sequenceDiagram
   end
 
   Codex->>Workspace: Create workspace root if needed
+  Codex->>Workspace: Verify Node.js, npm, and pnpm; install or record blocker if missing
   Codex->>Workspace: Create .business-ai-kit/
   Codex->>PublicRepo: Clone public repo into .business-ai-kit/source/
   alt Source clone succeeds
@@ -35,7 +36,7 @@ sequenceDiagram
 
   Codex->>Git: Initialize local repo on main
   alt Git init succeeds
-    Codex->>Git: Run Scripts/install_git_hooks.py --workspace .
+    Codex->>Git: Run pnpm hooks:install
   else Git init fails
     Codex->>AgentFiles: Record Git blocker in Agent-State.md and Inbox.md
   end

@@ -19,16 +19,18 @@ AI workspaces in Codex.
 Run:
 
 ```text
-python3 -m py_compile Seed/Scripts/secret_scan.py Seed/Scripts/install_git_hooks.py Seed/Scripts/update_kit.py
-python3 Seed/Scripts/secret_scan.py Install.md Seed Templates AGENTS.md README.md INDEX.md CHANGELOG.md SECURITY.md CONTRIBUTING.md NOTICE LICENSE
+pnpm check
 find Seed -name '*.template' -o -name '*template*'
 ```
 
 Expected result:
 
-- Python compile succeeds.
+- File audit completes and reports any current cleanup targets.
 - Secret scan passes.
 - `find Seed ...` prints nothing.
+
+Use `pnpm audit:files:strict` when a cleanup change is intended to leave the
+documentation graph and file sizes fully clean.
 
 ## File Ownership
 
@@ -38,4 +40,3 @@ Expected result:
 - `Seed/Scripts/` should stay small, local, auditable, and dependency-light.
 - `Templates/` is reserved for future reusable templates and should stay empty
   except documentation until templates are intentionally introduced.
-

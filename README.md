@@ -14,6 +14,8 @@ Status: early open-source MVP for guided pilots and first users.
 - Safe public/private separation through `.business-ai-kit/source/`.
 - Strong `.gitignore` and `.env.example` defaults.
 - Secret scanning and pre-commit hook installer.
+- Node.js and pnpm-based local helper scripts.
+- File-size and documentation-graph audit for maintainers.
 - Local `.env` and Doppler guidance through the `Secrets-Vault` skill.
 - Hourly workspace heartbeat instructions.
 - Executive-friendly onboarding, project planning, and briefing behavior.

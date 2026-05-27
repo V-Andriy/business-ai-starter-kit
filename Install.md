@@ -13,7 +13,9 @@ First inspect the current folder. If it is not empty or not clearly safe, ask me
 
 If the target folder is inside iCloud Drive, Desktop, Documents, or another cloud-synced folder, warn me first: cloud storage may optimize the folder, remove local copies from this computer, and make Codex unable to access workspace files. Recommend a local folder that stays on this computer, or tell me to keep the workspace downloaded locally.
 
-Copy the contents of Seed/ into the workspace, including hidden files like .gitignore and .env.example. Then initialize local Git on main, run python3 Scripts/install_git_hooks.py --workspace ., and run python3 Scripts/update_kit.py --workspace . so .business-ai-kit/source/ exists as an ignored source cache.
+Check whether Node.js, npm, and pnpm are available by running node --version, npm --version, and pnpm --version. If Node.js or npm is missing, install Node.js LTS first. On Windows, try winget install OpenJS.NodeJS.LTS. On macOS, try brew install node if Homebrew is available. If terminal install is unavailable or blocked, ask me to install Node.js LTS from https://nodejs.org/ and then continue. After Node.js works, enable pnpm with corepack enable and corepack prepare pnpm@latest --activate. If corepack is unavailable, use npm install -g pnpm only as a bootstrap fallback.
+
+Copy the contents of Seed/ into the workspace, including hidden files like .gitignore and .env.example. Then initialize local Git on main, run pnpm hooks:install, and run pnpm kit:update so .business-ai-kit/source/ exists as an ignored source cache.
 
 Read the copied AGENTS.md and Agent-Instructions files. Complete first-run onboarding in plain business language, update the workspace state files, and set up the hourly workspace heartbeat automation.
 

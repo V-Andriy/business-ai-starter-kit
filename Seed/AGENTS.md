@@ -71,19 +71,24 @@ If this workspace was just created from `Seed/`, complete setup before starting 
 1. Confirm the workspace path.
 2. If the workspace is inside iCloud Drive, Desktop, Documents, or another cloud-synced folder, warn that cloud storage may remove local copies and make Codex unable to access files; recommend a local folder that stays on this computer or keeping the workspace downloaded locally.
 3. Confirm `.business-ai-kit/source/` exists or create it as the ignored source cache.
-4. Confirm local Git is initialized on `main`.
-5. Install the pre-commit secret scanner if it is not installed.
-6. Run `python3 Scripts/update_kit.py --workspace .` if the source cache is missing.
-7. Read `Agent-Instructions/Soul.md`, then use `Agent-Instructions/Skills/Business-Setup/SKILL.md` to run assistant calibration and gather user/business context from references first.
-8. Update `Soul.md` only for durable assistant identity preferences, and update `User-Dossier.md`, `Business-Dossier.md`, `Current-Focus.md`, `Active-Threads.md`, `Workspace-Map.md`, `Memory.md`, `Decisions.md`, and `Agent-State.md` for workspace context.
-9. Use `Agent-Instructions/Skills/Workspace-Heartbeat/SKILL.md` to create the hourly heartbeat automation.
-10. Explain what is private, what is safe to commit, and what the next useful step is.
+4. Confirm Node.js, npm, and pnpm are available with `node --version`, `npm --version`, and `pnpm --version`.
+5. If Node.js or npm is missing, install Node.js LTS. On Windows, try `winget install OpenJS.NodeJS.LTS`. On macOS, try `brew install node` if Homebrew is available. If terminal install is unavailable or blocked, ask the user to install Node.js LTS from `https://nodejs.org/`.
+6. If pnpm is missing, run `corepack enable` and `corepack prepare pnpm@latest --activate`. If corepack is unavailable, use `npm install -g pnpm` only as a bootstrap fallback.
+7. Use `pnpm` for workspace scripts and development commands. Do not use `npm` except to bootstrap pnpm when necessary.
+8. Confirm local Git is initialized on `main`.
+9. Install the pre-commit secret scanner with `pnpm hooks:install` if it is not installed.
+10. Run `pnpm kit:update` if the source cache is missing.
+11. Read `Agent-Instructions/Soul.md`, then use `Agent-Instructions/Skills/Business-Setup/SKILL.md` to run assistant calibration and gather user/business context from references first.
+12. Update `Soul.md` only for durable assistant identity preferences, and update `User-Dossier.md`, `Business-Dossier.md`, `Current-Focus.md`, `Active-Threads.md`, `Workspace-Map.md`, `Memory.md`, `Decisions.md`, and `Agent-State.md` for workspace context.
+13. Use `Agent-Instructions/Skills/Workspace-Heartbeat/SKILL.md` to create the hourly heartbeat automation.
+14. Explain what is private, what is safe to commit, and what the next useful step is.
 
 Done means:
 
 - the assistant identity and communication style are calibrated enough for the user to feel oriented
 - the user has provided enough references, corrections, or answers to make the workspace useful
 - local Git and the secret scanner are configured or a blocker is recorded
+- Node.js, npm, and pnpm are available or a blocker is recorded
 - the source cache exists or a blocker is recorded
 - the heartbeat automation exists or a blocker is recorded
 - `Active-Threads.md` has a clear setup status and next action
@@ -180,6 +185,7 @@ Use skills like Hermes procedural memory:
 - Store secret metadata only in `Agent-Instructions/Secrets-Vault.md`.
 - Use placeholders such as `<SECRET:OPENAI_API_KEY>`.
 - Run the secret scanner before commit.
+- Use `pnpm secret:scan` for file scans and `pnpm secret:scan:staged` before commits.
 - Ask before publishing, deploying, spending money, deleting user work, or moving private notes into public outputs.
 
 ## Update Flow

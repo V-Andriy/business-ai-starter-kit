@@ -28,7 +28,7 @@ Adapt the operating loop for Codex and non-technical business users.
 If available, run this before deep review:
 
 ```text
-python3 Scripts/heartbeat_gate.py --workspace .
+pnpm heartbeat:gate
 ```
 
 Use the JSON output as a cheap activity snapshot. The script can flag pending
@@ -174,7 +174,7 @@ Wake the user only when there is a decision, blocker, risk, or useful next actio
 Review this Business AI Starter Kit workspace with a change-gated heartbeat loop.
 
 First run a lightweight activity gate before deep work:
-- If Scripts/heartbeat_gate.py exists, run: python3 Scripts/heartbeat_gate.py --workspace .
+- If Scripts/heartbeat_gate.mjs exists, run: pnpm heartbeat:gate.
 - Read AGENTS.md, Agent-Instructions/Soul.md if present, Agent-Instructions/Agent-State.md, Agent-Instructions/Current-Focus.md, Agent-Instructions/Active-Threads.md, Agent-Instructions/Inbox.md, Agent-Instructions/Automation-Log.md, and Agent-Instructions/Workspace-Map.md.
 - Check whether there were meaningful changes since the last heartbeat: new or changed workspace files, pending Inbox items, active-thread changes, Signals, unresolved blockers, or new Codex/session evidence available in local session logs for this workspace.
 - If there is no meaningful new activity and no pending maintenance, do not perform deep analysis. Append at most one short Automation-Log entry saying the heartbeat checked and found no actionable changes, then stop.

@@ -19,9 +19,11 @@ flowchart TD
   Kit --> Backups["backups/ ignored source-cache backups"]
   Kit --> Tmp["tmp/ ignored temporary update work"]
 
-  Scripts --> Scan["secret_scan.py"]
-  Scripts --> Hooks["install_git_hooks.py"]
-  Scripts --> Update["update_kit.py"]
+  Root --> Package["package.json"]
+  Scripts --> Scan["secret_scan.mjs"]
+  Scripts --> Hooks["install_git_hooks.mjs"]
+  Scripts --> Update["update_kit.mjs"]
+  Scripts --> Gate["heartbeat_gate.mjs"]
 
   AgentInstructions --> User["User-Dossier.md"]
   AgentInstructions --> Business["Business-Dossier.md"]

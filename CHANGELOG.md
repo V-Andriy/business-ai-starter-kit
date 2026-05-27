@@ -8,7 +8,9 @@
 - Added startup guidance to load `Soul.md` before workspace state.
 - Updated seed workspace state to track assistant identity calibration.
 - Updated heartbeat guidance to use the latest available capable model with a lightweight no-op gate before deep self-improvement work.
-- Added `Scripts/heartbeat_gate.py` and expanded heartbeat guidance with Hermes-inspired modes: No-Op, Triage, Improvement, and Escalation.
+- Migrated local helper scripts from Python to plain Node.js `.mjs` scripts and added pnpm package commands.
+- Added `scripts/audit-files.mjs` for file-size and documentation-graph checks with explicit exceptions.
+- Added `Scripts/heartbeat_gate.mjs` and expanded heartbeat guidance with Hermes-inspired modes: No-Op, Triage, Improvement, and Escalation.
 
 ## 0.1.0
 
@@ -18,7 +20,7 @@
 - Added hourly heartbeat operating model.
 - Added inbox/outbox continuity files.
 - Added Secrets Vault skill with local `.env` and Doppler guidance.
-- Added Python secret scanner and pre-commit hook installer.
+- Added local secret scanner and pre-commit hook installer.
 - Added support references for Andrii Veselov and Scalebound.
 - Polished install flow for safer first setup and source-cache creation.
 - Strengthened executive-facing workspace behavior, decision hygiene, and output standards.

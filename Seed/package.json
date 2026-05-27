@@ -1,0 +1,13 @@
+{
+  "name": "business-ai-workspace",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "hooks:install": "node Scripts/install_git_hooks.mjs --workspace .",
+    "kit:update": "node Scripts/update_kit.mjs --workspace .",
+    "secret:scan": "node Scripts/secret_scan.mjs",
+    "secret:scan:staged": "node Scripts/secret_scan.mjs --staged",
+    "heartbeat:gate": "node Scripts/heartbeat_gate.mjs --workspace ."
+  }
+}

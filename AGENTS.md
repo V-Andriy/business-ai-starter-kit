@@ -13,7 +13,7 @@ The public repo has three important areas:
 - `Install.md` - short external instruction users can paste into Codex.
 - `Seed/` - ready-to-copy files for the user's private workspace.
 - `Templates/` - reserved for future project, app, and skill templates.
-- `Seed/Scripts/` - helper scripts copied into the user workspace for secret scanning, Git hook setup, and source-cache updates.
+- `Seed/Scripts/` - helper scripts copied into the user workspace for secret scanning, Git hook setup, heartbeat checks, and source-cache updates.
 - `Architecture/` - public architecture diagrams and maintainer reference.
 
 When studying the repo:
@@ -51,6 +51,7 @@ private user workspace = separate local workspace
 - `Seed/Agent-Instructions/Skills/` is the canonical skills folder for user workspaces.
 - If another harness needs a skills path, instructions should create a symlink to `Agent-Instructions/Skills/` instead of copying skills.
 - `Seed/Scripts/` should stay small, local, auditable, and dependency-light.
+- Runtime setup should standardize on Node.js LTS, npm, and pnpm. Use pnpm for project scripts and development commands. Use npm only to bootstrap pnpm when corepack is unavailable.
 
 ### Safety Requirements
 
@@ -60,20 +61,19 @@ private user workspace = separate local workspace
 - Before committing, run:
 
 ```text
-python3 Seed/Scripts/secret_scan.py --staged
+pnpm secret:scan -- --staged
 ```
 
 - For full local checks, run:
 
 ```text
-python3 -m py_compile Seed/Scripts/secret_scan.py Seed/Scripts/install_git_hooks.py Seed/Scripts/update_kit.py
-python3 Seed/Scripts/secret_scan.py Install.md Seed Templates AGENTS.md README.md INDEX.md CHANGELOG.md SECURITY.md CONTRIBUTING.md NOTICE LICENSE ARCHITECTURE.md Architecture VERSION
+pnpm check
 find Seed -name '*.template' -o -name '*template*'
 ```
 
 Expected result:
 
-- Python compile succeeds.
+- File audit passes or reports only documented, intentional exceptions.
 - Secret scan passes.
 - `find Seed ...` prints nothing.
 
@@ -81,12 +81,28 @@ Expected result:
 
 - Keep files ASCII unless there is a clear reason not to.
 - Prefer clear markdown instructions over hidden behavior.
+- Use plain JavaScript `.mjs` for local scripts. Do not add TypeScript just for small helper scripts.
+- Use `pnpm` instead of `npm` for development and project scripts. `npm` is allowed only as a temporary bootstrap tool to install pnpm when corepack is not available.
 - Do not store user-specific context in this repo.
 - Do not make setup depend on GitHub login.
 - Default private workspace behavior is local Git only.
-- `Seed/Scripts/install_git_hooks.py` should initialize new workspaces on `main` when possible.
-- `Seed/Scripts/secret_scan.py` should report paths and secret types, never secret values.
-- `Seed/Scripts/update_kit.py` should treat `.business-ai-kit/source/` as disposable cache.
+- `Seed/Scripts/install_git_hooks.mjs` should initialize new workspaces on `main` when possible.
+- `Seed/Scripts/secret_scan.mjs` should report paths and secret types, never secret values.
+- `Seed/Scripts/update_kit.mjs` should treat `.business-ai-kit/source/` as disposable cache.
+
+### File Audit Rules
+
+- Documentation target: 80-180 lines. Warn at 220+ lines. Treat 300+ lines as a serious issue.
+- Code target: 100-250 lines. Warn at 300+ lines. Treat 400+ lines as a serious issue.
+- Empty files are serious issues.
+- Documentation files with 1-5 lines are suspicious. Files with 6-20 lines need a clear purpose.
+- Code files with 1-10 lines are suspicious unless they are barrel, config, or type files. Files with 11-30 lines need a clear purpose.
+- Split by responsibility, not by line count alone.
+- Treat documentation as a graph. Important Markdown files should be reachable from a logical root such as `AGENTS.md`, `README.md`, `INDEX.md`, or `Seed/AGENTS.md`.
+- Avoid orphan docs and link dumps. Link files from the closest logical parent or index.
+- Do not duplicate canonical rules across files. Link to the source document instead.
+- File audit exceptions must be explicit in `scripts/audit-files.mjs` and include a reason.
+- `pnpm audit:files` is audit-only and may report existing cleanup targets without failing. Use `pnpm audit:files:strict` when the current change is expected to leave the repository clean.
 
 ### Review Checklist
 

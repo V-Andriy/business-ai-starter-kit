@@ -32,5 +32,5 @@ before committing, sharing, publishing, or deploying work.
 Before publishing or contributing, run:
 
 ```text
-python3 Seed/Scripts/secret_scan.py Install.md Seed Templates AGENTS.md README.md INDEX.md CHANGELOG.md SECURITY.md CONTRIBUTING.md NOTICE LICENSE
+pnpm secret:scan
 ```
