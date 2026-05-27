@@ -45,8 +45,10 @@ flowchart TD
 
   Skills --> CodexLearner["Codex-Learner/SKILL.md"]
   Skills --> Heartbeat["Workspace-Heartbeat/SKILL.md"]
+  Skills --> GithubBackup["GitHub-Backup/SKILL.md"]
   Skills --> Feedback["Kit-Feedback/SKILL.md"]
   Skills --> Planning["Project-Planning/SKILL.md"]
+  Skills --> Orchestrator["Project-Orchestrator/SKILL.md"]
   Skills --> Secrets["Secrets-Vault/SKILL.md"]
   Skills --> UpdateReview["Update-Review/SKILL.md"]
 

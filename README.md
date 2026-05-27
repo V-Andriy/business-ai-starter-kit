@@ -16,7 +16,7 @@ This project is early. Feedback is welcome, especially when it points to clearer
 - Keeps user context, decisions, memory, inbox/outbox, and reusable workflows organized.
 - Adds safety defaults for secrets, local Git, and private files.
 - Creates project folders only when real work starts.
-- Supports an optional heartbeat routine that reviews the workspace and suggests useful next steps.
+- Supports optional daily checkpoint maintenance that reviews the workspace, keeps state current, and suggests useful next steps.
 - Uses opt-in feedback only. There is no analytics, telemetry, tracking, or background reporting.
 
 ## Quick Start
@@ -64,7 +64,7 @@ This version focuses on install, private workspace behavior, safety, update flow
 
 Project templates, app templates, full external-runtime compatibility, all secret-provider adapters, a UI, SaaS backend, and full autonomous project execution are intentionally deferred.
 
-The private user workspace is local-first by default. Private GitHub backup can be added later by user request after safety checks.
+The private user workspace is local-first by default. Private GitHub backup can be added after setup if the user approves it.
 
 ## License
 

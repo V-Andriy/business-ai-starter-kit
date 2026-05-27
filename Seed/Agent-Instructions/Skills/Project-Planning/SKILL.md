@@ -17,6 +17,19 @@ Create a root-level project folder when the work:
 - would confuse future work if mixed into another project
 - involves customer-facing, executive, financial, operational, legal, hiring, or automation decisions
 
+Suggest a project when the user's work would benefit from:
+
+- a calculator
+- a dashboard
+- a small app
+- an automation
+- a repeatable workflow
+- a checklist or operating system
+- a research tracker
+- a decision tool
+
+Keep the suggestion concrete and small. Explain the useful first version before proposing a larger build.
+
 ## Default Project Structure
 
 ```text
@@ -60,6 +73,8 @@ Safe defaults:
 - update global workspace state
 
 Ask when the missing answer changes business direction, public claims, budget, privacy, legal/compliance risk, or customer-facing commitments.
+
+Use `Agent-Instructions/Skills/Project-Orchestrator/SKILL.md` for large, multi-step, or context-heavy projects when available.
 
 ## Project AGENTS.md
 

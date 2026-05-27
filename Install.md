@@ -60,7 +60,7 @@ When needed, ask one follow-up at a time about what should stay private or sensi
 
 After inspecting sources, show a short dossier preview with facts, assumptions, gaps, communication style, likely AI opportunities, and recommended first project. Ask what is wrong or missing. Only after I confirm or correct it, update the workspace files and adapt your assistant identity.
 
-Update the workspace state files and set up the hourly workspace heartbeat automation when available. Explain that the heartbeat is local workspace maintenance, not analytics.
+Update the workspace state files and set up the daily checkpoint workspace heartbeat automation when available. Explain that the heartbeat is local workspace maintenance, not analytics. Use three workday checkpoints by default: morning, midday, and late afternoon.
 
 When setup is complete, move handled setup items from Inbox.md to Outbox.md, update Active-Threads.md, and delete Agent-Instructions/Setup-Plan.md.
 

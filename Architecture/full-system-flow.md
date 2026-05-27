@@ -34,8 +34,9 @@ flowchart TD
   GatherSources --> DossierPreview["Inspect sources and show dossier preview"]
   DossierPreview --> ConfirmContext["User confirms, corrects, or removes sensitive details"]
   ConfirmContext --> WorkspaceState["Fill soul, dossiers, memory, active threads, focus, map, decisions, agent state"]
-  WorkspaceState --> HeartbeatSetup["Create mandatory hourly Workspace Heartbeat automation"]
-  HeartbeatSetup --> Ready["Workspace ready for real business work"]
+  WorkspaceState --> HeartbeatSetup["Create daily checkpoint Workspace Heartbeat automations"]
+  HeartbeatSetup --> BackupOffer["Offer optional private GitHub backup"]
+  BackupOffer --> Ready["Workspace ready for real business work"]
 
   Ready --> Startup["Every meaningful session reads focus, active threads, map, inbox, agent state, and relevant skill"]
   Startup --> Request{"Request type"}
@@ -73,9 +74,14 @@ flowchart TD
   UseAsReference --> UpdateGlobalState
   CreateOutput --> UpdateGlobalState
 
-  HeartbeatSetup --> Hourly["Hourly Workspace Heartbeat"]
-  Hourly --> ReadState["Read AGENTS.md and Agent-Instructions/"]
-  ReadState --> ProcessInbox["Process Inbox.md"]
+  Request -- "Private GitHub backup" --> GithubBackup["Use GitHub-Backup skill"]
+  GithubBackup --> PrivateRepo["Create private repo after auth and secret scan"]
+  PrivateRepo --> UpdateGlobalState
+
+  HeartbeatSetup --> Checkpoint["Daily Checkpoint Workspace Heartbeat"]
+  Checkpoint --> ReadState["Read AGENTS.md and Agent-Instructions/"]
+  ReadState --> GitCheck["Check Git status and recent evidence"]
+  GitCheck --> ProcessInbox["Process Inbox.md"]
   ProcessInbox --> AutoSafe{"Low-risk maintenance?"}
   AutoSafe -- "Yes" --> Maintain["Update state, outbox, memory, map, active threads, signals, and small skill improvements"]
   AutoSafe -- "No" --> RecordNeed["Record decision, blocker, or risk in Inbox.md or Signals/"]

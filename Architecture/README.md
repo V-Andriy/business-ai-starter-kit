@@ -30,7 +30,7 @@ update the implementation deliberately. Do not leave the flow ambiguous.
 - [Repository Responsibilities](repository-responsibilities.md) - public source repo versus private user workspace ownership and copy/cache boundaries.
 - [Installed Workspace Model](installed-workspace-model.md) - files and folders expected in the private workspace after setup.
 - [First Setup Flow](first-setup-flow.md) - install, source-cache, onboarding, setup checks, blocker recording, and heartbeat creation.
-- [Self-Improvement Loop](self-improvement-loop.md) - mandatory hourly heartbeat, inbox/outbox, active threads, memory, skills, signals, and safe autonomy limits.
+- [Self-Improvement Loop](self-improvement-loop.md) - daily checkpoint heartbeat, inbox/outbox, active threads, memory, skills, signals, Git awareness, and safe autonomy limits.
 - [Templates Flow](templates-flow.md) - MVP placeholder behavior and future template review/application flow.
 - [Update And Migration Flow](update-and-migration-flow.md) - source cache refresh, recovery, ownership classification, approval, scan, local commit, and logging.
 - [Safety Gates](safety-gates.md) - actions that require approval, secret handling, scanner use, and audit logging.

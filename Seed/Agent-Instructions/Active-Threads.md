@@ -8,7 +8,7 @@ Purpose: current workstreams the agent should track across sessions and heartbea
 
 - Project: Workspace setup
 - Status: Active
-- Current objective: Complete the temporary setup plan, then remove setup from active work.
+- Current objective: Complete the temporary setup plan, offer private GitHub backup, then remove setup from active work.
 - Next useful action: Follow `Agent-Instructions/Setup-Plan.md`.
 - Blockers:
 - Last updated:
@@ -17,4 +17,4 @@ Purpose: current workstreams the agent should track across sessions and heartbea
   - Agent-Instructions/Setup-Plan.md
   - Agent-Instructions/User-Dossier.md
   - Agent-Instructions/Business-Dossier.md
-- Automation: Hourly Workspace Heartbeat
+- Automation: Daily Checkpoint Workspace Heartbeat

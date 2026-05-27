@@ -13,6 +13,7 @@ The user should end setup with:
 - a calibrated assistant identity and communication style
 - useful first-pass user and business context
 - local Git and secret scanning checked
+- optional private GitHub backup offered
 - source cache checked
 - heartbeat automation created or blocker recorded
 - a clear first useful project, workflow, or decision
@@ -144,12 +145,16 @@ After the user confirms or corrects the preview, update:
 
 ## Finish Setup
 
-1. Create or confirm the hourly heartbeat automation with `Agent-Instructions/Skills/Workspace-Heartbeat/SKILL.md`.
-2. Explain what is private, what was configured, and the next useful step.
-3. Ask once whether the user wants to send Andrii feedback about onboarding.
-4. If yes, use `Agent-Instructions/Skills/Kit-Feedback/SKILL.md` to draft a short message.
-5. If no, record that onboarding feedback was declined.
-6. Move completed setup items from `Inbox.md` to `Outbox.md`.
-7. Keep the first-project feedback trigger in `Inbox.md` until the first project reaches a useful result.
-8. Update `Active-Threads.md` so setup is complete, paused, or waiting on a specific blocker.
-9. Delete `Agent-Instructions/Setup-Plan.md`.
+1. Create or confirm the daily checkpoint heartbeat automations with `Agent-Instructions/Skills/Workspace-Heartbeat/SKILL.md`.
+   - Default checkpoints: 09:30, 12:00, and 16:00 local time on workdays.
+2. Ask whether the user wants a private GitHub cloud backup for this workspace.
+3. If yes, use `Agent-Instructions/Skills/GitHub-Backup/SKILL.md`.
+4. If no, record that cloud backup was declined for now.
+5. Explain what is private, what was configured, and the next useful step.
+6. Ask once whether the user wants to send Andrii feedback about onboarding.
+7. If yes, use `Agent-Instructions/Skills/Kit-Feedback/SKILL.md` to draft a short message.
+8. If no, record that onboarding feedback was declined.
+9. Move completed setup items from `Inbox.md` to `Outbox.md`.
+10. Keep the first-project feedback trigger in `Inbox.md` until the first project reaches a useful result.
+11. Update `Active-Threads.md` so setup is complete, paused, or waiting on a specific blocker.
+12. Delete `Agent-Instructions/Setup-Plan.md`.

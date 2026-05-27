@@ -58,21 +58,27 @@ mindmap
       Gather links files screenshots or voice note
       Preview dossier before durable writes
       Fill workspace state
-      Create mandatory hourly heartbeat
+      Create daily checkpoint heartbeat
+      Offer private GitHub backup
       Record blockers instead of hiding failures
     Operating loop
       Startup reads focus threads map inbox state
       Load relevant skill
       Use project if request belongs there
       Create project only for real work
+      Suggest useful tools workflows and automations
+      Orchestrate large projects with clean context
       Update workspace state after meaningful changes
     Heartbeat
-      Hourly Codex automation
+      Daily checkpoint Codex automation
       Process inbox
+      Check Git status
       Maintain active threads
       Refresh workspace map
       Curate memory
+      Review docs and skills
       Improve skills when durable
+      Put useful findings in inbox
       Create signals
       Log low-noise audit trail
       Ask before risky work

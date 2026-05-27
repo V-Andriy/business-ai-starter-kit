@@ -53,22 +53,33 @@ sequenceDiagram
   Codex->>User: Start live onboarding handoff, not just "install complete"
   Codex->>AgentFiles: Load Codex-Learner skill for optional first-time Codex orientation
   Codex->>User: Explain chat, project folder, voice recording, Plan mode, review, permissions, and docs-backed tips when relevant
-  Codex->>User: Introduce personal AI agent, default Bob name, default personality, and communication preference question
+  Codex->>User: Introduce personal AI agent, default Bob name, useful capabilities, and naming question
+  User->>Codex: Choose agent name or keep Bob
+  Codex->>User: Ask communication preference
   User->>Codex: Describe preferred communication style
   Codex->>User: Invite reference sources
   User->>Codex: Provide links, files, screenshots, voice recording, or business context
   Codex->>Codex: Inspect sources before asking follow-up questions
   Codex->>User: Show dossier preview with facts, assumptions, gaps, opportunities, and recommended first project
-  User->>Codex: Confirm, correct, remove sensitive details, or add context
+  User->>Codex: Confirm, correct, set public-output boundaries, or add context
   Codex->>AgentFiles: Update Soul, User-Dossier, Business-Dossier, Current-Focus, Active-Threads, Workspace-Map, Memory, Decisions, Agent-State
 
   Codex->>AgentFiles: Load Workspace-Heartbeat skill
-  Codex->>User: Explain heartbeat frequency, safe writes, reporting, and how to turn it off
-  Codex->>Heartbeat: Create hourly workspace heartbeat
+  Codex->>User: Explain daily checkpoint heartbeat, safe writes, reporting, and how to turn it off
+  Codex->>Heartbeat: Create morning, midday, and late-afternoon workspace heartbeats
   alt Heartbeat created
     Codex->>AgentFiles: Mark heartbeat configured
   else Heartbeat not available
     Codex->>AgentFiles: Record heartbeat blocker in Agent-State.md and Inbox.md
+  end
+
+  Codex->>User: Ask whether to set up private GitHub backup
+  alt User wants backup
+    Codex->>AgentFiles: Load GitHub-Backup skill
+    Codex->>User: Guide GitHub account or OAuth login if needed
+    Codex->>Git: Create private repository and push after secret scan
+  else User skips backup
+    Codex->>AgentFiles: Record backup declined for now
   end
 
   Codex->>AgentFiles: Move handled setup items from Inbox.md to Outbox.md

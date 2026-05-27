@@ -16,11 +16,13 @@
 - [Seed/Agent-Instructions/Soul.md](Seed/Agent-Instructions/Soul.md) - durable assistant identity, tone, and felt user experience.
 - [Seed/Agent-Instructions/Setup-Plan.md](Seed/Agent-Instructions/Setup-Plan.md) - temporary first-run setup plan deleted after setup.
 - [Seed/Agent-Instructions/Skills/Codex-Learner/SKILL.md](Seed/Agent-Instructions/Skills/Codex-Learner/SKILL.md) - plain-language Codex usage guidance for first-time or non-technical users.
-- [Seed/Agent-Instructions/Skills/Workspace-Heartbeat/SKILL.md](Seed/Agent-Instructions/Skills/Workspace-Heartbeat/SKILL.md) - hourly heartbeat behavior.
+- [Seed/Agent-Instructions/Skills/Workspace-Heartbeat/SKILL.md](Seed/Agent-Instructions/Skills/Workspace-Heartbeat/SKILL.md) - daily checkpoint heartbeat behavior.
+- [Seed/Agent-Instructions/Skills/GitHub-Backup/SKILL.md](Seed/Agent-Instructions/Skills/GitHub-Backup/SKILL.md) - optional private GitHub backup workflow.
 - [Seed/Agent-Instructions/Skills/Kit-Feedback/SKILL.md](Seed/Agent-Instructions/Skills/Kit-Feedback/SKILL.md) - user-approved feedback and upstream improvement workflow.
 - [Seed/Agent-Instructions/Skills/Update-Review/SKILL.md](Seed/Agent-Instructions/Skills/Update-Review/SKILL.md) - source cache refresh and update review.
 - [Seed/Agent-Instructions/Skills/Secrets-Vault/SKILL.md](Seed/Agent-Instructions/Skills/Secrets-Vault/SKILL.md) - secrets and scanner workflow.
 - [Seed/Agent-Instructions/Skills/Project-Planning/SKILL.md](Seed/Agent-Instructions/Skills/Project-Planning/SKILL.md) - new project setup and executive briefing.
+- [Seed/Agent-Instructions/Skills/Project-Orchestrator/SKILL.md](Seed/Agent-Instructions/Skills/Project-Orchestrator/SKILL.md) - large project orchestration and subagent guidance.
 - [Templates/README.md](Templates/README.md) - future-facing templates note.
 
 ## Workspace Seed

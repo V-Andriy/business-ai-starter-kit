@@ -1,15 +1,15 @@
 # Self-Improvement Loop
 
-The self-improvement loop is the Hermes-inspired heartbeat adapted for Codex.
-It is mandatory after first setup, but it is not permission for autonomous
-project execution. It maintains the workspace, processes the inbox, improves
+The self-improvement loop is the daily checkpoint heartbeat adapted for Codex.
+It starts after first setup, but it is not permission for autonomous project
+execution. It maintains the workspace, processes the inbox, checks Git, improves
 procedures, and records anything that needs user judgment.
 
 ```mermaid
 flowchart TD
-  Start["Hourly Workspace Heartbeat"] --> ReadRules["Read AGENTS.md"]
+  Start["Daily Checkpoint Workspace Heartbeat"] --> ReadRules["Read AGENTS.md"]
   ReadRules --> ReadState["Read Current-Focus, Active-Threads, Workspace-Map, Inbox, Agent-State, Memory"]
-  ReadState --> DetectChanges["Check project folders and recent workspace changes"]
+  ReadState --> DetectChanges["Check project folders, Git status, recent workspace changes, and relevant session evidence"]
   DetectChanges --> ProcessInbox["Process Inbox.md"]
 
   ProcessInbox --> Item{"Actionable item exists?"}
@@ -18,7 +18,7 @@ flowchart TD
 
   Classify --> ItemType{"Item type"}
   ItemType -- "Workspace state" --> StateUpdate["Update focus, active threads, map, outbox, or agent state"]
-  ItemType -- "Durable fact" --> MemoryUpdate["Update compact Memory.md or dossiers only if stable"]
+  ItemType -- "Durable context" --> MemoryUpdate["Update dossiers or compact Memory.md when useful"]
   ItemType -- "Repeated procedure" --> SkillReview["Review related Skill"]
   ItemType -- "Project note" --> ProjectNote["Update project Next Actions, Decisions, or context pointer"]
   ItemType -- "Needs judgment or approval" --> DecisionNote["Write clear blocker or decision request to Inbox.md"]
@@ -30,7 +30,7 @@ flowchart TD
   SkillRisk -- "Small AI-owned wording or proven workflow" --> SkillApply["Apply skill update"]
   SkillRisk -- "Behavior-changing or broad" --> SkillPropose["Propose skill change for user review"]
 
-  StateUpdate --> SafetyCheck{"Could this expose data, spend money, publish, delete, connect accounts, or continue project work?"}
+  StateUpdate --> SafetyCheck{"Could this share externally, spend money, publish, delete, connect accounts, push to GitHub, or continue project work?"}
   MemoryUpdate --> SafetyCheck
   ProjectNote --> SafetyCheck
   Signal --> SafetyCheck
@@ -53,12 +53,13 @@ flowchart TD
 Rules:
 
 - `Active-Threads.md` is the continuity source of truth.
-- Facts belong in dossiers or memory.
+- User and business context belongs in dossiers; compact repeated lessons belong in memory.
 - Procedures belong in skills.
 - Active project work belongs in project files and active threads.
 - `Inbox.md` is the default place for user decisions and blockers.
 - `Signals/` is a pointer channel for automations and future agents.
 - Secrets never belong in markdown.
 - Noisy heartbeat runs should log briefly and leave files alone.
+- Git status should be checked on meaningful runs.
 - Project-specific autonomous work needs explicit user authorization.
 - Public kit feedback is opt-in only: draft a LinkedIn message or one focused PR after user approval.

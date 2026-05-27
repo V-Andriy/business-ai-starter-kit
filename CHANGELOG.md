@@ -24,7 +24,7 @@
 - Added MVP public repo shell.
 - Added Codex-first setup instructions.
 - Added private workspace seed.
-- Added hourly heartbeat operating model.
+- Added daily checkpoint heartbeat operating model.
 - Added inbox/outbox continuity files.
 - Added Secrets Vault skill with local `.env` and Doppler guidance.
 - Added local secret scanner and pre-commit hook installer.

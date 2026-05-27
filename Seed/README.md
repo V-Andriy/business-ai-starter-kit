@@ -44,6 +44,7 @@ The AI should explain only what helps the next step, such as the voice recording
 - keep decisions, memory, and next actions organized
 - protect secrets and private notes
 - suggest improvements, but ask before sharing anything outside the workspace
+- record useful maintenance in inbox/outbox so you can see what happened while you were away
 
 ## Main Areas
 
