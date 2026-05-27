@@ -21,7 +21,7 @@ Purpose: concise operating state for agents and automations.
 - Heartbeat can use `pnpm heartbeat:gate` as a lightweight activity snapshot before deep review.
 - Heartbeat should choose No-Op, Triage, Improvement, or Escalation mode based on evidence.
 - Skills are procedural memory and should be updated only when a workflow improvement is durable.
-- User and business context belong in dossiers. Procedures belong in skills. Active work belongs in active threads and project files.
+- User and broad work/business context belong in dossiers. Detailed project context belongs in project folders. Procedures belong in skills.
 - Executive-facing work should keep facts, assumptions, decisions, risks, and next actions distinct.
 - Feedback to the public kit is user-approved only. No analytics, telemetry, or background reporting.
 

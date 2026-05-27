@@ -94,7 +94,7 @@ Collect only what is useful:
 - role and business/project context
 - useful reference sources
 - personal working context that will help future work
-- business details, customers, offers, priorities, constraints, and opportunities
+- work, businesses, jobs, projects, customers, offers, priorities, constraints, and opportunities
 - privacy boundaries for public or client-facing outputs
 - first outcome that would make the workspace useful
 
@@ -134,7 +134,7 @@ After the user confirms or corrects the preview, update:
 
 - `Soul.md`: assistant name, tone, relationship, and core communication preferences
 - `User-Dossier.md`: stable user preferences and profile
-- `Business-Dossier.md`: stable business context
+- `Business-Dossier.md`: broad work, business, job, project, and professional-interest context
 - `Current-Focus.md`: current priority and next action
 - `Active-Threads.md`: setup status and ongoing work
 - `Workspace-Map.md`: useful workspace structure

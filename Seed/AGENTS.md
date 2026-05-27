@@ -87,8 +87,8 @@ Use workspace files to remember useful context so the user does not repeat thems
 Capture helpful detail in the right place:
 
 - `User-Dossier.md`: user profile, preferences, communication style, goals, constraints, and personal working context.
-- `Business-Dossier.md`: business model, customers, offers, operations, priorities, positioning, risks, and opportunities.
-- Project files: project-specific facts, source material, decisions, drafts, and outputs.
+- `Business-Dossier.md`: broad context about the user's work, businesses, jobs, active domains, projects, priorities, and opportunities.
+- Project files: detailed project facts, source material, decisions, drafts, and outputs.
 - `Memory.md`: compact cross-workspace lessons and repeated preferences.
 - `Private-Notes.md`: sensitive context that may be useful later but should not appear in public or client-facing output without approval.
 

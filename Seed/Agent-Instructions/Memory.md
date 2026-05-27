@@ -6,7 +6,7 @@ Rules:
 
 - Keep this short.
 - Summarize, do not dump raw transcripts.
-- Store detailed user and business context in the dossiers.
+- Store detailed user and broad work/business context in the dossiers.
 - Use the Secrets Vault skill for credentials and API keys.
 - Only add stable facts or repeated patterns.
 
