@@ -23,7 +23,8 @@
 - [Seed/Agent-Instructions/Skills/Secrets-Vault/SKILL.md](Seed/Agent-Instructions/Skills/Secrets-Vault/SKILL.md) - secrets and scanner workflow.
 - [Seed/Agent-Instructions/Skills/Project-Planning/SKILL.md](Seed/Agent-Instructions/Skills/Project-Planning/SKILL.md) - new project setup and executive briefing.
 - [Seed/Agent-Instructions/Skills/Project-Orchestrator/SKILL.md](Seed/Agent-Instructions/Skills/Project-Orchestrator/SKILL.md) - large project orchestration and subagent guidance.
-- [Templates/README.md](Templates/README.md) - future-facing templates note.
+- [Templates/README.md](Templates/README.md) - optional reusable templates note.
+- [Templates/Chat-Start-Accelerator-Hook/README.md](Templates/Chat-Start-Accelerator-Hook/README.md) - optional Codex startup hook template.
 
 ## Workspace Seed
 
@@ -51,8 +52,8 @@
 
 ## Templates
 
-- [Templates/](Templates/) - reserved for future project, app, and skill templates.
-- MVP seed does not depend on root templates yet. Project Planning has small internal starter files inside the skill.
+- [Templates/](Templates/) - optional source-library templates.
+- The seed does not depend on root templates. Project Planning has small internal starter files inside the skill.
 
 ## Workspace Scripts
 
