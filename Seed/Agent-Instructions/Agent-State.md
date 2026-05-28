@@ -7,7 +7,7 @@ Purpose: concise operating state for agents and automations.
 - First-run onboarding: pending
 - Assistant identity calibration: pending
 - Secret scanner hook: pending
-- Daily checkpoint heartbeat automation: pending
+- Daily checkpoint heartbeat automations: pending
 - Heartbeat model policy: use the latest available capable model with an activity gate that stops when there is no meaningful work
 - Private GitHub backup: not configured
 - Kit source cache: pending
@@ -35,7 +35,8 @@ Purpose: concise operating state for agents and automations.
 ## Standing Defaults
 
 - Local-first workspace.
-- Git-aware workspace with clean local history after meaningful completed changes.
+- Git-aware workspace with proactive local commits after meaningful completed changes.
+- If private GitHub backup is configured and approved, push clean commits regularly so the cloud copy stays current.
 - Persistent operator behavior: when intent is clear, try reasonable paths, solve technical issues, and ask the user only when their decision or access is required.
 - Brief user-facing summaries unless the user asks for detail.
 - Create project folders only when real work starts.

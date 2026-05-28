@@ -28,7 +28,11 @@ Create three daily checkpoint automations by default:
 
 - morning: 09:30
 - late morning: 11:30
-- late afternoon: 16:00
+- late afternoon: 16:30
+
+Use separate automations for each daily time. Do not rely on one RRULE with multiple `BYHOUR` values unless the Codex app UI clearly shows every intended run time. If the UI shows only one daily time, treat the schedule as single-time and create separate automations.
+
+Record the exact automation ids in `Automation-Log.md`.
 
 Use the user's locale and working pattern when known. Do not create hourly automations by default.
 
@@ -72,7 +76,7 @@ activity evidence -> mode -> focused action -> git hygiene -> compact log
 7. Review relevant docs and skills when new evidence suggests they are stale or improvable.
 8. Check whether any active project or business domain would benefit from timely external research.
 9. Create `Inbox.md` items for useful discoveries, decisions, blockers, or recommendations the user should see later.
-10. Keep Git history clean with coherent local checkpoints after meaningful completed changes.
+10. Keep Git history clean with coherent local checkpoint commits after meaningful completed changes.
 11. Log the run in `Automation-Log.md`.
 12. Log instruction or skill improvements in `Improvement-Log.md`.
 
@@ -166,9 +170,10 @@ The workspace should be recoverable.
 - Inspect `git status --short` on each meaningful heartbeat.
 - Keep unrelated changes separate when possible.
 - Run the secret scanner before commits or pushes.
-- Make local commits only for coherent completed maintenance batches.
+- Make local commits proactively for coherent completed maintenance batches.
 - Use clear commit messages.
-- Do not push to a remote unless GitHub backup is configured and the user approved pushing.
+- If a private GitHub backup remote is configured and approved, push after clean heartbeat commits so the cloud copy stays current.
+- Do not create or change remotes, create public repositories, or do a first backup push without user approval.
 - Record blockers when Git is unavailable, dirty in a confusing way, or a secret scan fails.
 
 ## User-Aware Autonomous Mode
@@ -234,10 +239,10 @@ If there is meaningful activity:
 - Use web research only when clearly relevant to the user's active work, and write useful findings to Inbox.md.
 - Choose No-Op, Triage, Maintenance, Improvement, or Escalation mode.
 - Make low-risk AI-owned instruction updates only from strong evidence.
-- Keep local Git history clean after coherent completed changes. Run the secret scanner before commits.
+- Keep local Git history clean after coherent completed changes. Run the secret scanner before commits. If an approved private GitHub backup is configured, push clean commits.
 - Propose larger or external-facing changes first.
 
-Do not publish, deploy, spend money, share workspace context externally, change secrets, connect accounts, push to GitHub, or start new project-specific autonomous work unless the user explicitly authorized it.
+Do not publish, deploy, spend money, share workspace context externally, change secrets, connect accounts, create or change GitHub backup, do a first GitHub push, or start new project-specific autonomous work unless the user explicitly authorized it.
 
 Keep any user-facing summary in Inbox.md brief: what changed, what matters next, and what decision is needed.
 ```
@@ -252,7 +257,8 @@ Keep any user-facing summary in Inbox.md brief: what changed, what matters next,
 - changing secret storage
 - project-specific autonomous execution
 - connecting accounts or granting permissions
-- creating or pushing to GitHub backup
+- creating or changing GitHub backup
+- first push to a GitHub backup
 
 ## Output Rules
 

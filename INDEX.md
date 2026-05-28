@@ -64,6 +64,7 @@ These scripts live inside `Seed/` because they are copied into the user's worksp
 - [Seed/Agent-Instructions/Skills/Project-Planning/starter-files/Next Actions.md](Seed/Agent-Instructions/Skills/Project-Planning/starter-files/Next%20Actions.md) - next actions starter.
 - [Seed/Agent-Instructions/Skills/Project-Planning/starter-files/Decisions.md](Seed/Agent-Instructions/Skills/Project-Planning/starter-files/Decisions.md) - project decision log starter.
 - [Seed/Scripts/secret_scan.mjs](Seed/Scripts/secret_scan.mjs) - local secret scanner for staged files or paths.
+- [Seed/Scripts/link_codex_skills.mjs](Seed/Scripts/link_codex_skills.mjs) - creates `.agents/skills` as a symlink to the workspace skills folder.
 - [Seed/Scripts/heartbeat_gate.mjs](Seed/Scripts/heartbeat_gate.mjs) - lightweight heartbeat activity snapshot for inbox, signals, git changes, and recent Codex session candidates.
 - [Seed/Scripts/install_git_hooks.mjs](Seed/Scripts/install_git_hooks.mjs) - installs a pre-commit hook that runs the scanner.
 - [Seed/Scripts/update_kit.mjs](Seed/Scripts/update_kit.mjs) - refreshes `.business-ai-kit/source/`.

@@ -40,7 +40,9 @@ Do not duplicate or improvise setup rules from memory. Follow the installed file
 
 Complete `Setup-Plan.md` end to end. Do not restate skill rules inside the install flow.
 
-Do not stop at "installation complete." Start the live onboarding conversation from `Setup-Plan.md`, ask one useful question at a time, and adapt to my language.
+Do not start project work, suggest first projects, build tools, or reorganize my material until `Setup-Plan.md` is complete or blocked on a specific decision. If I ask for other work during setup, acknowledge it, save it if useful, and return to the next setup step.
+
+Do not stop at "installation complete." Start the live onboarding conversation from `Setup-Plan.md`, ask one useful question at a time, briefly explain why each question matters, and adapt to my language.
 
 Keep `.business-ai-kit/source/` ignored by Git. Do not add analytics, telemetry, tracking, or background reporting.
 ```

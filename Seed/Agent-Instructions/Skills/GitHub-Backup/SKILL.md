@@ -9,6 +9,8 @@ Use this skill only after the user asks for cloud backup or approves a backup pr
 
 The default is local Git. GitHub backup is optional.
 
+This skill is only for setting up or changing the private GitHub backup. Routine local commits and routine pushes to an already approved private backup are normal workspace maintenance handled by `AGENTS.md` and the heartbeat workflow.
+
 ## Rules
 
 - Create private repositories only.
@@ -43,10 +45,18 @@ Use this after setup is complete:
 ```text
 Do you want me to set up a private GitHub backup for this workspace?
 
-Simple version: it keeps a private cloud copy and Git history, so the workspace is easier to recover if something is deleted or this computer has a problem.
+Simple version: GitHub can keep a private cloud copy of this folder and its Git history.
 
-If you want it, I will guide you through GitHub sign-in, create a private repository, scan for secrets, and push the workspace. I will not make anything public unless you explicitly ask.
+Git is the local version-saving system. GitHub is a service that can store and sync that history online in a private repository. This makes the workspace easier to recover if this computer has a problem, and it can make future app publishing easier if we build apps later.
+
+We can set this up now or later. If you choose later, I will save a reminder in the inbox so we do not lose it.
+
+If you want it now, I will guide you through GitHub sign-in, create a private repository, scan for secrets, and push the workspace. I will not make anything public unless you explicitly ask.
+
+Why I ask: this is optional, but it gives the workspace a safer backup and sync path.
 ```
+
+If the user chooses later, add an `Inbox.md` item to revisit private GitHub backup and record the deferral in `Outbox.md` or `Decisions.md`.
 
 ## If The User Does Not Have GitHub
 

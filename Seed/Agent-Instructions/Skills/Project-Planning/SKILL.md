@@ -50,6 +50,8 @@ When creating these files, use the starter files in `starter-files/` if present.
 ## Rules
 
 - Use plain business names for project folders.
+- Use plain section folder names that a non-technical user would understand, such as `Strategy`, `Source Materials`, `Resumes`, `Applications`, `Interview Prep`, and `Final Outputs`.
+- Do not use numeric prefixes like `00-Strategy`, `01-Source-Materials`, or internal taxonomy labels unless the user asks for that structure or a tool requires it.
 - Do not create project folders before real work starts.
 - Keep app/build code inside the relevant project.
 - Add project-local `AGENTS.md` for recurring project rules, safety boundaries, tools, and context-loading notes.
