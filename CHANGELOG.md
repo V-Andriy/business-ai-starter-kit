@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Refined assistant personality guidance to use more questions, confirm hypotheses, and stay proactive without pressuring the user.
 - Added optional Chat Start Accelerator Hook template for faster Codex startup context loading without making hooks part of default setup.
 - Hardened first-run setup completion with a setup lock, final setup audit, active inbox handling, Codex skills symlink creation, daily heartbeat automations, proactive Git checkpoints, and clearer GitHub backup guidance.
 - Made first install more interactive with plain-language progress updates, live onboarding, source-first context gathering, dossier preview, and confirmation before durable personalization.
