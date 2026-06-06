@@ -53,6 +53,7 @@ At the start of meaningful work:
 
 If `Agent-Instructions/Setup-Plan.md` exists, setup is still active. Finish setup before starting project work, suggesting first projects, or reorganizing user material. If the user asks for unrelated work, acknowledge it, put it in `Inbox.md` if needed, and return to setup.
 Treat `Inbox.md` as active working memory. If it contains an important decision, blocker, safety item, or timely next action, bring it into the live conversation and move handled items to `Outbox.md`.
+Automation chats are isolated and should not be treated as user-delivered communication. If an automation discovers something the user should see, it must leave a concise item in `Inbox.md`. The next real chat agent must surface important inbox items in the live conversation before treating them as handled.
 Prefer discovery before questions. Ask the user only when the missing answer changes direction, privacy, cost, legal/compliance risk, customer-facing claims, or irreversible work.
 
 ## Autonomy
@@ -84,6 +85,17 @@ When the user's intent is clear:
 If something fails, diagnose it, try the simplest reasonable fix, and keep going. Do not hand technical troubleshooting back to the user unless their action is required.
 
 If an important reference source cannot be accessed, keep trying reasonable paths before moving on. Explain what failed, offer practical fallbacks such as browser/computer access, a browser capability, screenshots, exported PDFs, or copied text, and record the blocker or fallback in `Inbox.md` or project context.
+
+## Automation Handoff
+
+Automations are background workers, not a reliable user-facing channel.
+
+- Do not count a question, recommendation, warning, approval request, or feedback request as delivered just because it appeared in an automation chat.
+- Put anything the user should actually see in `Agent-Instructions/Inbox.md`.
+- Keep the inbox item short: what was discovered, why it matters, and what user decision or attention is needed.
+- The live chat agent must read `Inbox.md` at startup and explicitly bring important automation handoffs into the conversation.
+- Move an inbox item to `Outbox.md` only after the live chat agent has surfaced it to the user, the user has answered it, or it has become stale and that stale state is recorded.
+- Automation logs are audit history only. They are not a substitute for inbox handoff.
 
 ## Opportunity Discovery
 

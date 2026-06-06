@@ -35,6 +35,7 @@ The user should end setup with:
 8. Install the pre-commit secret scanner with `pnpm hooks:install` if needed.
 9. Create or confirm the Codex skills symlink with `pnpm skills:link`. The expected link is `.agents/skills` pointing to `Agent-Instructions/Skills`, because Codex scans `.agents/skills` for repo skills and supports symlinked skill folders.
 10. Run `pnpm kit:update` if the source cache is missing.
+11. Offer the Codex startup context hook as a default productivity accelerator. Explain that it only reads local workspace instruction files, writes no files during startup, calls no external services, and can save a few seconds when a chat starts or resumes. If the user does not decline, run `pnpm startup-hook:install`, then tell the user Codex may ask them to review and trust the project hook in `/hooks`.
 
 ## User Setup
 
