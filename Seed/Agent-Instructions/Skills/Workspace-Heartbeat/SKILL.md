@@ -21,6 +21,7 @@ The heartbeat runs in autonomous mode. It should do low-risk maintenance, look f
 - `Agent-Instructions/Memory.md`
 - `Agent-Instructions/Agent-State.md`
 - `Agent-Instructions/Automation-Log.md`
+- `Agent-Instructions/Improvement-Log.md`
 
 ## Schedule
 
@@ -291,7 +292,7 @@ Focus only on durable memory, dossiers, current focus, active threads, and one p
 
 Do not publish, deploy, spend money, share workspace context externally, change secrets, connect accounts, create or change GitHub backup, do a first GitHub push, or start new project-specific autonomous work unless the user explicitly authorized it.
 
-If there is no meaningful role-specific work, append at most one short Automation-Log no-op entry and stop. If files changed, run the secret scanner before committing, commit a coherent maintenance change, and push to the approved private backup.
+If there is no meaningful role-specific work, append at most one short Automation-Log no-op entry and stop. If files changed, run the secret scanner before committing, commit a coherent maintenance change, and push only when an approved private backup remote is already configured.
 ```
 
 ### 11:30 Prompt
@@ -307,7 +308,7 @@ Do not edit skills, start new research projects, write durable memory unless cle
 
 Do not publish, deploy, spend money, share workspace context externally, change secrets, connect accounts, create or change GitHub backup, do a first GitHub push, or start new project-specific autonomous work unless the user explicitly authorized it.
 
-If there is no meaningful cleanup, append at most one short Automation-Log no-op entry and stop. If files changed, run the secret scanner before committing, commit a coherent maintenance change, and push to the approved private backup.
+If there is no meaningful cleanup, append at most one short Automation-Log no-op entry and stop. If files changed, run the secret scanner before committing, commit a coherent maintenance change, and push only when an approved private backup remote is already configured.
 ```
 
 ### 16:30 Prompt
@@ -323,7 +324,7 @@ Do not clean the inbox except for an instruction risk or blocker, do broad proje
 
 Do not publish, deploy, spend money, share workspace context externally, change secrets, connect accounts, create or change GitHub backup, do a first GitHub push, or start new project-specific autonomous work unless the user explicitly authorized it.
 
-If there is no meaningful learning or instruction improvement, append at most one short Automation-Log no-op entry and stop. If files changed, run the secret scanner before committing, commit a coherent maintenance change, and push to the approved private backup.
+If there is no meaningful learning or instruction improvement, append at most one short Automation-Log no-op entry and stop. If files changed, run the secret scanner before committing, commit a coherent maintenance change, and push only when an approved private backup remote is already configured.
 ```
 
 ## Must Ask First
