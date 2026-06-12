@@ -9,6 +9,12 @@ Use this skill to keep the workspace durable, useful, and ready for the user to 
 
 The heartbeat runs in autonomous mode. It should do low-risk maintenance, look for useful next actions, and write anything user-facing into `Inbox.md` for the next live conversation.
 
+Core standard: a heartbeat is useful only when it improves workspace state, memory, instructions, project organization, or the next-action surface. A checklist entry that merely says the same pending decisions still exist is not useful work.
+
+Each non-no-op heartbeat must also ask: what would make future work better within this run's daily role? Look for one small workflow, memory, cleanup, handoff, or project-structure improvement that would prevent repeated mistakes, reduce stale state, sharpen future agent behavior, or make the user's next session easier.
+
+Automation delivery rule: the automation chat is isolated. User-facing questions, warnings, recommendations, approval requests, and feedback prompts are not delivered unless they are written to `Inbox.md` for the next live chat agent to surface.
+
 ## Read First
 
 - `AGENTS.md`
@@ -107,14 +113,14 @@ Meaningful activity includes:
 
 - new or changed workspace files
 - Git status changes
-- pending `Inbox.md` items
+- newly changed `Inbox.md` items, not old unresolved decisions by themselves
 - active thread changes
 - new `Signals/`
 - unresolved blockers
 - recent Codex/session evidence for this workspace when available
 - external news or documentation changes that are clearly relevant to the user's active work
 
-If nothing meaningful changed, write at most one short `Automation-Log.md` entry and stop.
+If nothing meaningful changed, write at most one short `Automation-Log.md` entry and stop. Do not run a deep review just because yesterday's decision queue is still pending.
 
 ## Work Loop
 
@@ -133,9 +139,13 @@ activity evidence -> mode -> focused action -> git hygiene -> compact log
 7. Review relevant docs and skills when new evidence suggests they are stale or improvable.
 8. Check whether any active project or business domain would benefit from timely external research.
 9. Create `Inbox.md` items for useful discoveries, decisions, blockers, or recommendations the user should see later.
-10. Keep Git history clean with coherent local checkpoint commits after meaningful completed changes.
-11. Log the run in `Automation-Log.md`.
-12. Log instruction or skill improvements in `Improvement-Log.md`.
+10. Delete, merge, or compress duplicate/stale AI-owned instructions and decision prompts when the source detail is preserved elsewhere.
+11. Run the workflow improvement loop within the automation's daily role: identify one prevention rule, cleanup, project-structure fix, memory update, or handoff improvement that would make the next run or next user session better.
+12. Keep Git history clean with coherent local checkpoint commits after meaningful completed changes.
+13. Log the run in `Automation-Log.md`.
+14. Log instruction or skill improvements in `Improvement-Log.md`.
+
+Before logging, name the value produced and the improvement lesson. If the answer is only "checked files" or "pending items remain", switch to No-Op or do one small cleanup that is actually useful.
 
 ## Modes
 
@@ -151,7 +161,7 @@ Use when there is no meaningful new evidence.
 
 Use for small changes, pending inbox items, stale active threads, Git status checks, or minor state cleanup.
 
-- process inbox/outbox
+- process inbox/outbox; merge duplicate decision prompts into one decision digest when project trackers already hold the details
 - update current focus and active threads
 - refresh workspace map
 - create inbox items or signals for decisions and blockers
@@ -174,8 +184,11 @@ Use when recent chats, repeated corrections, workspace changes, documentation ch
 
 - make small low-risk updates to AI-owned skill instructions
 - consolidate stale or duplicated state
+- add prevention rules when a run reveals stale cross-repo state, repeated checklist behavior, unclear ownership, noisy inbox patterns, or ambiguous next actions
 - propose larger instruction, external-sharing, or workflow changes before applying them
 - record reusable kit feedback only after user approval
+
+Respect the daily role before choosing this mode. The 09:30 and 11:30 runs should leave skill and instruction edits for the 16:30 run unless there is an active instruction risk or blocker.
 
 ### Escalation
 
@@ -192,7 +205,9 @@ Look for useful work without inventing noise.
 Good proactive work:
 
 - capture useful context from recent conversations into dossiers or memory
+- remove duplicated instruction/state text when one canonical file is enough
 - update active threads and next actions
+- after spotting a stale or inaccurate next action, update the rule that allowed it when the fix is low-risk and clearly reusable
 - spot useful calculators, apps, dashboards, automations, workflows, templates, or checklists that could help the user
 - review Git status and keep changes understandable
 - check project docs for stale decisions or missing next actions
@@ -239,9 +254,22 @@ The heartbeat usually runs without the user present.
 
 - Do not expect live answers.
 - Put user-facing discoveries, recommendations, and decisions in `Inbox.md`.
+- Do not mark user-facing questions or feedback prompts as handled merely because the automation wrote them in its own chat. They remain pending until a live chat agent surfaces them to the user, the user answers, or the item becomes stale and is explicitly recorded that way.
 - Put completed maintenance in `Outbox.md` and `Automation-Log.md`.
 - Keep summaries short: what was checked, what changed, what matters next.
+- Keep `Inbox.md` small enough to read. Prefer a few grouped decisions that point to project trackers over long repeated lists of individual event or task bullets.
 - Do not send external messages, publish, deploy, spend money, connect accounts, or change secrets.
+
+## Live Chat Handoff Rules
+
+Use these rules when a heartbeat or automation leaves work for the next real user conversation:
+
+- Write the inbox item as a live handoff, not as an automation report.
+- Start with the practical ask: decision, attention, approval, correction, or optional feedback.
+- Include only enough context for the live agent to explain why it matters.
+- If the item is optional, say it is optional.
+- Never move the item to `Outbox.md` until a live chat agent has actually shown it to the user, the user answered it, or the item is stale.
+- If an item was mistakenly marked handled because it appeared only in an automation chat, restore it to `Inbox.md` and record the correction in `Improvement-Log.md`.
 
 ## Evidence Rules
 
@@ -262,6 +290,46 @@ Weak evidence:
 - personal or business context that belongs in dossiers instead of general rules
 
 Use strong evidence for durable instruction changes. Update user and business dossiers when new useful context is stable enough to help future work.
+
+## Workflow Improvement Loop
+
+Every non-no-op run should include a short retrospective:
+
+- What changed in the workspace or recent sessions?
+- What did that reveal about instructions, memory, project structure, inbox hygiene, or handoff quality?
+- What small role-appropriate edit would make the next run better?
+- Can that edit be safely made now without user approval?
+
+Apply small, low-risk AI-owned improvements immediately. Examples:
+
+- add a stale-state check after discovering a next action that points to already-committed work
+- tighten a project-local `AGENTS.md` when future agents keep missing a boundary
+- merge duplicate instructions into one canonical file
+- move detailed project facts out of global memory into the project folder
+- update `Workspace-Map.md` when navigation has changed
+- add a brief dossier or memory note when the user gives a stable preference
+
+Do not turn this into busywork. If there is no genuine lesson, say so and no-op. Do not use this loop to bypass a daily role's limits.
+
+## Cross-Repo State Rules
+
+When a heartbeat records work in a related repo outside this workspace:
+
+- Check that repo's current `git status --short` and latest commit before writing a pending item.
+- If the related repo is dirty, record the specific verification or commit needed.
+- If the related repo is clean and the needed work is already committed, update this workspace to point to the committed state instead of adding stale follow-up.
+- If the related repo changes after the heartbeat's first check, prefer the latest observed state before committing this workspace's handoff.
+- Never leave `Inbox.md`, `Current-Focus.md`, or project next actions saying "uncommitted changes" when the related repo is already clean.
+
+## Decision Debt Rules
+
+Pending decisions are not automatically new work. On each meaningful run:
+
+- If a decision is unchanged and still needs the user, leave it alone or group it under a short digest.
+- If several bullets ask the same kind of decision, consolidate them into one decision prompt and point to the project tracker for detail.
+- If the date passed, mark the item handled, skipped, or stale in the project file and move the old prompt to `Outbox.md`.
+- If the heartbeat cannot legally or safely decide something, do not repeat the full item forever; preserve the detail in the project file and keep only the next business decision visible.
+- Do not add a new inbox item unless it changes what the user should decide or do next.
 
 ## Automation Model
 
@@ -351,6 +419,8 @@ Every run should leave a compact audit trail:
 - `Improvement-Log.md`: memory, skill, or instruction improvements
 
 Keep entries short. The heartbeat is an operating loop, not a diary.
+
+If no workspace improvement was made, say that directly in the log and do not imply progress.
 
 ## Staleness Rules
 

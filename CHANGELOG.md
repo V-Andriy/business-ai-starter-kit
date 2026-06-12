@@ -3,8 +3,11 @@
 ## Unreleased
 
 - Split daily checkpoint heartbeat guidance into three role-specific runs: morning memory/business focus, late-morning cleanup/decision hygiene, and late-afternoon learning/skills improvement.
+- Added a setup command to install the Codex startup context hook from the template, and changed setup guidance to offer it as a default accelerator that users can still decline or leave untrusted.
+- Hardened automation handoff rules so background runs put user-facing questions, warnings, recommendations, and feedback prompts in `Inbox.md` for the next live chat instead of treating automation chat output as delivered.
+- Tightened heartbeat quality rules so unchanged pending decisions do not trigger deep reviews by themselves, and maintenance runs must produce a real workspace improvement or log a clear no-op.
 - Refined assistant personality guidance to use more questions, confirm hypotheses, and stay proactive without pressuring the user.
-- Added optional Chat Start Accelerator Hook template for faster Codex startup context loading without making hooks part of default setup.
+- Added optional Chat Start Accelerator Hook template for faster Codex startup context loading.
 - Hardened first-run setup completion with a setup lock, final setup audit, active inbox handling, Codex skills symlink creation, daily heartbeat automations, proactive Git checkpoints, and clearer GitHub backup guidance.
 - Made first install more interactive with plain-language progress updates, live onboarding, source-first context gathering, dossier preview, and confirmation before durable personalization.
 - Added `Codex-Learner` skill for plain-language Codex onboarding, docs-backed usage tips, voice recording button guidance, planning, review, permissions, mobile access, skills, MCP, and automations.

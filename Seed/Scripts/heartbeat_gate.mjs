@@ -42,6 +42,14 @@ function hasPendingMarkdownItems(filePath) {
   });
 }
 
+function fileMtime(filePath) {
+  try {
+    return fs.statSync(filePath).mtimeMs / 1000;
+  } catch {
+    return 0;
+  }
+}
+
 function statusPathMtime(workspace, statusLine) {
   let rawPath = statusLine.slice(3).trim();
   if (rawPath.includes(' -> ')) rawPath = rawPath.split(' -> ', 2)[1].trim();
@@ -140,15 +148,22 @@ function main() {
   const outbox = path.join(instructions, 'Outbox.md');
   const lastStateTime = newestMtime([automationLog, outbox]);
 
-  const inboxPending = hasPendingMarkdownItems(path.join(instructions, 'Inbox.md'));
-  const incomingSignal = hasPendingMarkdownItems(path.join(instructions, 'Signals', 'Incoming.md'));
-  const outgoingSignal = hasPendingMarkdownItems(path.join(instructions, 'Signals', 'Outgoing.md'));
+  const inboxPath = path.join(instructions, 'Inbox.md');
+  const incomingSignalPath = path.join(instructions, 'Signals', 'Incoming.md');
+  const outgoingSignalPath = path.join(instructions, 'Signals', 'Outgoing.md');
+  const inboxPending = hasPendingMarkdownItems(inboxPath);
+  const incomingSignal = hasPendingMarkdownItems(incomingSignalPath);
+  const outgoingSignal = hasPendingMarkdownItems(outgoingSignalPath);
+  const inboxChanged = inboxPending && fileMtime(inboxPath) > lastStateTime;
+  const signalsChanged =
+    (incomingSignal && fileMtime(incomingSignalPath) > lastStateTime) ||
+    (outgoingSignal && fileMtime(outgoingSignalPath) > lastStateTime);
   const statusLines = gitStatus(workspace, lastStateTime);
   const sessionCandidates = recentSessionCandidates(workspace, lastStateTime);
 
   const reasons = [];
-  if (inboxPending) reasons.push('pending inbox items');
-  if (incomingSignal || outgoingSignal) reasons.push('pending signals');
+  if (inboxChanged) reasons.push('changed inbox items');
+  if (signalsChanged) reasons.push('changed signals');
   if (statusLines.length) reasons.push('workspace git changes');
   if (sessionCandidates.length) reasons.push('recent Codex session evidence');
 
@@ -160,8 +175,10 @@ function main() {
     reasons,
     signals: {
       inbox_pending: inboxPending,
+      inbox_changed_since_last_state: inboxChanged,
       incoming_signal: incomingSignal,
       outgoing_signal: outgoingSignal,
+      signals_changed_since_last_state: signalsChanged,
       git_status_count: statusLines.length,
       recent_session_candidate_count: sessionCandidates.length,
     },

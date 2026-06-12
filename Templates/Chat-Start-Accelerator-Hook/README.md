@@ -2,9 +2,9 @@
 
 This optional template adds a Codex `SessionStart` hook that gives the agent the workspace context it would normally read at the start of meaningful work.
 
-Use it when startup context is repeatedly slow or when users often begin with prompts that could pull the agent away from the workspace operating rules.
+Offer it during setup as a default productivity accelerator, especially when startup context is repeatedly slow or when users often begin with prompts that could pull the agent away from the workspace operating rules.
 
-Do not install it by default. The normal workspace must keep working through `AGENTS.md` without this hook.
+The normal workspace must keep working through `AGENTS.md` without this hook. If the user declines or does not trust the hook in Codex, setup should continue normally.
 
 ## What It Does
 
@@ -37,6 +37,16 @@ Treat the output as a startup brief. The agent should still open source files ag
 
 From a private Business AI Starter Kit workspace:
 
+Preferred setup path:
+
+```text
+pnpm startup-hook:install
+```
+
+Then open `/hooks` in Codex, review the command, and trust it if the user wants faster startup context.
+
+Manual path:
+
 1. Copy `Scripts/chat_start_accelerator_context.mjs` into the workspace `Scripts/` folder.
 2. Copy `.codex/hooks.json` into the workspace `.codex/` folder.
 3. If the workspace already has `.codex/hooks.json`, merge the `SessionStart` entry instead of replacing existing hooks.
@@ -47,8 +57,6 @@ node Scripts/chat_start_accelerator_context.mjs --workspace .
 ```
 
 Expected result: JSON with `hookSpecificOutput.additionalContext`.
-
-When Codex notices the new project hook, open `/hooks`, review the command, and trust it if the user wants faster startup context.
 
 Use this plain-language explanation:
 
