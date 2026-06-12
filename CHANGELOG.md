@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Split daily checkpoint heartbeat guidance into three role-specific runs: morning memory/business focus, late-morning cleanup/decision hygiene, and late-afternoon learning/skills improvement.
 - Refined assistant personality guidance to use more questions, confirm hypotheses, and stay proactive without pressuring the user.
 - Added optional Chat Start Accelerator Hook template for faster Codex startup context loading without making hooks part of default setup.
 - Hardened first-run setup completion with a setup lock, final setup audit, active inbox handling, Codex skills symlink creation, daily heartbeat automations, proactive Git checkpoints, and clearer GitHub backup guidance.

@@ -21,20 +21,77 @@ The heartbeat runs in autonomous mode. It should do low-risk maintenance, look f
 - `Agent-Instructions/Memory.md`
 - `Agent-Instructions/Agent-State.md`
 - `Agent-Instructions/Automation-Log.md`
+- `Agent-Instructions/Improvement-Log.md`
 
 ## Schedule
 
-Create three daily checkpoint automations by default:
+Create three daily checkpoint automations by default. They are intentionally different jobs, not the same broad heartbeat at three times:
 
-- morning: 09:30
-- late morning: 11:30
-- late afternoon: 16:30
+- morning, 09:30: memory intake and business focus
+- late morning, 11:30: workspace cleanup and decision hygiene
+- late afternoon, 16:30: learning, skills, and instruction improvement
 
 Use separate automations for each daily time. Do not rely on one RRULE with multiple `BYHOUR` values unless the Codex app UI clearly shows every intended run time. If the UI shows only one daily time, treat the schedule as single-time and create separate automations.
 
 Record the exact automation ids in `Automation-Log.md`.
 
 Use the user's locale and working pattern when known. Do not create hourly automations by default.
+
+## Daily Roles
+
+### 09:30 - Memory Intake And Business Focus
+
+Use the morning run to turn recent real activity into durable context and a clear operating picture.
+
+Allowed:
+
+- update `Memory.md`, `User-Dossier.md`, `Business-Dossier.md`, `Current-Focus.md`, and `Active-Threads.md` from strong evidence
+- add or tighten one `Inbox.md` handoff only when the user needs to see it
+- surface one practical business-development next action when relevant
+
+Do not:
+
+- edit skills
+- do broad cleanup
+- start project-specific autonomous work
+- repeat unchanged pending decisions
+
+### 11:30 - Workspace Cleanup And Decision Hygiene
+
+Use the late-morning run to keep the workspace readable, current, and low-noise.
+
+Allowed:
+
+- compress duplicate inbox items
+- move handled items to `Outbox.md`
+- mark stale date-sensitive prompts as skipped or stale when the date has passed
+- refresh `Workspace-Map.md`, `Active-Threads.md`, and project tracker references when stale
+
+Do not:
+
+- write durable memory unless cleanup reveals a confirmed stable fact
+- edit skills
+- start new research projects
+- add inbox items unless the user's next decision changes
+
+### 16:30 - Learning, Skills, And Instruction Improvement
+
+Use the late-afternoon run to learn from the day's agent behavior and improve reusable procedures.
+
+Allowed:
+
+- review today's automation logs, improvement log, explicit user corrections, and relevant diffs
+- patch workspace-owned skills or instructions only from strong evidence
+- update `Improvement-Log.md`
+- write report-only recommendations for major automation, skill, strategy, or instruction changes
+
+Do not:
+
+- clean the inbox except for an instruction risk or blocker
+- do broad project state refresh
+- change business strategy or public messaging from weak evidence
+- rewrite a skill from one weak signal
+- duplicate a weekly system-wide instruction evolution automation when one exists
 
 ## Activity Gate
 
@@ -61,7 +118,7 @@ If nothing meaningful changed, write at most one short `Automation-Log.md` entry
 
 ## Work Loop
 
-Use the lightest mode that can produce value.
+Use the lightest mode that can produce value. Apply the automation's daily role before choosing mode; do not use one checkpoint to do another checkpoint's job.
 
 ```text
 activity evidence -> mode -> focused action -> git hygiene -> compact log
@@ -220,31 +277,54 @@ schedule: use the Schedule section in this skill
 
 Use higher reasoning only when the workspace is large or the heartbeat is doing real self-improvement analysis.
 
-## Prompt For Automation
+## Prompt Templates
+
+Use these prompts for the three standard checkpoint automations. Keep schedules, model, workspace, execution environment, and active status in the automation config; keep the operational procedure here in the skill.
+
+### 09:30 Prompt
 
 ```text
-Review this Business AI Starter Kit workspace with a daily checkpoint maintenance loop.
+Run the 09:30 Business AI Starter Kit checkpoint: Memory Intake And Business Focus.
 
-First run a lightweight activity gate:
-- If Scripts/heartbeat_gate.mjs exists, run: pnpm heartbeat:gate.
-- Read AGENTS.md, Agent-Instructions/Soul.md, Agent-Instructions/Agent-State.md, Agent-Instructions/Current-Focus.md, Agent-Instructions/Active-Threads.md, Agent-Instructions/Inbox.md, Agent-Instructions/Outbox.md, Agent-Instructions/Automation-Log.md, and Agent-Instructions/Workspace-Map.md.
-- Check git status.
-- Check for meaningful changes: workspace files, Inbox items, active threads, Signals, blockers, recent local session evidence, or relevant docs/news that matter to active work.
-- If there is no meaningful activity and no pending maintenance, append at most one short Automation-Log entry and stop.
+Load and follow Agent-Instructions/Skills/Workspace-Heartbeat/SKILL.md, especially the 09:30 role. Run pnpm heartbeat:gate first, read the required startup files, and check git status.
 
-If there is meaningful activity:
-- Analyze only relevant recent evidence.
-- Process Inbox.md, append handled items to Outbox.md, and update Current-Focus.md, Active-Threads.md, Workspace-Map.md, User-Dossier.md, Business-Dossier.md, Memory.md, Automation-Log.md, Improvement-Log.md, and Signals when useful.
-- Review docs and skills when new evidence suggests they are stale or improvable.
-- Use web research only when clearly relevant to the user's active work, and write useful findings to Inbox.md.
-- Choose No-Op, Triage, Maintenance, Improvement, or Escalation mode.
-- Make low-risk AI-owned instruction updates only from strong evidence.
-- Keep local Git history clean after coherent completed changes. Run the secret scanner before commits. If an approved private GitHub backup is configured, push clean commits.
-- Propose larger or external-facing changes first.
+Focus only on durable memory, dossiers, current focus, active threads, and one practical business-development next action. Do not edit skills, do broad cleanup, start project-specific autonomous work, or repeat unchanged pending decisions.
 
 Do not publish, deploy, spend money, share workspace context externally, change secrets, connect accounts, create or change GitHub backup, do a first GitHub push, or start new project-specific autonomous work unless the user explicitly authorized it.
 
-Keep any user-facing summary in Inbox.md brief: what changed, what matters next, and what decision is needed.
+If there is no meaningful role-specific work, append at most one short Automation-Log no-op entry and stop. If files changed, run the secret scanner before committing, commit a coherent maintenance change, and push only when an approved private backup remote is already configured.
+```
+
+### 11:30 Prompt
+
+```text
+Run the 11:30 Business AI Starter Kit checkpoint: Workspace Cleanup And Decision Hygiene.
+
+Load and follow Agent-Instructions/Skills/Workspace-Heartbeat/SKILL.md, especially the 11:30 role. Run pnpm heartbeat:gate first, read the required startup files, and check git status.
+
+Focus only on cleanup: compress duplicate inbox items, move handled items to Outbox.md, mark stale date-sensitive prompts as skipped or stale, and refresh Workspace-Map.md, Active-Threads.md, or project tracker references when they are stale.
+
+Do not edit skills, start new research projects, write durable memory unless cleanup reveals a confirmed stable fact, or add a new inbox item unless it changes the user's next decision.
+
+Do not publish, deploy, spend money, share workspace context externally, change secrets, connect accounts, create or change GitHub backup, do a first GitHub push, or start new project-specific autonomous work unless the user explicitly authorized it.
+
+If there is no meaningful cleanup, append at most one short Automation-Log no-op entry and stop. If files changed, run the secret scanner before committing, commit a coherent maintenance change, and push only when an approved private backup remote is already configured.
+```
+
+### 16:30 Prompt
+
+```text
+Run the 16:30 Business AI Starter Kit checkpoint: Learning, Skills, And Instruction Improvement.
+
+Load and follow Agent-Instructions/Skills/Workspace-Heartbeat/SKILL.md, especially the 16:30 role. Run pnpm heartbeat:gate first, read the required startup files, and check git status.
+
+Focus only on today's reusable lessons: review Automation-Log.md, Improvement-Log.md, explicit user corrections, recent relevant diffs, and evidence of repeated agent friction. Patch workspace-owned skills or instructions only from strong evidence. Major automation, skill, strategy, public-output, or cross-repo changes should be report-only unless the user has explicitly approved them.
+
+Do not clean the inbox except for an instruction risk or blocker, do broad project state refresh, change business strategy or public messaging from weak evidence, rewrite a skill from one weak signal, or duplicate a weekly system-wide instruction evolution automation when one exists.
+
+Do not publish, deploy, spend money, share workspace context externally, change secrets, connect accounts, create or change GitHub backup, do a first GitHub push, or start new project-specific autonomous work unless the user explicitly authorized it.
+
+If there is no meaningful learning or instruction improvement, append at most one short Automation-Log no-op entry and stop. If files changed, run the secret scanner before committing, commit a coherent maintenance change, and push only when an approved private backup remote is already configured.
 ```
 
 ## Must Ask First
