@@ -6,7 +6,7 @@ This file is for agents and contributors developing or inspecting this public re
 
 ## 1. Reference Mode - If You Cloned This Repo To Understand It
 
-Business AI Starter Kit is a Codex-first starter system for creating private local AI workspaces for non-technical business users.
+Business AI Starter Kit is a starter system for creating private local AI workspaces for non-technical business users. It supports Codex and Claude Code (Cowork) from one shared workspace: `AGENTS.md` is the canonical instruction file (read by Codex) and `CLAUDE.md` imports it (read by Claude Code). Skills are shared from `Agent-Instructions/Skills/` via `.agents/skills` and `.claude/skills` symlinks.
 
 The public repo has three important areas:
 
@@ -49,11 +49,11 @@ private user workspace = separate local workspace
 - `Seed/` files are copied into private user workspaces. They must be real starter files, not `.template` files.
 - `Templates/` is a public source library area for future reusable templates. Keep it empty except documentation until templates are intentionally introduced.
 - First-run setup lives in `Install.md`, `Seed/Agent-Instructions/Setup-Plan.md`, `Seed/Agent-Instructions/Inbox.md`, and `Seed/Agent-Instructions/Active-Threads.md`.
-- Daily workspace behavior lives in `Seed/AGENTS.md`.
+- Daily workspace behavior lives in `Seed/AGENTS.md`. `Seed/CLAUDE.md` is a thin bridge that imports `Seed/AGENTS.md`; keep the rules only in `AGENTS.md` so both harnesses stay in sync. Do not duplicate behavior into `CLAUDE.md`.
 - Update, safety, heartbeat, troubleshooting, and support workflows live in `Seed/Agent-Instructions/Skills/`.
 - `Seed/Agent-Instructions/Soul.md` is only for durable assistant identity and felt user experience. It is a philosophical file for how the agent should feel. Change it carefully only for assistant name, personality, tone, relationship, or core-principle updates; do not put setup steps, onboarding scripts, troubleshooting flows, project instructions, examples, or skill workflows there.
 - `Seed/Agent-Instructions/Skills/` is the canonical skills folder for user workspaces.
-- If another harness needs a skills path, instructions should create a symlink to `Agent-Instructions/Skills/` instead of copying skills.
+- If another harness needs a skills path, instructions should create a symlink to `Agent-Instructions/Skills/` instead of copying skills. `Seed/Scripts/link_skills.mjs` creates the Codex (`.agents/skills`) and Claude Code (`.claude/skills`) symlinks.
 - `Seed/Scripts/` should stay small, local, auditable, and dependency-light.
 - Runtime setup should standardize on Node.js LTS, npm, and pnpm. Use pnpm for project scripts and development commands. Use npm only to bootstrap pnpm when corepack is unavailable.
 

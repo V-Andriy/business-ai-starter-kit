@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Added first-class Claude Code (Cowork) support alongside Codex from one shared workspace: `CLAUDE.md` imports the canonical `AGENTS.md`, skills link into `.claude/skills` as well as `.agents/skills`, and the startup hook installs into `.claude/settings.json` as well as `.codex/hooks.json`.
+- Generalized `link_codex_skills.mjs` into `link_skills.mjs` (links both harness skill paths) and the startup-hook installer to set up both harnesses.
+- Renamed the `Codex-Learner` skill to `AI-Tool-Learner` and made it harness-aware so it teaches Codex or Claude Code based on the running tool.
 - Split daily checkpoint heartbeat guidance into three role-specific runs: morning memory/business focus, late-morning cleanup/decision hygiene, and late-afternoon learning/skills improvement.
 - Added a setup command to install the Codex startup context hook from the template, and changed setup guidance to offer it as a default accelerator that users can still decline or leave untrusted.
 - Hardened automation handoff rules so background runs put user-facing questions, warnings, recommendations, and feedback prompts in `Inbox.md` for the next live chat instead of treating automation chat output as delivered.

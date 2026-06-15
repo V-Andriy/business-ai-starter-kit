@@ -34,7 +34,7 @@ mindmap
         Private notes
         Secrets vault metadata
         Skills canonical folder
-          Codex-Learner teaches Codex usage
+          AI-Tool-Learner teaches Codex and Claude Code usage
         Signals pointers
       Scripts copied helpers
       Project folders on demand
@@ -50,7 +50,7 @@ mindmap
       Read installed instructions
       Explain progress in plain language
       Start live onboarding handoff
-      Teach basic Codex usage with Codex-Learner
+      Teach basic tool usage with AI-Tool-Learner
       Introduce personal AI agent
       Explain Bob default name can change
       Ask communication preference

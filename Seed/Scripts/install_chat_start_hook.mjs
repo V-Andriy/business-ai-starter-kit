@@ -15,6 +15,15 @@ const sessionStartHook = {
   ],
 };
 
+// Codex reads .codex/hooks.json and Claude Code reads .claude/settings.json,
+// but both use the same SessionStart hook shape and the same script, which
+// emits hookSpecificOutput.additionalContext. Install into both so the hook
+// works in whichever harness opens the workspace.
+const harnessHookFiles = [
+  { name: 'Codex', file: ['.codex', 'hooks.json'] },
+  { name: 'Claude Code', file: ['.claude', 'settings.json'] },
+];
+
 function parseArgs(argv) {
   const args = { workspace: '.' };
   for (let index = 0; index < argv.length; index += 1) {
@@ -33,7 +42,7 @@ function parseArgs(argv) {
 function printHelp() {
   console.log(`Usage: node Scripts/install_chat_start_hook.mjs [--workspace .]
 
-Install the optional Business AI Starter Kit Codex startup context hook.`);
+Install the optional Business AI Starter Kit startup context hook for Codex and Claude Code.`);
 }
 
 function readJson(filePath) {
@@ -94,22 +103,28 @@ function main() {
 
   const targetScript = path.join(workspace, 'Scripts', 'chat_start_accelerator_context.mjs');
   const scriptChanged = writeIfChanged(targetScript, fs.readFileSync(sourceScript, 'utf8'));
-
-  const hooksPath = path.join(workspace, '.codex', 'hooks.json');
-  let mergedHooks;
-  try {
-    mergedHooks = mergeHooks(readJson(hooksPath));
-  } catch (error) {
-    console.error(error.message);
-    console.error('Fix the existing hooks file, then run the installer again.');
-    return 1;
-  }
-  const hooksChanged = writeIfChanged(hooksPath, `${JSON.stringify(mergedHooks, null, 2)}\n`);
-
   if (scriptChanged) console.log(`Installed ${path.relative(workspace, targetScript)}`);
-  if (hooksChanged) console.log(`Updated ${path.relative(workspace, hooksPath)}`);
-  if (!scriptChanged && !hooksChanged) console.log('Chat Start Accelerator hook is already installed.');
-  console.log('Open /hooks in Codex and trust the project hook if you want faster startup context.');
+
+  let anyHookChanged = false;
+  for (const harness of harnessHookFiles) {
+    const hooksPath = path.join(workspace, ...harness.file);
+    let mergedHooks;
+    try {
+      mergedHooks = mergeHooks(readJson(hooksPath));
+    } catch (error) {
+      console.error(error.message);
+      console.error('Fix the existing hooks file, then run the installer again.');
+      return 1;
+    }
+    const hooksChanged = writeIfChanged(hooksPath, `${JSON.stringify(mergedHooks, null, 2)}\n`);
+    if (hooksChanged) {
+      console.log(`Updated ${path.relative(workspace, hooksPath)} (${harness.name})`);
+      anyHookChanged = true;
+    }
+  }
+
+  if (!scriptChanged && !anyHookChanged) console.log('Chat Start Accelerator hook is already installed.');
+  console.log('In Codex, open /hooks and trust the project hook. In Claude Code, review .claude/settings.json and approve the hook if prompted.');
   return 0;
 }
 

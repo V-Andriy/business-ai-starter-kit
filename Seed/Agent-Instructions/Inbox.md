@@ -13,7 +13,7 @@ The daily checkpoint heartbeat should process this file, turn items into active 
 - Ask for the user's email only if they want it stored for workspace context.
 - Preview user/business context before writing durable files.
 - Create or confirm the heartbeat automations with `Agent-Instructions/Skills/Workspace-Heartbeat/SKILL.md`.
-- Before closing setup, run the final setup audit in `Agent-Instructions/Setup-Plan.md`: verify all setup checklist items, heartbeat automations, Codex skills symlink, inbox/outbox cleanup, and durable user/business context.
+- Before closing setup, run the final setup audit in `Agent-Instructions/Setup-Plan.md`: verify all setup checklist items, heartbeat automations, harness skills symlinks (`.agents/skills` and `.claude/skills`), inbox/outbox cleanup, and durable user/business context.
 - After setup is complete, ask whether the user wants a private GitHub cloud backup for this workspace.
 - After setup is fully complete, ask once whether the user wants to send Andrii feedback about onboarding.
 - Identify the first useful business project, workflow, or decision to organize in this workspace.

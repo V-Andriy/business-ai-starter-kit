@@ -37,7 +37,7 @@ Create three daily checkpoint automations by default. They are intentionally dif
 - late morning, 11:30: workspace cleanup and decision hygiene
 - late afternoon, 16:30: learning, skills, and instruction improvement
 
-Use separate automations for each daily time. Do not rely on one RRULE with multiple `BYHOUR` values unless the Codex app UI clearly shows every intended run time. If the UI shows only one daily time, treat the schedule as single-time and create separate automations.
+Use separate automations for each daily time. Do not rely on one RRULE with multiple `BYHOUR` values unless your tool's scheduling UI (Codex automations or Claude Code scheduled tasks) clearly shows every intended run time. If the UI shows only one daily time, treat the schedule as single-time and create separate automations.
 
 Record the exact automation ids in `Automation-Log.md`.
 
@@ -117,7 +117,7 @@ Meaningful activity includes:
 - active thread changes
 - new `Signals/`
 - unresolved blockers
-- recent Codex/session evidence for this workspace when available
+- recent assistant session evidence for this workspace when available (Codex or Claude Code)
 - external news or documentation changes that are clearly relevant to the user's active work
 
 If nothing meaningful changed, write at most one short `Automation-Log.md` entry and stop. Do not run a deep review just because yesterday's decision queue is still pending.
