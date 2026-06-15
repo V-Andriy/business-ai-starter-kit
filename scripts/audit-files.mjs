@@ -27,6 +27,8 @@ const codeExtensions = new Set(['.js', '.mjs', '.cjs', '.ts', '.tsx', '.jsx']);
 const exceptions = {
   tinyDocs: {
     'Templates/README.md': 'Intentional placeholder until templates are introduced.',
+    'Seed/CLAUDE.md': 'Thin Claude Code / Cowork bridge that imports Seed/AGENTS.md; rules stay in AGENTS.md.',
+    'Seed/Agent-Instructions/Skills/Project-Planning/starter-files/CLAUDE.md': 'Project-local Claude Code bridge that imports the project AGENTS.md; intentionally tiny.',
     'Seed/Agent-Instructions/Automation-Log.md': 'Starter log file, expected to grow in a private workspace.',
     'Seed/Agent-Instructions/Improvement-Log.md': 'Starter log file, expected to grow in a private workspace.',
     'Seed/Agent-Instructions/Inbox.md': 'Starter queue file, expected to grow in a private workspace.',

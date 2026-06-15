@@ -50,7 +50,7 @@ flowchart TD
   Context --> Skills["Skills as reusable workflows"]
   Context --> SecretMeta["Secrets-Vault.md metadata only"]
 
-  Skills --> CodexLearner["Codex learner"]
+  Skills --> ToolLearner["AI tool learner"]
   Skills --> Heartbeat["Workspace heartbeat"]
   Skills --> GithubBackup["GitHub backup"]
   Skills --> KitFeedback["Kit feedback"]
@@ -59,7 +59,7 @@ flowchart TD
   Skills --> SecretsVault["Secrets vault"]
   Skills --> UpdateReview["Update review"]
 
-  CodexLearner --> Onboarding["First-run onboarding and state fill"]
+  ToolLearner --> Onboarding["First-run onboarding and state fill"]
   Onboarding --> HeartbeatSetup["Daily checkpoint heartbeat automations"]
   HeartbeatSetup --> Loop["Workspace self-improvement loop"]
   Loop --> Queue
@@ -113,12 +113,12 @@ files, real credentials, or raw secrets.
 
 Included now:
 
-- Codex-first install flow.
+- Install flow for Codex and Claude Code (Cowork) from one shared workspace (`AGENTS.md` canonical, `CLAUDE.md` imports it; skills symlinked into `.agents/skills` and `.claude/skills`).
 - Private workspace seed with real starter files, not `.template` files.
 - Local Git and pre-commit secret scanning.
 - `.business-ai-kit/source/` ignored source-cache update model.
 - `Agent-Instructions/` context, memory, inbox/outbox, signal, feedback, and state system.
-- Skills for Codex learning, daily heartbeat, private GitHub backup, kit feedback, project planning, secrets, and updates.
+- Skills for harness learning (Codex and Claude Code), daily heartbeat, private GitHub backup, kit feedback, project planning, secrets, and updates.
 - Daily checkpoint workspace heartbeat instructions.
 - Local `.env` fallback and Doppler guidance for secrets.
 - Future templates placeholder.

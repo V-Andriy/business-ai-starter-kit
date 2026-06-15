@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "ROOT=\"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\"; node \"$ROOT/Scripts/chat_start_accelerator_context.mjs\" --workspace \"$ROOT\"",
+            "timeout": 5,
+            "statusMessage": "Loading workspace startup context"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,14 +1,14 @@
 # Chat Start Accelerator Hook
 
-This optional template adds a Codex `SessionStart` hook that gives the agent the workspace context it would normally read at the start of meaningful work.
+This optional template adds a `SessionStart` hook that gives the agent the workspace context it would normally read at the start of meaningful work. It works in both Codex (`.codex/hooks.json`) and Claude Code (`.claude/settings.json`), using the same local script.
 
 Offer it during setup as a default productivity accelerator, especially when startup context is repeatedly slow or when users often begin with prompts that could pull the agent away from the workspace operating rules.
 
-The normal workspace must keep working through `AGENTS.md` without this hook. If the user declines or does not trust the hook in Codex, setup should continue normally.
+The normal workspace must keep working through `AGENTS.md` (and `CLAUDE.md`, which imports it) without this hook. If the user declines or does not trust the hook, setup should continue normally.
 
 ## What It Does
 
-On Codex startup or resume, the hook runs a local script and adds a compact startup brief to the agent context.
+On startup or resume, the hook runs a local script and adds a compact startup brief to the agent context. The script emits `hookSpecificOutput.additionalContext`, which both Codex and Claude Code consume.
 
 The script reads:
 
@@ -43,13 +43,13 @@ Preferred setup path:
 pnpm startup-hook:install
 ```
 
-Then open `/hooks` in Codex, review the command, and trust it if the user wants faster startup context.
+This installs the hook for both harnesses. Then, in Codex, open `/hooks`, review the command, and trust it; in Claude Code, review `.claude/settings.json` and approve the hook if prompted.
 
 Manual path:
 
 1. Copy `Scripts/chat_start_accelerator_context.mjs` into the workspace `Scripts/` folder.
-2. Copy `.codex/hooks.json` into the workspace `.codex/` folder.
-3. If the workspace already has `.codex/hooks.json`, merge the `SessionStart` entry instead of replacing existing hooks.
+2. Copy `.codex/hooks.json` into the workspace `.codex/` folder (Codex) and `.claude/settings.json` into the workspace `.claude/` folder (Claude Code).
+3. If either file already exists, merge the `SessionStart` entry instead of replacing existing hooks or settings.
 4. Run:
 
 ```text
@@ -61,11 +61,11 @@ Expected result: JSON with `hookSpecificOutput.additionalContext`.
 Use this plain-language explanation:
 
 ```text
-Codex found an optional startup hook. It only reads local workspace instruction files and gives me a short startup brief. You can trust it for faster startup context, or skip it. The workspace still works either way.
+There is an optional startup hook. It only reads local workspace instruction files and gives me a short startup brief. You can trust it for faster startup context, or skip it. The workspace still works either way.
 ```
 
 ## Uninstall
 
-Remove the `SessionStart` entry from `.codex/hooks.json`, or delete `.codex/hooks.json` if it contains only this hook.
+Remove the `SessionStart` entry from `.codex/hooks.json` and `.claude/settings.json`, or delete those files if each contains only this hook.
 
 The workspace will fall back to the normal `AGENTS.md` startup routine.

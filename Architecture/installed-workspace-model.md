@@ -43,7 +43,7 @@ flowchart TD
   AgentInstructions --> Skills["Skills/ canonical workflows"]
   AgentInstructions --> Signals["Signals/ coordination pointers"]
 
-  Skills --> CodexLearner["Codex-Learner/SKILL.md"]
+  Skills --> ToolLearner["AI-Tool-Learner/SKILL.md"]
   Skills --> Heartbeat["Workspace-Heartbeat/SKILL.md"]
   Skills --> GithubBackup["GitHub-Backup/SKILL.md"]
   Skills --> Feedback["Kit-Feedback/SKILL.md"]

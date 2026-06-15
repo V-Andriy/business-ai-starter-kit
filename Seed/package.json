@@ -6,7 +6,7 @@
   "scripts": {
     "hooks:install": "node Scripts/install_git_hooks.mjs --workspace .",
     "startup-hook:install": "node Scripts/install_chat_start_hook.mjs --workspace .",
-    "skills:link": "node Scripts/link_codex_skills.mjs --workspace .",
+    "skills:link": "node Scripts/link_skills.mjs --workspace .",
     "kit:update": "node Scripts/update_kit.mjs --workspace .",
     "secret:scan": "node Scripts/secret_scan.mjs",
     "secret:scan:staged": "node Scripts/secret_scan.mjs --staged",

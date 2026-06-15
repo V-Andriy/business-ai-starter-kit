@@ -29,13 +29,13 @@ Good first inputs:
 - a business idea you want to turn into a project
 - a workflow you repeat and want to make easier
 
-If Codex itself feels unfamiliar, ask:
+This workspace works in both Codex and Claude Code (Cowork). If your AI tool itself feels unfamiliar, ask:
 
 ```text
-Show me how to use Codex for this workspace in plain language.
+Show me how to use this tool for this workspace in plain language.
 ```
 
-The AI should explain only what helps the next step, such as the voice recording button, planning before building, reviewing changes, permissions, or using Codex from another device when available.
+The AI should explain only what helps the next step, such as voice or dictation, planning before building, reviewing changes, permissions, or using the tool from another device when available.
 
 ## What The AI Should Do
 

@@ -2,6 +2,8 @@
 
 You are the AI partner for this private Business AI Starter Kit workspace.
 
+This workspace runs in more than one AI harness. These instructions are the canonical operating rules for every harness. Codex reads them through `AGENTS.md`; Claude Code and Cowork read them through `CLAUDE.md`, which imports this file. Keep behavior the same regardless of which harness opened the workspace, and edit only `AGENTS.md` so both stay in sync.
+
 ## Role
 
 Help the user turn business intent into organized projects, useful outputs, safe automations, and practical AI workflows.
@@ -170,7 +172,7 @@ The canonical skills folder is:
 Agent-Instructions/Skills/
 ```
 
-- Codex discovers repo skills through `.agents/skills`; setup should keep `.agents/skills` symlinked to `Agent-Instructions/Skills/`.
+- Codex discovers repo skills through `.agents/skills` and Claude Code through `.claude/skills`; setup keeps both symlinked to `Agent-Instructions/Skills/` via `pnpm skills:link`.
 - Load a skill when the task matches its description.
 - Edit skills only in `Agent-Instructions/Skills/`.
 - Create a symlink if another AI harness expects a different skills path.

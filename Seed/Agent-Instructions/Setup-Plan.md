@@ -17,7 +17,7 @@ The user should end setup with:
 - a calibrated assistant identity and communication style
 - useful first-pass user and business context
 - local Git and secret scanning checked
-- Codex skills symlink checked
+- skills symlinks checked for every installed harness
 - optional private GitHub backup offered
 - source cache checked
 - heartbeat automations created or blocker recorded
@@ -33,9 +33,9 @@ The user should end setup with:
 6. If `pnpm` is missing, use `corepack enable` and `corepack prepare pnpm@latest --activate`. Use `npm install -g pnpm` only as a bootstrap fallback.
 7. Confirm local Git is initialized on `main`.
 8. Install the pre-commit secret scanner with `pnpm hooks:install` if needed.
-9. Create or confirm the Codex skills symlink with `pnpm skills:link`. The expected link is `.agents/skills` pointing to `Agent-Instructions/Skills`, because Codex scans `.agents/skills` for repo skills and supports symlinked skill folders.
+9. Create or confirm the skills symlinks with `pnpm skills:link`. This links `.agents/skills` (Codex) and `.claude/skills` (Claude Code) to `Agent-Instructions/Skills`, because each harness scans its own path for repo skills and both support symlinked skill folders. The instruction files also pair up: `AGENTS.md` is canonical and `CLAUDE.md` imports it, so Codex and Claude Code share one set of rules.
 10. Run `pnpm kit:update` if the source cache is missing.
-11. Offer the Codex startup context hook as a default productivity accelerator. Explain that it only reads local workspace instruction files, writes no files during startup, calls no external services, and can save a few seconds when a chat starts or resumes. If the user does not decline, run `pnpm startup-hook:install`, then tell the user Codex may ask them to review and trust the project hook in `/hooks`.
+11. Offer the startup context hook as a default productivity accelerator. Explain that it only reads local workspace instruction files, writes no files during startup, calls no external services, and can save a few seconds when a chat starts or resumes. If the user does not decline, run `pnpm startup-hook:install`. It installs the hook for both harnesses: tell the user Codex may ask them to review and trust the project hook in `/hooks`, and Claude Code may ask them to approve the `.claude/settings.json` hook.
 
 ## User Setup
 
@@ -202,6 +202,6 @@ Do this before marking setup complete or deleting this file.
 
 Review every setup item and record the result in `Agent-State.md`, `Outbox.md`, or `Inbox.md`.
 
-Verify: workspace path; cloud-sync warning when relevant; `.business-ai-kit/source/` exists and is ignored; `node`, `npm`, and `pnpm`; Git on `main`; pre-commit scanner; passing `pnpm secret:scan`; `.agents/skills` points to `Agent-Instructions/Skills`; heartbeat automations or blocker; GitHub backup accepted, declined, or decision-needed; assistant name and communication style; important user/business context in the right files; privacy boundaries confirmed or decision-needed; `Inbox.md` has only real future items; completed setup items moved to `Outbox.md`; local Git commit saved when the scan passes.
+Verify: workspace path; cloud-sync warning when relevant; `.business-ai-kit/source/` exists and is ignored; `node`, `npm`, and `pnpm`; Git on `main`; pre-commit scanner; passing `pnpm secret:scan`; `.agents/skills` and `.claude/skills` point to `Agent-Instructions/Skills`; heartbeat automations or blocker; GitHub backup accepted, declined, or decision-needed; assistant name and communication style; important user/business context in the right files; privacy boundaries confirmed or decision-needed; `Inbox.md` has only real future items; completed setup items moved to `Outbox.md`; local Git commit saved when the scan passes.
 
 If any item is missing, do not finish setup. Handle it, ask the user, or record a specific blocker in `Inbox.md` and `Agent-State.md`.

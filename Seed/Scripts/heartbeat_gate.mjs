@@ -112,25 +112,34 @@ function walkFiles(root, visit) {
 }
 
 function recentSessionCandidates(workspace, since) {
-  const sessionsRoot = path.join(os.homedir(), '.codex', 'sessions');
-  if (!fs.existsSync(sessionsRoot)) return [];
+  // Codex stores sessions under ~/.codex/sessions; Claude Code stores them
+  // under ~/.claude/projects. Scan both so the activity gate works in either
+  // harness. Both write the workspace path into the session content.
+  const sessionRoots = [
+    path.join(os.homedir(), '.codex', 'sessions'),
+    path.join(os.homedir(), '.claude', 'projects'),
+  ].filter((root) => fs.existsSync(root));
+  if (!sessionRoots.length) return [];
 
   const candidates = [];
   const workspaceName = path.basename(workspace);
   const workspaceText = workspace;
 
-  walkFiles(sessionsRoot, (filePath) => {
-    try {
-      if (fs.statSync(filePath).mtimeMs / 1000 <= since) return false;
-      const sample = fs.readFileSync(filePath, 'utf8').slice(0, 200000);
-      if (sample.includes(workspaceText) || sample.includes(workspaceName)) {
-        candidates.push(filePath);
+  for (const sessionsRoot of sessionRoots) {
+    walkFiles(sessionsRoot, (filePath) => {
+      try {
+        if (fs.statSync(filePath).mtimeMs / 1000 <= since) return false;
+        const sample = fs.readFileSync(filePath, 'utf8').slice(0, 200000);
+        if (sample.includes(workspaceText) || sample.includes(workspaceName)) {
+          candidates.push(filePath);
+        }
+      } catch {
+        return false;
       }
-    } catch {
-      return false;
-    }
-    return candidates.length >= 20;
-  });
+      return candidates.length >= 20;
+    });
+    if (candidates.length >= 20) break;
+  }
 
   return candidates;
 }
@@ -165,7 +174,7 @@ function main() {
   if (inboxChanged) reasons.push('changed inbox items');
   if (signalsChanged) reasons.push('changed signals');
   if (statusLines.length) reasons.push('workspace git changes');
-  if (sessionCandidates.length) reasons.push('recent Codex session evidence');
+  if (sessionCandidates.length) reasons.push('recent assistant session evidence');
 
   const result = {
     workspace,

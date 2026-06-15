@@ -35,6 +35,7 @@ Keep the suggestion concrete and small. Explain the useful first version before 
 ```text
 Project Name/
   AGENTS.md
+  CLAUDE.md
   Project Brief.md
   Executive Brief.md
   Project Context/
@@ -54,7 +55,7 @@ When creating these files, use the starter files in `starter-files/` if present.
 - Do not use numeric prefixes like `00-Strategy`, `01-Source-Materials`, or internal taxonomy labels unless the user asks for that structure or a tool requires it.
 - Do not create project folders before real work starts.
 - Keep app/build code inside the relevant project.
-- Add project-local `AGENTS.md` for recurring project rules, safety boundaries, tools, and context-loading notes.
+- Add project-local `AGENTS.md` for recurring project rules, safety boundaries, tools, and context-loading notes. Add a project-local `CLAUDE.md` that imports it (`@AGENTS.md`) so Claude Code reads the same project rules.
 - Keep bulky source material in `Project Context/`; summarize durable facts in the brief or decisions.
 - Update `Workspace-Map.md`, `Current-Focus.md`, and `Active-Threads.md`.
 - Ask before making a project public, sharing files externally, deploying apps, or connecting real accounts.
@@ -71,7 +72,7 @@ Safe defaults:
 - write a first `Project Brief.md`
 - write a short `Executive Brief.md` when the project affects business decisions or will continue across sessions
 - create `Decisions.md` and `Next Actions.md`
-- add a project-local `AGENTS.md` when the project will continue across sessions
+- add a project-local `AGENTS.md` (plus a `CLAUDE.md` that imports it) when the project will continue across sessions
 - update global workspace state
 
 Ask when the missing answer changes business direction, public claims, budget, privacy, legal/compliance risk, or customer-facing commitments.
@@ -79,6 +80,8 @@ Ask when the missing answer changes business direction, public claims, budget, p
 Use `Agent-Instructions/Skills/Project-Orchestrator/SKILL.md` for large, multi-step, or context-heavy projects when available.
 
 ## Project AGENTS.md
+
+Write the rules once in `AGENTS.md` and add a one-line `CLAUDE.md` next to it containing `@AGENTS.md`, so Codex and Claude Code share the same project rules. Use the `starter-files/` versions when present.
 
 Keep project-local instructions short:
 
