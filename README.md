@@ -15,6 +15,7 @@ This project is early. Feedback is welcome, especially when it points to clearer
 - Helps the AI start a live onboarding conversation instead of ending at a technical install.
 - Teaches first-time users small practical habits in plain language, matched to the tool they are in, including voice or dictation, planning, review, permissions, and mobile access when relevant.
 - Keeps user context, decisions, memory, inbox/outbox, and reusable workflows organized.
+- Can install an optional, explicit-invocation global skill that carries only a separately approved context snapshot into other local projects.
 - Adds safety defaults for secrets, local Git, and private files.
 - Creates project folders only when real work starts.
 - Uses one lead agent for the outcome and adds bounded worker or reviewer passes only when they materially improve the result.
@@ -56,6 +57,14 @@ Use orchestrator mode. Break this into safe workstreams, delegate independent pa
 
 The kit adapts to the models and agent features available in the current tool. It does not require premium models, agent teams, or experimental multi-agent features for normal work.
 
+## Portable Context Across Projects
+
+After onboarding, users can ask the workspace to prepare Portable Workspace Context. The bridge copies one reviewed file into self-contained user-level skills for Codex and Claude Code; Cowork can receive the same snapshot as a manually uploaded skill package. It supports several source workspaces through unique aliases.
+
+This is deliberately not live workspace access. The consumer cannot read dossiers, private notes, projects, `.env`, queues, or the source workspace. Install and refresh require an exact preview, a secret scan, and explicit approval. The consumer runs only when the user asks for it, treats the target project's instructions as authoritative, and cannot write back.
+
+Snapshots are stored locally, but explicit invocation lets the active AI service process the approved content under that provider's data controls. A Cowork package stays local until the user separately uploads it to their Claude account.
+
 ## Share
 
 To share Business AI Starter Kit with a friend, send them this repository and the install prompt below.
@@ -80,6 +89,8 @@ Follow that file exactly. After installation, guide me through the first onboard
 
 Your private workspace is separate from this public repository. Business context, client files, `.env`, private notes, and project work should stay in the private workspace.
 
+Portable Context is optional. Its installed snapshots are private copies in the user's home folder and remain available to supported local harnesses until disabled or removed. Removing a snapshot cannot erase content already loaded into an existing conversation.
+
 Feedback to the public kit is optional. If the AI notices a useful improvement, it should ask before preparing a LinkedIn message or a small pull request.
 
 ## Help
@@ -101,7 +112,7 @@ If you get stuck, something feels too technical, or you want help shaping what t
 
 ## MVP Boundaries
 
-This version focuses on install, private workspace behavior, safety, orchestration, update flow, checkpoint maintenance, project organization, and feedback.
+This version focuses on install, private workspace behavior, safety, orchestration, opt-in portable context, update flow, checkpoint maintenance, project organization, and feedback.
 
 Project templates, app templates, full external-runtime compatibility, all secret-provider adapters, a UI, SaaS backend, and full autonomous project execution are intentionally deferred.
 

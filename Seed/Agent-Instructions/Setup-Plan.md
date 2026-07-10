@@ -12,6 +12,7 @@ The user should finish setup with:
 - useful first-pass user and business context
 - local Git and secret scanning checked
 - shared skills available to the installed harnesses
+- optional cross-project portable context accepted, declined, or deferred
 - source cache checked
 - optional workspace checkpoint and private backup decided
 - a clear first useful outcome
@@ -28,6 +29,7 @@ The user should finish setup with:
 8. Run `pnpm skills:link` and confirm the harness can discover the canonical `Agent-Instructions/Skills/` folder.
 9. Offer `pnpm startup-hook:install` as an optional startup accelerator. Explain that it reads local workspace context and may require the tool to trust the hook.
 10. Record verified capabilities separately for each installed harness in `Agent-State.md`: subagents, background tasks, agent teams, worktrees, schedules, and available model roles. Leave unknown items blank.
+11. After durable personalization is confirmed, offer the optional Portable Workspace Context bridge. Explain that it copies only a separately reviewed snapshot into user-level skills; it never grants live workspace access. A decline is valid and does not limit normal workspace use.
 
 The standard links are `.agents/skills` for Codex and `.claude/skills` for Claude Code. If an older or different harness does not support the link, keep the canonical folder unchanged and adapt only its discovery mechanism.
 
@@ -138,6 +140,7 @@ Verify or record a specific blocker for:
 - skill discovery for installed harnesses
 - optional startup hook decision
 - verified orchestration capabilities
+- portable context bridge accepted, declined, deferred, or specifically blocked
 - checkpoint accepted, declined, or blocked
 - private GitHub backup accepted, declined, or blocked
 - assistant name and communication style

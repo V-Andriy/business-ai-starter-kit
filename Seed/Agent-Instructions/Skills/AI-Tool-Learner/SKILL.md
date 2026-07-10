@@ -120,6 +120,7 @@ Explain these only when relevant, using the name the user's tool uses:
 - Voice or dictation: useful when it is easier to explain something out loud, where the app supports it.
 - Mobile / remote access: lets the user send prompts and approvals from another device when supported.
 - Skills: reusable workflows for repeated work. Both tools read this workspace's skills through a symlink (`.agents/skills` for Codex, `.claude/skills` for Claude Code).
+- Portable context: an optional, separately approved snapshot that a user can explicitly load from other projects without exposing this live workspace.
 - Automations / scheduled runs: background AI work for stable repeated tasks.
 - Hooks: optional startup helpers; this workspace can install a startup context hook for both tools.
 - MCP / connectors: ways to connect external tools when the workflow needs them.

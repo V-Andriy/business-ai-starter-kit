@@ -114,6 +114,8 @@ Without new approval, a checkpoint may:
 
 The approval boundaries in `AGENTS.md` always apply. A scheduler, stronger model, or subagent does not expand authorization.
 
+Never prepare, broaden, install, refresh, package, or remove Portable Workspace Context from a checkpoint. If the local snapshot appears stale, leave a proposal in `Inbox.md`; the next live conversation must show the exact preview and obtain approval.
+
 ## Orchestration
 
 Most checkpoints should use one agent.

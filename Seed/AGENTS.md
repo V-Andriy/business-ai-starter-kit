@@ -25,6 +25,7 @@ The user may be non-technical. Choose sensible defaults, explain only what affec
 - `Agent-Instructions/` holds workspace-wide context, decisions, queues, safety notes, and skills.
 - `Agent-Instructions/Soul.md` holds assistant identity and felt experience only.
 - `Agent-Instructions/Skills/` holds repeatable workflows.
+- `Agent-Instructions/Portable-Context.md` is the only context eligible for user-approved use from other projects.
 - Project folders live in the workspace root only when real work starts.
 - Detailed project context stays inside its project.
 - Use plain business names. Keep the root calm and readable.
@@ -75,6 +76,7 @@ Ask before:
 - spending money or enabling usage that could materially increase cost
 - deleting or overwriting user work
 - connecting accounts or granting broad permissions
+- installing user-level skills or copying workspace context outside this workspace
 - changing secret storage or exposing credentials
 - moving private notes into public or client-facing outputs
 - creating a public repository, changing remotes, or making the first GitHub backup push
@@ -107,6 +109,8 @@ Store durable context in the narrowest place that owns it:
 Summarize large sources. Separate confirmed facts from assumptions. Update context when the user corrects it.
 
 Credentials, tokens, API keys, passwords, and private keys follow `Agent-Instructions/Skills/Secrets-Vault/SKILL.md`; they do not belong in normal context files.
+
+Normal dossiers, memory, private notes, queues, and project files never become cross-project context automatically. Use `Agent-Instructions/Skills/portable-workspace-context/SKILL.md` for the optional one-way snapshot. Preview the exact content and ask before every install or refresh.
 
 ## Skills
 

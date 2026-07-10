@@ -48,6 +48,7 @@ flowchart TD
   Context --> Logs["Automation log and improvement log"]
   Context --> Memory["Compact memory and decisions"]
   Context --> Skills["Skills as reusable workflows"]
+  Context --> Portable["Portable-Context.md approved projection"]
   Context --> SecretMeta["Secrets-Vault.md metadata only"]
 
   Skills --> ToolLearner["AI tool learner"]
@@ -58,6 +59,14 @@ flowchart TD
   Skills --> ProjectOrchestrator["Project orchestrator"]
   Skills --> SecretsVault["Secrets vault"]
   Skills --> UpdateReview["Update review"]
+  Skills --> PortableManager["Portable context manager"]
+
+  Portable --> PortableManager
+  PortableManager --> BridgeApproval{"Preview, secret scan, and approval?"}
+  BridgeApproval -- "Yes" --> GlobalSnapshot["Private user-level snapshot and explicit consumer skill"]
+  BridgeApproval -- "No" --> Private
+  GlobalSnapshot --> OtherProjects["Other local AI projects"]
+  OtherProjects -. "no live access or write-back" .-> Private
 
   Projects --> WorkShape{"Smallest useful execution shape"}
   ProjectOrchestrator --> WorkShape
@@ -95,6 +104,7 @@ flowchart TD
 
 - [Full System Flow](Architecture/full-system-flow.md)
 - [Orchestrated Work Flow](Architecture/orchestrated-work-flow.md)
+- [Portable Context Bridge](Architecture/portable-context-bridge.md)
 - [Repository Responsibilities](Architecture/repository-responsibilities.md)
 - [Installed Workspace Model](Architecture/installed-workspace-model.md)
 - [First Setup Flow](Architecture/first-setup-flow.md)
@@ -106,12 +116,14 @@ flowchart TD
 
 ## Core Model
 
-Business AI Starter Kit has two sides:
+Business AI Starter Kit has three ownership zones:
 
 - Public repo: source library, install handoff, seed files, scripts, future
   templates, architecture docs, license, security policy, and contribution guidance.
 - Private workspace: the user's local business context, projects, memory,
   automations, secrets metadata, and working files.
+- Private global bridge: optional user-level skill copies containing only a
+  separately approved snapshot, with no live path or write-back to the workspace.
 
 The user's workspace is not a fork of the public kit and not a package install.
 It is an independent local workspace with an ignored clone of the public repo at
@@ -130,6 +142,7 @@ Included now:
 - `.business-ai-kit/source/` ignored source-cache update model.
 - `Agent-Instructions/` context, memory, inbox/outbox, signal, feedback, and state system.
 - Orchestration-aware work routing with lead, worker, reviewer, worktree, evidence, and sequential fallback rules.
+- Optional explicit-invocation portable context for Codex, Claude Code, Cowork upload, and compatible custom skill targets.
 - Skills for harness learning (Codex and Claude Code), optional workspace checkpoint, private GitHub backup, kit feedback, project planning, secrets, and updates.
 - Local `.env` fallback and Doppler guidance for secrets.
 - Future templates placeholder.

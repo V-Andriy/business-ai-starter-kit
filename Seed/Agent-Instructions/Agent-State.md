@@ -11,6 +11,16 @@ Purpose: current setup and capability facts. Procedures live in `AGENTS.md` and 
 - Private GitHub backup: not configured
 - Kit source cache: pending
 - First executive briefing: pending
+- Portable context bridge: not configured
+
+## Portable Context Bridge
+
+- Approved snapshot: not prepared
+- Workspace alias:
+- Installed targets:
+- Last export:
+- Freshness: not installed
+- Known bridge blocker:
 
 ## Harness Capabilities
 

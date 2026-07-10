@@ -95,6 +95,26 @@ Update my Business AI Starter Kit.
 
 The AI will refresh `.business-ai-kit/source/`, review useful changes, and ask before changing your workspace files.
 
+## Use Approved Context In Other Projects
+
+You can optionally create a small, reviewed snapshot of reusable preferences and business context for Codex or Claude Code to use in other local projects. It does not expose this workspace, dossiers, private notes, secrets, or project folders.
+
+Ask:
+
+```text
+Prepare my Portable Workspace Context and show me exactly what would be available in other projects.
+```
+
+The AI will help curate `Agent-Instructions/Portable-Context.md`, run a secret scan, and ask before installing or refreshing any user-level skill. Nothing is enabled automatically. In another project, explicitly ask:
+
+```text
+Use my Business AI workspace context for this task.
+```
+
+Codex and Claude Code can use managed local copies. Cowork requires a separate ZIP upload because its personal skills are managed in the app. Disable or uninstall the bridge from this source workspace when you no longer want future chats to load it; existing conversation history cannot be recalled.
+
+The files are stored locally, but invoking the skill allows the active Codex or Claude service to process the approved context under that provider's data controls. Creating a Cowork ZIP stays local; uploading it is a separate external-sharing action and sends that detached copy to the user's Claude account.
+
 ## Privacy
 
 This workspace is local-first. There is no analytics, telemetry, tracking, or background reporting.

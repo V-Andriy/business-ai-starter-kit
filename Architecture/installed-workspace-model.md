@@ -33,6 +33,7 @@ flowchart TD
   AgentInstructions --> Outbox["Outbox.md handled work record"]
   AgentInstructions --> Map["Workspace-Map.md"]
   AgentInstructions --> Memory["Memory.md compact durable memory"]
+  AgentInstructions --> Portable["Portable-Context.md optional approved projection"]
   AgentInstructions --> Decisions["Decisions.md"]
   AgentInstructions --> State["Agent-State.md setup and permissions"]
   AgentInstructions --> AutomationLog["Automation-Log.md"]
@@ -51,6 +52,11 @@ flowchart TD
   Skills --> Orchestrator["Project-Orchestrator/SKILL.md"]
   Skills --> Secrets["Secrets-Vault/SKILL.md"]
   Skills --> UpdateReview["Update-Review/SKILL.md"]
+  Skills --> PortableManager["portable-workspace-context/SKILL.md"]
+
+  Portable --> PortableManager
+  PortableManager -. "approved physical snapshot; outside workspace" .-> GlobalSkills["User-level Codex or Claude skill"]
+  GlobalSkills -. "no live path or write-back" .-> Root
 
   Signals --> Incoming["Incoming.md"]
   Signals --> Outgoing["Outgoing.md"]

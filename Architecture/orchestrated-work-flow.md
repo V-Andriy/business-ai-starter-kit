@@ -66,6 +66,8 @@ evidence requirements.
   business state, decisions, evidence, and cross-session handoffs.
 - Workers do not inherit authority to publish, spend, connect accounts, expose
   secrets, or expand project scope.
+- When portable context is used, the lead loads the selected snapshot and gives
+  workers only the minimum relevant excerpt instead of distributing the full snapshot.
 - Parallel writers need non-overlapping ownership or worktree isolation.
 - Claude Code agent view is a Research Preview; agent teams are experimental
   and disabled by default. OpenAI Responses API Multi-agent is beta. The kit
