@@ -14,7 +14,7 @@ flowchart TD
   PR --> SourceDocs["README, INDEX, CHANGELOG, VERSION"]
   PR --> FutureTemplates["Templates/ future library"]
 
-  User["User opens Codex"] --> InstallDoc
+  User["User opens Codex or Claude Code"] --> InstallDoc
   InstallDoc --> TargetCheck{"Target folder empty or clearly safe?"}
   TargetCheck -- "No" --> AskLocation["Ask where to create private workspace"]
   TargetCheck -- "Yes" --> ConfirmPath["Confirm install path"]
@@ -34,7 +34,12 @@ flowchart TD
   GatherSources --> DossierPreview["Inspect sources and show dossier preview"]
   DossierPreview --> ConfirmContext["User confirms, corrects, or removes sensitive details"]
   ConfirmContext --> WorkspaceState["Fill soul, dossiers, memory, active threads, focus, map, decisions, agent state"]
-  WorkspaceState --> HeartbeatSetup["Create daily checkpoint Workspace Heartbeat automations"]
+  WorkspaceState --> HeartbeatChoice{"User wants a workspace checkpoint?"}
+  HeartbeatChoice -- "Yes" --> Scheduler{"Scheduling available?"}
+  Scheduler -- "Yes" --> HeartbeatSetup["Create one low-noise Workspace Heartbeat"]
+  Scheduler -- "No" --> CheckpointBlocked["Record checkpoint blocker"]
+  HeartbeatChoice -- "No" --> BackupOffer
+  CheckpointBlocked --> BackupOffer
   HeartbeatSetup --> BackupOffer["Offer optional private GitHub backup"]
   BackupOffer --> Ready["Workspace ready for real business work"]
 
@@ -43,8 +48,23 @@ flowchart TD
 
   Request -- "New project, workflow, app, report, document" --> ProjectPlanning["Use Project-Planning skill"]
   ProjectPlanning --> ProjectFolder["Create or reuse plain-language root project folder"]
-  ProjectFolder --> ProjectState["Maintain project brief, context, working files, final outputs, decisions, next actions"]
-  ProjectState --> UpdateGlobalState["Update Workspace-Map, Current-Focus, and Active-Threads"]
+  ProjectFolder --> ProjectState["Create the minimum useful project state"]
+  UpdateGlobalState["Update Workspace-Map, Current-Focus, and Active-Threads"]
+
+  ProjectState --> WorkSize{"Large, long-running, or independent tracks?"}
+  WorkSize -- "No" --> LeadWork["Lead works directly"]
+  WorkSize -- "Yes" --> Orchestrator["Use Project-Orchestrator skill"]
+  Orchestrator --> Delegate["Assign bounded tracks, evidence, and exclusive write scopes"]
+  Delegate --> Exclusive{"Can assign non-overlapping file ownership?"}
+  Exclusive -- "No" --> SequentialEdits["Sequence overlapping edits"]
+  Exclusive -- "Yes" --> Isolation{"Workers need separate Git or filesystem state?"}
+  Isolation -- "Yes" --> Worktrees["Use isolated worktrees, one branch each"]
+  Isolation -- "No" --> Workers["Run focused workers"]
+  Worktrees --> Workers
+  Workers --> Integrate["Lead reviews, integrates, validates, and returns one result"]
+  SequentialEdits --> Integrate
+  LeadWork --> Integrate
+  Integrate --> UpdateGlobalState
 
   Request -- "Secret, API key, credential, private config" --> SecretsSkill["Use Secrets-Vault skill"]
   SecretsSkill --> SecretStorage{"Storage path"}
@@ -78,7 +98,7 @@ flowchart TD
   GithubBackup --> PrivateRepo["Create private repo after auth and secret scan"]
   PrivateRepo --> UpdateGlobalState
 
-  HeartbeatSetup --> Checkpoint["Daily Checkpoint Workspace Heartbeat"]
+  HeartbeatSetup --> Checkpoint["Scheduled Workspace Heartbeat"]
   Checkpoint --> ReadState["Read AGENTS.md and Agent-Instructions/"]
   ReadState --> GitCheck["Check Git status and recent evidence"]
   GitCheck --> ProcessInbox["Process Inbox.md"]

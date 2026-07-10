@@ -17,12 +17,13 @@ This project is early. Feedback is welcome, especially when it points to clearer
 - Keeps user context, decisions, memory, inbox/outbox, and reusable workflows organized.
 - Adds safety defaults for secrets, local Git, and private files.
 - Creates project folders only when real work starts.
-- Supports optional daily checkpoint maintenance that reviews the workspace, keeps state current, and suggests useful next steps.
+- Uses one lead agent for the outcome and adds bounded worker or reviewer passes only when they materially improve the result.
+- Supports an optional low-noise checkpoint that reviews meaningful changes, keeps state current, and stops quickly when there is no work.
 - Uses opt-in feedback only. There is no analytics, telemetry, tracking, or background reporting.
 
 ## Quick Start
 
-1. Open your AI coding tool: [Codex](https://openai.com/codex/) or [Claude Code](https://www.anthropic.com/claude-code) (Cowork).
+1. Open [Codex](https://openai.com/codex/) in ChatGPT desktop, the CLI, or your IDE, or open [Claude Code](https://www.anthropic.com/claude-code) (Cowork).
 2. Create or open the folder where you want your private AI workspace.
 3. Open a new chat in that folder.
 4. Paste this message:
@@ -46,6 +47,14 @@ The first useful request after setup is:
 ```text
 Help me organize my current AI priorities and pick the first project.
 ```
+
+For a larger project, ask:
+
+```text
+Use orchestrator mode. Break this into safe workstreams, delegate independent parts when useful, verify the results, and give me one integrated outcome.
+```
+
+The kit adapts to the models and agent features available in the current tool. It does not require premium models, agent teams, or experimental multi-agent features for normal work.
 
 ## Share
 
@@ -92,7 +101,7 @@ If you get stuck, something feels too technical, or you want help shaping what t
 
 ## MVP Boundaries
 
-This version focuses on install, private workspace behavior, safety, update flow, heartbeat, project organization, and feedback.
+This version focuses on install, private workspace behavior, safety, orchestration, update flow, checkpoint maintenance, project organization, and feedback.
 
 Project templates, app templates, full external-runtime compatibility, all secret-provider adapters, a UI, SaaS backend, and full autonomous project execution are intentionally deferred.
 

@@ -25,8 +25,8 @@ flowchart TD
   Public --> Templates["Templates/ future library"]
   Public --> Docs["README, INDEX, CHANGELOG, VERSION, Architecture/"]
 
-  Install --> Codex["Codex setup in target folder"]
-  Codex --> SafetyCheck{"Folder empty or clearly safe?"}
+  Install --> Harness["Codex or Claude Code setup in target folder"]
+  Harness --> SafetyCheck{"Folder empty or clearly safe?"}
   SafetyCheck -- "No" --> AskPath["Ask user where to create workspace"]
   SafetyCheck -- "Yes" --> Private["Private local workspace"]
   AskPath --> Private
@@ -59,8 +59,18 @@ flowchart TD
   Skills --> SecretsVault["Secrets vault"]
   Skills --> UpdateReview["Update review"]
 
+  Projects --> WorkShape{"Smallest useful execution shape"}
+  ProjectOrchestrator --> WorkShape
+  WorkShape -- "Sequential" --> Lead["Lead agent works directly"]
+  WorkShape -- "Independent tracks" --> Workers["Bounded workers with exclusive scope"]
+  Lead --> Integrate["Evidence, review, integration, validation"]
+  Workers --> Integrate
+
   ToolLearner --> Onboarding["First-run onboarding and state fill"]
-  Onboarding --> HeartbeatSetup["Daily checkpoint heartbeat automations"]
+  Onboarding --> HeartbeatChoice{"User enables workspace checkpoint?"}
+  HeartbeatChoice -- "Yes" --> HeartbeatSetup["Create low-noise checkpoint"]
+  HeartbeatChoice -- "No" --> Ready["Workspace ready"]
+  HeartbeatSetup --> Ready
   HeartbeatSetup --> Loop["Workspace self-improvement loop"]
   Loop --> Queue
   Loop --> Continuity
@@ -84,6 +94,7 @@ flowchart TD
 ## Diagram Index
 
 - [Full System Flow](Architecture/full-system-flow.md)
+- [Orchestrated Work Flow](Architecture/orchestrated-work-flow.md)
 - [Repository Responsibilities](Architecture/repository-responsibilities.md)
 - [Installed Workspace Model](Architecture/installed-workspace-model.md)
 - [First Setup Flow](Architecture/first-setup-flow.md)
@@ -118,8 +129,8 @@ Included now:
 - Local Git and pre-commit secret scanning.
 - `.business-ai-kit/source/` ignored source-cache update model.
 - `Agent-Instructions/` context, memory, inbox/outbox, signal, feedback, and state system.
-- Skills for harness learning (Codex and Claude Code), daily heartbeat, private GitHub backup, kit feedback, project planning, secrets, and updates.
-- Daily checkpoint workspace heartbeat instructions.
+- Orchestration-aware work routing with lead, worker, reviewer, worktree, evidence, and sequential fallback rules.
+- Skills for harness learning (Codex and Claude Code), optional workspace checkpoint, private GitHub backup, kit feedback, project planning, secrets, and updates.
 - Local `.env` fallback and Doppler guidance for secrets.
 - Future templates placeholder.
 - Soft support references.
@@ -132,5 +143,5 @@ Deferred:
 - SaaS backend or UI.
 - Project/app templates in v1.
 - Full provider adapters for Infisical or 1Password.
-- Cross-agent sync beyond the current skills-compatible structure.
+- Persistent cross-harness agent networking or a custom agent message bus.
 - Vibe Canvas or any visual architecture app.

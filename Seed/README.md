@@ -6,7 +6,7 @@ Use it to organize business context, projects, workflows, research, documents, d
 
 You do not need to manage the files manually. Ask the AI for the outcome you want; it should keep the workspace organized and explain only what matters.
 
-The AI should keep explanations short, practical, and step-by-step. It should start with the simple version, then tell you the next useful action.
+The AI should lead with the result and keep explanations practical. It should preserve important decisions, caveats, and next steps while trimming repetition and optional background.
 
 ## Start Here
 
@@ -45,6 +45,7 @@ The AI should explain only what helps the next step, such as voice or dictation,
 - protect secrets and private notes
 - suggest improvements, but ask before sharing anything outside the workspace
 - record useful maintenance in inbox/outbox so you can see what happened while you were away
+- coordinate focused AI workers for large tasks while one lead agent checks and integrates the result
 
 ## Main Areas
 
@@ -70,6 +71,10 @@ You do not need to manage the files manually. The AI should keep the workspace o
 
 ```text
 Turn this rough idea into a project plan and first draft.
+```
+
+```text
+Use orchestrator mode for this project. Split only the independent parts, protect parallel file changes, verify the work, and return one clear result.
 ```
 
 ```text

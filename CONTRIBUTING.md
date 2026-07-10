@@ -1,7 +1,7 @@
 # Contributing
 
 Business AI Starter Kit is an early open-source MVP for creating private local
-AI workspaces in Codex.
+AI workspaces in Codex and Claude Code.
 
 ## Development Rules
 

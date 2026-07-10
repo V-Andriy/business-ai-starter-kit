@@ -8,8 +8,8 @@ Purpose: record durable workspace decisions.
 - Private GitHub backup is optional and user-approved.
 - Real secrets are not stored in markdown files.
 - `Agent-Instructions/Skills/` is the canonical skills folder.
-- The daily checkpoint heartbeat processes `Inbox.md` and records handled work in `Outbox.md`.
-- The heartbeat starts with a lightweight activity gate and stops when there is no meaningful work.
+- A workspace checkpoint is optional and user-approved.
+- When enabled, the checkpoint starts with a lightweight activity gate and stops when there is no meaningful work.
 - `Agent-Instructions/Soul.md` stores assistant identity and communication behavior.
 - Project-local `AGENTS.md` files may be added when a project needs recurring instructions.
 

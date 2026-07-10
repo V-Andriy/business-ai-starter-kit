@@ -58,7 +58,7 @@ mindmap
       Gather links files screenshots or voice note
       Preview dossier before durable writes
       Fill workspace state
-      Create daily checkpoint heartbeat
+      Offer one low-noise workspace checkpoint
       Offer private GitHub backup
       Record blockers instead of hiding failures
     Operating loop
@@ -67,10 +67,16 @@ mindmap
       Use project if request belongs there
       Create project only for real work
       Suggest useful tools workflows and automations
-      Orchestrate large projects with clean context
+      Lead owns outcome integration and verification
+      Choose smallest useful execution shape
+      Use bounded workers for independent tracks
+      Give parallel writers exclusive scopes or worktrees
+      Route models by lead worker fast worker reviewer roles
+      Fall back to sequential role passes
       Update workspace state after meaningful changes
     Heartbeat
-      Daily checkpoint Codex automation
+      Optional scheduled workspace checkpoint
+      Efficient activity gate before deeper work
       Process inbox
       Check Git status
       Maintain active threads
@@ -108,5 +114,7 @@ mindmap
       Hermes-inspired but no Hermes runtime dependency
       Skills use SKILL.md pattern
       Harness-specific skills paths symlink to canonical folder
+      Native agent state stays in each harness
+      No persistent cross-harness agent network
       Vibe Canvas direction keeps Markdown Mermaid source of truth
 ```

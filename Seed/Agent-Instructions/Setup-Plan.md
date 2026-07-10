@@ -1,207 +1,148 @@
 # Setup Plan
 
-Purpose: temporary first-run setup checklist.
+Purpose: temporary first-run checklist. Delete this file after setup is complete.
 
-Delete this file after setup is complete, then move handled setup items from `Inbox.md` to `Outbox.md`.
+Setup remains the active task until every required item is complete, declined, or recorded as a specific blocker. Do not start unrelated project work before then.
 
-## Setup Goal
+## Desired Result
 
-Make this workspace useful before starting normal project work.
+The user should finish setup with:
 
-Setup is the active task until every required setup item is complete, declined, or recorded as a specific blocker.
-
-Do not suggest first projects, start project work, build tools, or reorganize user material until setup is finished. If the user asks for project work before setup is complete, acknowledge the request, explain that setup must be closed first, and return to the next setup question. Keep the tone helpful and firm.
-
-The user should end setup with:
-
-- a calibrated assistant identity and communication style
+- a calibrated assistant name and communication style
 - useful first-pass user and business context
 - local Git and secret scanning checked
-- skills symlinks checked for every installed harness
-- optional private GitHub backup offered
+- shared skills available to the installed harnesses
 - source cache checked
-- heartbeat automations created or blocker recorded
-- a clear first useful project, workflow, or decision
+- optional workspace checkpoint and private backup decided
+- a clear first useful outcome
 
 ## Technical Setup
 
-1. Confirm the workspace path.
-2. Warn if the workspace is inside iCloud Drive, Desktop, Documents, or another cloud-synced folder that may offload files.
-3. Confirm `.business-ai-kit/source/` exists or create it as the ignored source cache.
-4. Confirm `node`, `npm`, and `pnpm` are available.
-5. Install Node.js LTS if `node` or `npm` is missing. Use `winget` on Windows or Homebrew on macOS when available; otherwise ask the user to install Node.js LTS from `https://nodejs.org/`.
-6. If `pnpm` is missing, use `corepack enable` and `corepack prepare pnpm@latest --activate`. Use `npm install -g pnpm` only as a bootstrap fallback.
-7. Confirm local Git is initialized on `main`.
-8. Install the pre-commit secret scanner with `pnpm hooks:install` if needed.
-9. Create or confirm the skills symlinks with `pnpm skills:link`. This links `.agents/skills` (Codex) and `.claude/skills` (Claude Code) to `Agent-Instructions/Skills`, because each harness scans its own path for repo skills and both support symlinked skill folders. The instruction files also pair up: `AGENTS.md` is canonical and `CLAUDE.md` imports it, so Codex and Claude Code share one set of rules.
-10. Run `pnpm kit:update` if the source cache is missing.
-11. Offer the startup context hook as a default productivity accelerator. Explain that it only reads local workspace instruction files, writes no files during startup, calls no external services, and can save a few seconds when a chat starts or resumes. If the user does not decline, run `pnpm startup-hook:install`. It installs the hook for both harnesses: tell the user Codex may ask them to review and trust the project hook in `/hooks`, and Claude Code may ask them to approve the `.claude/settings.json` hook.
+1. Confirm the workspace path and that the target folder is safe.
+2. Warn before using iCloud Drive, Desktop, Documents, or another folder that may offload local files.
+3. Confirm `.business-ai-kit/source/` exists and is ignored, or create it with `pnpm kit:update`.
+4. Confirm Node.js LTS and pnpm are available.
+5. If pnpm is missing, use Corepack first. Use npm only as a temporary bootstrap fallback.
+6. Confirm local Git is initialized on `main`.
+7. Install the pre-commit secret scanner with `pnpm hooks:install` if needed.
+8. Run `pnpm skills:link` and confirm the harness can discover the canonical `Agent-Instructions/Skills/` folder.
+9. Offer `pnpm startup-hook:install` as an optional startup accelerator. Explain that it reads local workspace context and may require the tool to trust the hook.
+10. Record verified capabilities separately for each installed harness in `Agent-State.md`: subagents, background tasks, agent teams, worktrees, schedules, and available model roles. Leave unknown items blank.
 
-## User Setup
+The standard links are `.agents/skills` for Codex and `.claude/skills` for Claude Code. If an older or different harness does not support the link, keep the canonical folder unchanged and adapt only its discovery mechanism.
 
-Start like a human, not a setup form.
+## Start The Conversation
 
-The first exchange should feel useful, warm, and a little engaging. Keep it natural. Do not overdo jokes, hype, or personality performance.
-Ask one useful question at a time. Every question needs a short plain-language explanation of what the question means and why it matters. Respond to the user's answer before moving to the next setup step.
+Make setup feel like useful onboarding, not a form.
 
-Check `Agent-Instructions/Inbox.md` before each setup exchange. If the inbox contains a setup blocker, decision, or safety item, handle it in the live conversation before moving on. Move handled items to `Outbox.md`.
+- Introduce the assistant as a practical partner for projects, decisions, research, drafts, workflows, and tools.
+- Explain that the workspace remembers useful context locally and keeps a Git change history.
+- Offer the starter name Bob and let the user choose another name.
+- Ask how the user wants the assistant to communicate.
+- Ask for one to three useful sources: website, LinkedIn, company page, document, screenshot, notes, proposal, writing sample, or voice explanation.
+- Ask one focused question at a time and explain briefly why it matters.
+- Respond to each answer before moving on.
 
-Begin by introducing the agent, showing what it can help with, and asking what the user wants to call it. Let the user keep the default name Bob or choose a new name.
+Keep the introduction natural and adapted to the user's language. Do not use a long fixed script.
 
-Use this shape, adapted to the user's language:
+If the user is new to the tool, load `Agent-Instructions/Skills/AI-Tool-Learner/SKILL.md` and give only the next useful orientation tip.
 
-```text
-Hey, hi. I'm your personal AI agent for this workspace.
+## Gather Useful Context
 
-I can help you turn rough business ideas into organized projects, clearer decisions, drafts, workflows, research, and useful AI-assisted tools.
+Collect only what will improve future work:
 
-You can ask me about anything you are working on, want to understand, or want to build. If you ask me to help, I will try to make a useful first version, organize the work, and keep improving it with you.
-
-I will gradually learn how to be more useful by remembering helpful context about you, your work, your preferences, and your projects inside this folder.
-
-I will manage and organize this workspace for you. If I put something in the wrong place, misunderstand you, or work in a way that does not help, just tell me. I will correct myself and update the workspace so it works better next time.
-
-I will also keep a local change history with Git. Git is a version-saving system. It was originally created for programming, but it works well for text files too. If we break something while working, I can often restore an earlier version if we saved it in time.
-
-My default name is Bob. That's just a starter name.
-
-You can keep Bob, or you can name me whatever feels right.
-
-What would you like to call me?
-
-Why I ask: this name is only for this workspace, so the assistant feels natural to talk to.
-```
-
-After the user answers, confirm the name and ask how to communicate:
-
-```text
-Got it. I'll go by [name].
-
-By default, I will be calm, practical, direct, and easy to talk to. I will keep technical details out of your way unless they affect a decision.
-
-How would you like me to work with you: shorter and direct, more coaching, more detail, or something else?
-
-Why I ask: this controls how much explanation, structure, and proactive guidance I use by default.
-```
-
-Then make the next step feel easy:
-
-```text
-Next, I want to understand enough about you and your work to make this useful.
-
-You do not have to explain everything from scratch, and messy input is fine.
-
-Send me 1-3 places where I can learn about you or your business: a website, LinkedIn profile, company page, document, screenshots, notes, proposal, writing sample, or you can just write or record a voice message for me.
-
-I will inspect what I can, build a first understanding, and ask you what I got wrong.
-
-Why I ask: this gives me enough context to make the workspace useful without asking you to explain everything manually.
-```
-
-If the user seems unsure what to send, offer a small choice:
-
-```text
-The easiest options are:
-
-1. Send me your LinkedIn or website.
-2. Drop in messy notes or screenshots.
-3. Use voice and explain what you do in your own words.
-
-Pick whichever is easiest.
-```
-
-Collect only what is useful:
-
-- name
-- preferred assistant name
-- communication style
-- email or preferred contact detail, when useful for workspace context
-- role and business/project context
+- user and assistant names
+- communication preferences
+- role and business context
+- active work, priorities, constraints, and opportunities
 - useful reference sources
-- personal working context that will help future work
-- work, businesses, jobs, projects, customers, offers, priorities, constraints, and opportunities
-- privacy boundaries for public or client-facing outputs
-- first outcome that would make the workspace useful
+- public or client-facing privacy boundaries
+- the first outcome that would make the workspace useful
 
-Record useful personal and business context in the dossiers. If the user shares credentials, API keys, tokens, passwords, or private keys, switch to `Agent-Instructions/Skills/Secrets-Vault/SKILL.md`.
+Do not ask the user to repeat information that can be found safely in supplied sources.
 
-If a reference source cannot be accessed, do not drop it silently. Explain exactly what failed and offer practical alternatives:
+If a source cannot be accessed, explain what failed and offer the simplest fallback: supported browser access, screenshots, a PDF export, copied text, or a rough summary. Record an unresolved source only when it still matters.
 
-- the user can give browser or computer access if the current environment supports it
-- the user can enable or install the browser capability if available
-- the user can send screenshots
-- the user can export or download the profile/page as a PDF
-- the user can copy the important text into the chat
+Credentials, tokens, API keys, passwords, and private keys follow `Agent-Instructions/Skills/Secrets-Vault/SKILL.md`.
 
-Offer to explain how to enable browser or computer access when that is the best path. Record the inaccessible source and chosen fallback in `Inbox.md` or the relevant dossier.
+## Confirm Before Durable Personalization
 
-## Dossier Preview
-
-Before writing durable files, show:
+Before writing dossiers, show a compact preview:
 
 ```text
-Here is what I understood so far.
+Here is what I understood.
 
 About you:
 - ...
 
-About the business:
+About the work or business:
 - ...
 
-Communication style I noticed:
+Communication preferences:
 - ...
 
-Where I can probably help:
+Useful first outcome:
 - ...
 
 Unclear or assumed:
 - ...
 
-Recommended first project:
-- ...
-
-What did I get wrong, what is missing, and is there anything here I should avoid using in public or client-facing outputs?
-
-Why I ask: I need your correction before saving durable context, and I need to know what should stay private.
+What should I correct, and what must stay out of public or client-facing work?
 ```
 
-## Write Context
+After confirmation, update only the relevant files:
 
-After the user confirms or corrects the preview, update:
+- `Soul.md` for assistant identity and relationship
+- `User-Dossier.md` for stable user context
+- `Business-Dossier.md` for broad work and business context
+- `Current-Focus.md` and `Active-Threads.md` for current work
+- `Workspace-Map.md` for useful structure
+- `Memory.md` for compact durable lessons
+- `Decisions.md` for accepted workspace decisions
+- `Agent-State.md` for setup facts, capabilities, permissions, and blockers
 
-- `Soul.md`: assistant name, tone, relationship, and core communication preferences
-- `User-Dossier.md`: stable user preferences and profile
-- `Business-Dossier.md`: broad work, business, job, project, and professional-interest context
-- `Current-Focus.md`: current priority and next action
-- `Active-Threads.md`: setup status and ongoing work
-- `Workspace-Map.md`: useful workspace structure
-- `Memory.md`: compact durable lessons
-- `Decisions.md`: accepted workspace decisions
-- `Agent-State.md`: setup status, permissions, and blockers
+## Optional Workspace Checkpoint
+
+Offer one low-noise scheduled checkpoint using `Agent-Instructions/Skills/Workspace-Heartbeat/SKILL.md`.
+
+Explain:
+
+- it reviews meaningful changes and the inbox
+- it stops quickly when there is no work
+- it leaves user-facing items in `Inbox.md`
+- it can consume model usage
+- it can be changed or disabled later
+
+Create it only with user approval. Multiple daily role-specific checkpoints are an advanced option, not a setup requirement.
 
 ## Finish Setup
 
-1. Create or confirm the daily checkpoint heartbeat automations with `Agent-Instructions/Skills/Workspace-Heartbeat/SKILL.md`.
-2. Check `Inbox.md` and handle remaining setup items before asking about optional work.
-3. Ask whether the user wants a private GitHub cloud backup for this workspace. Explain that it is optional and why it matters for recovery.
-4. If yes, use `Agent-Instructions/Skills/GitHub-Backup/SKILL.md`.
-5. If no, record that cloud backup was declined for now.
-6. Explain what is private, what was configured, and the next useful step.
-7. Ask once whether the user wants to send Andrii feedback about onboarding. Explain that this is optional and nothing leaves the workspace without approval.
-8. If yes, use `Agent-Instructions/Skills/Kit-Feedback/SKILL.md` to draft a short message.
-9. If no, record that onboarding feedback was declined.
-10. Move completed setup items from `Inbox.md` to `Outbox.md`.
-11. Keep the first-project feedback trigger in `Inbox.md` until the first project reaches a useful result.
-12. Run the final setup audit below.
-13. Update `Active-Threads.md` so setup is complete, paused, or waiting on a specific blocker.
-14. Delete `Agent-Instructions/Setup-Plan.md`.
+1. Handle remaining setup items in `Inbox.md`.
+2. Offer optional private GitHub backup and use `GitHub-Backup/SKILL.md` if accepted.
+3. Explain what is local, what was saved, and what needs future approval.
+4. Ask once whether the user wants to send onboarding feedback. Nothing leaves the workspace without approval.
+5. Move handled setup items to `Outbox.md`.
+6. Run the final audit.
+7. Update `Active-Threads.md` and `Agent-State.md`.
+8. Delete this file.
 
-## Final Setup Audit
+## Final Audit
 
-Do this before marking setup complete or deleting this file.
+Verify or record a specific blocker for:
 
-Review every setup item and record the result in `Agent-State.md`, `Outbox.md`, or `Inbox.md`.
+- safe workspace path and any cloud-sync warning
+- ignored source cache
+- Node.js and pnpm
+- local Git on `main`
+- pre-commit scanner and passing `pnpm secret:scan`
+- skill discovery for installed harnesses
+- optional startup hook decision
+- verified orchestration capabilities
+- checkpoint accepted, declined, or blocked
+- private GitHub backup accepted, declined, or blocked
+- assistant name and communication style
+- useful context and privacy boundaries
+- only real future items remaining in `Inbox.md`
+- a clean local commit when the scan passes
 
-Verify: workspace path; cloud-sync warning when relevant; `.business-ai-kit/source/` exists and is ignored; `node`, `npm`, and `pnpm`; Git on `main`; pre-commit scanner; passing `pnpm secret:scan`; `.agents/skills` and `.claude/skills` point to `Agent-Instructions/Skills`; heartbeat automations or blocker; GitHub backup accepted, declined, or decision-needed; assistant name and communication style; important user/business context in the right files; privacy boundaries confirmed or decision-needed; `Inbox.md` has only real future items; completed setup items moved to `Outbox.md`; local Git commit saved when the scan passes.
-
-If any item is missing, do not finish setup. Handle it, ask the user, or record a specific blocker in `Inbox.md` and `Agent-State.md`.
+Do not mark setup complete while an unrecorded required item remains.

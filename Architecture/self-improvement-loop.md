@@ -1,13 +1,13 @@
 # Self-Improvement Loop
 
-The self-improvement loop is the daily checkpoint heartbeat adapted for Codex.
-It starts after first setup, but it is not permission for autonomous project
+The self-improvement loop is an optional low-noise workspace checkpoint for
+Codex or Claude Code. It starts after first setup when the user enables it, but it is not permission for autonomous project
 execution. It maintains the workspace, processes the inbox, checks Git, improves
 procedures, and records anything that needs user judgment.
 
 ```mermaid
 flowchart TD
-  Start["Daily Checkpoint Workspace Heartbeat"] --> ReadRules["Read AGENTS.md"]
+  Start["Scheduled Workspace Heartbeat"] --> ReadRules["Read AGENTS.md"]
   ReadRules --> ReadState["Read Current-Focus, Active-Threads, Workspace-Map, Inbox, Agent-State, Memory"]
   ReadState --> DetectChanges["Check project folders, Git status, recent workspace changes, and relevant session evidence"]
   DetectChanges --> ProcessInbox["Process Inbox.md"]

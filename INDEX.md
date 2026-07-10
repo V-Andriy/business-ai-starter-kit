@@ -5,6 +5,7 @@
 - [Install.md](Install.md) - short external install instruction for Codex and Claude Code.
 - [ARCHITECTURE.md](ARCHITECTURE.md) - block diagrams for install, setup, self-improvement, templates, updates, and safety gates.
 - [Architecture/README.md](Architecture/README.md) - index of modular Mermaid architecture diagrams.
+- [Architecture/orchestrated-work-flow.md](Architecture/orchestrated-work-flow.md) - orchestration control plane for lead, worker, reviewer, model roles, worktrees, evidence, and sequential fallback.
 - `LICENSE` - Apache License 2.0.
 - `NOTICE` - project attribution and trademark note.
 - [SECURITY.md](SECURITY.md) - security reporting and secret-handling notes.
@@ -17,13 +18,13 @@
 - [Seed/Agent-Instructions/Soul.md](Seed/Agent-Instructions/Soul.md) - durable assistant identity, tone, and felt user experience.
 - [Seed/Agent-Instructions/Setup-Plan.md](Seed/Agent-Instructions/Setup-Plan.md) - temporary first-run setup plan deleted after setup.
 - [Seed/Agent-Instructions/Skills/AI-Tool-Learner/SKILL.md](Seed/Agent-Instructions/Skills/AI-Tool-Learner/SKILL.md) - plain-language usage guidance for first-time or non-technical users, harness-aware for Codex and Claude Code.
-- [Seed/Agent-Instructions/Skills/Workspace-Heartbeat/SKILL.md](Seed/Agent-Instructions/Skills/Workspace-Heartbeat/SKILL.md) - daily checkpoint heartbeat behavior.
+- [Seed/Agent-Instructions/Skills/Workspace-Heartbeat/SKILL.md](Seed/Agent-Instructions/Skills/Workspace-Heartbeat/SKILL.md) - optional low-noise workspace checkpoint behavior.
 - [Seed/Agent-Instructions/Skills/GitHub-Backup/SKILL.md](Seed/Agent-Instructions/Skills/GitHub-Backup/SKILL.md) - optional private GitHub backup workflow.
 - [Seed/Agent-Instructions/Skills/Kit-Feedback/SKILL.md](Seed/Agent-Instructions/Skills/Kit-Feedback/SKILL.md) - user-approved feedback and upstream improvement workflow.
 - [Seed/Agent-Instructions/Skills/Update-Review/SKILL.md](Seed/Agent-Instructions/Skills/Update-Review/SKILL.md) - source cache refresh and update review.
 - [Seed/Agent-Instructions/Skills/Secrets-Vault/SKILL.md](Seed/Agent-Instructions/Skills/Secrets-Vault/SKILL.md) - secrets and scanner workflow.
 - [Seed/Agent-Instructions/Skills/Project-Planning/SKILL.md](Seed/Agent-Instructions/Skills/Project-Planning/SKILL.md) - new project setup and executive briefing.
-- [Seed/Agent-Instructions/Skills/Project-Orchestrator/SKILL.md](Seed/Agent-Instructions/Skills/Project-Orchestrator/SKILL.md) - large project orchestration and subagent guidance.
+- [Seed/Agent-Instructions/Skills/Project-Orchestrator/SKILL.md](Seed/Agent-Instructions/Skills/Project-Orchestrator/SKILL.md) - lead/worker/reviewer routing, agent orchestration, worktree safety, evidence, and integration guidance.
 - [Templates/README.md](Templates/README.md) - optional reusable templates note.
 - [Templates/Chat-Start-Accelerator-Hook/README.md](Templates/Chat-Start-Accelerator-Hook/README.md) - optional startup hook template for Codex and Claude Code.
 
