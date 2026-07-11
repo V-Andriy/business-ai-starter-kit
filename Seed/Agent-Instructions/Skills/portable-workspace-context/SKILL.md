@@ -43,13 +43,18 @@ pnpm bridge:install -- --confirm --approval <token-from-the-approved-preview>
 
 By default, the manager installs managed copies for Codex and Claude Code. Use `--targets codex`, `--targets claude`, or `--target-dir <path>` only when the user requests a narrower or compatible custom target.
 
+After installation, tell the user how to load the consumer from another project:
+
+- Codex: invoke `$business-ai-workspace`.
+- Claude Code: invoke `/business-ai-workspace`.
+
 ## Lifecycle
 
 - Refresh: preview again, get approval, then run `pnpm bridge:refresh -- --confirm --approval <token>`.
 - Inspect: run `pnpm bridge:status`.
 - Disable this workspace's snapshot: run `pnpm bridge:disable -- --confirm`.
 - Remove this workspace's snapshot: run `pnpm bridge:uninstall -- --confirm`.
-- Create a Cowork upload package: run `pnpm bridge:preview:cowork`, explain that uploading sends this detached copy to the user's Claude account, get approval for the exact content, then run `pnpm bridge:package:cowork -- --confirm --approval <token>`. The ZIP contains only this workspace's current installed snapshot and must be uploaded manually in Cowork's skill settings.
+- Create a Cowork upload package: run `pnpm bridge:preview:cowork`, explain that uploading sends this detached copy to the user's Claude account, get approval for the exact content, then run `pnpm bridge:package:cowork -- --confirm --approval <token>`. The ZIP contains only this workspace's current installed snapshot and must be uploaded manually in Cowork's skill settings. After upload, tell the user to enable the skill and explicitly ask Cowork to use their Business AI workspace context.
 
 Disabling or uninstalling prevents future reads from locally managed Codex and Claude Code skills. It cannot remove context already present in an AI conversation, copied elsewhere, or manually uploaded to Cowork; remove the Cowork skill in the app separately.
 

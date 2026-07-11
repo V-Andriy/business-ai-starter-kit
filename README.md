@@ -65,6 +65,8 @@ This is deliberately not live workspace access. The consumer cannot read dossier
 
 Snapshots are stored locally, but explicit invocation lets the active AI service process the approved content under that provider's data controls. A Cowork package stays local until the user separately uploads it to their Claude account.
 
+From another project, invoke `$business-ai-workspace` in Codex or `/business-ai-workspace` in Claude Code. In Cowork, enable the uploaded skill and explicitly ask Claude to use the Business AI workspace context.
+
 ## Share
 
 To share Business AI Starter Kit with a friend, send them this repository and the install prompt below.

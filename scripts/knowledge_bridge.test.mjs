@@ -115,9 +115,32 @@ test('installs self-contained private Codex and Claude skills', () => {
   assert.match(claudeSkill, /disable-model-invocation: true/);
   const coworkPreview = previewCowork(item.workspace, { env: item.env });
   const cowork = packageCowork(item.workspace, { env: item.env, approval: approvalToken(coworkPreview) });
-  assert.match(fs.readFileSync(path.join(cowork.skillDir, 'SKILL.md'), 'utf8'), /disable-model-invocation: true/);
+  assert.doesNotMatch(fs.readFileSync(path.join(cowork.skillDir, 'SKILL.md'), 'utf8'), /disable-model-invocation: true/);
   assert.ok(fs.existsSync(path.join(cowork.skillDir, 'references', 'registry.json')));
   assert.equal(inspect(item.workspace, { env: item.env }).state, 'current');
+});
+
+test('Cowork packaging rejects unsafe bundled assets', { skip: process.platform === 'win32' }, () => {
+  const item = fixture('cowork-asset-safety');
+  approvedInstall(item.workspace, { env: item.env, targets: ['codex'] });
+  const outside = path.join(item.root, 'outside.txt');
+  fs.writeFileSync(outside, 'must not enter the Cowork package\n');
+  const unsafe = path.join(
+    item.workspace,
+    'Agent-Instructions',
+    'Skills',
+    'portable-workspace-context',
+    'assets',
+    'business-ai-workspace',
+    'unsafe-link.txt',
+  );
+  fs.symlinkSync(outside, unsafe);
+  const checked = previewCowork(item.workspace, { env: item.env });
+  assert.throws(
+    () => packageCowork(item.workspace, { env: item.env, approval: approvalToken(checked) }),
+    /contains a symlink/,
+  );
+  assert.equal(fs.existsSync(path.join(item.home, '.business-ai-kit', 'bridge', 'business-ai-workspace-cowork.zip')), false);
 });
 
 test('a failed secret scan preserves the last installed snapshot', () => {

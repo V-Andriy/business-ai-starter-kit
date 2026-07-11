@@ -257,6 +257,7 @@ export function packageCowork(workspace, options = {}) {
   const entry = registry.workspaces.find((item) => item.id === identity.id && item.enabled);
   if (!entry) throw new Error('Install and enable this workspace snapshot before packaging it for Cowork.');
   if (entry.sha256 !== checked.context.sha256) throw new Error('The installed snapshot is stale. Refresh it before packaging for Cowork.');
+  assertSafeAsset(paths.asset);
   const packageRoot = path.join(paths.state, 'cowork');
   const skillDir = path.join(packageRoot, 'business-ai-workspace');
   fs.rmSync(packageRoot, { recursive: true, force: true });

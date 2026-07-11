@@ -4,6 +4,7 @@
 
 - Added an optional Portable Workspace Context bridge that installs explicit-invocation, self-contained user-level skills for Codex and Claude Code, plus a manual Cowork upload package.
 - Added exact-content preview tokens, secret scanning, consent gating, restrictive permissions, per-target atomic replacement with visible recovery state, integrity hashes, per-workspace target grants, managed-collision protection, multi-workspace aliases, disable/uninstall controls, and isolated bridge integration tests.
+- Hardened Cowork packaging against symbolic-link asset escapes and added harness-specific consumer invocation guidance for Codex, Claude Code, and Cowork.
 - Kept cross-project context one-way and read-only: only `Portable-Context.md` can be exported, consumers cannot access or write back to the source workspace, and active-project instructions remain authoritative.
 - Reworked the kit around an orchestration-first execution model: a lead agent owns scope, authorization, integration, verification, and the final result while bounded workers handle independent tracks.
 - Added capability-based lead, worker, fast-worker, and reviewer model roles with current GPT-5.6 and Claude model examples, without requiring model pins or premium access.

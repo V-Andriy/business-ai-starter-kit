@@ -93,7 +93,7 @@ function claudeFrontmatter(text) {
 
 export function composeSkill(destination, target, paths, registry) {
   fs.cpSync(paths.asset, destination, { recursive: true, errorOnExist: true });
-  if (target.kind === 'claude' || target.kind === 'cowork') {
+  if (target.kind === 'claude') {
     const skillFile = path.join(destination, 'SKILL.md');
     fs.writeFileSync(skillFile, claudeFrontmatter(fs.readFileSync(skillFile, 'utf8')));
   }

@@ -80,6 +80,12 @@ function main() {
     const result = install(options.workspace, options);
     console.log(`Portable context ${command === 'install' ? 'installed' : 'refreshed'} for "${result.entry.alias}".`);
     for (const target of result.targets) console.log(`- ${target.kind}: ${target.path}`);
+    if (result.targets.some((target) => target.kind === 'codex')) {
+      console.log('Codex: invoke $business-ai-workspace in the project where you want to use this context.');
+    }
+    if (result.targets.some((target) => target.kind === 'claude')) {
+      console.log('Claude Code: invoke /business-ai-workspace in the project where you want to use this context.');
+    }
     return;
   }
   if (command === 'disable') {
@@ -93,6 +99,7 @@ function main() {
   if (command === 'package-cowork') {
     const result = packageCowork(options.workspace, options);
     console.log(result.zipPath ? `Cowork upload ready: ${result.zipPath}` : `Cowork skill folder ready: ${result.skillDir}\nZIP was unavailable; compress this folder manually.`);
+    console.log('After uploading and enabling the skill, explicitly ask Cowork to use your Business AI workspace context.');
     return;
   }
   throw new Error(`Unknown command: ${command}`);
