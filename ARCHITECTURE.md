@@ -25,8 +25,8 @@ flowchart TD
   Public --> Templates["Templates/ future library"]
   Public --> Docs["README, INDEX, CHANGELOG, VERSION, Architecture/"]
 
-  Install --> Codex["Codex setup in target folder"]
-  Codex --> SafetyCheck{"Folder empty or clearly safe?"}
+  Install --> Harness["Codex or Claude Code setup in target folder"]
+  Harness --> SafetyCheck{"Folder empty or clearly safe?"}
   SafetyCheck -- "No" --> AskPath["Ask user where to create workspace"]
   SafetyCheck -- "Yes" --> Private["Private local workspace"]
   AskPath --> Private
@@ -48,6 +48,7 @@ flowchart TD
   Context --> Logs["Automation log and improvement log"]
   Context --> Memory["Compact memory and decisions"]
   Context --> Skills["Skills as reusable workflows"]
+  Context --> Portable["Portable-Context.md approved projection"]
   Context --> SecretMeta["Secrets-Vault.md metadata only"]
 
   Skills --> ToolLearner["AI tool learner"]
@@ -58,9 +59,27 @@ flowchart TD
   Skills --> ProjectOrchestrator["Project orchestrator"]
   Skills --> SecretsVault["Secrets vault"]
   Skills --> UpdateReview["Update review"]
+  Skills --> PortableManager["Portable context manager"]
+
+  Portable --> PortableManager
+  PortableManager --> BridgeApproval{"Preview, secret scan, and approval?"}
+  BridgeApproval -- "Yes" --> GlobalSnapshot["Private user-level snapshot and explicit consumer skill"]
+  BridgeApproval -- "No" --> Private
+  GlobalSnapshot --> OtherProjects["Other local AI projects"]
+  OtherProjects -. "no live access or write-back" .-> Private
+
+  Projects --> WorkShape{"Smallest useful execution shape"}
+  ProjectOrchestrator --> WorkShape
+  WorkShape -- "Sequential" --> Lead["Lead agent works directly"]
+  WorkShape -- "Independent tracks" --> Workers["Bounded workers with exclusive scope"]
+  Lead --> Integrate["Evidence, review, integration, validation"]
+  Workers --> Integrate
 
   ToolLearner --> Onboarding["First-run onboarding and state fill"]
-  Onboarding --> HeartbeatSetup["Daily checkpoint heartbeat automations"]
+  Onboarding --> HeartbeatChoice{"User enables workspace checkpoint?"}
+  HeartbeatChoice -- "Yes" --> HeartbeatSetup["Create low-noise checkpoint"]
+  HeartbeatChoice -- "No" --> Ready["Workspace ready"]
+  HeartbeatSetup --> Ready
   HeartbeatSetup --> Loop["Workspace self-improvement loop"]
   Loop --> Queue
   Loop --> Continuity
@@ -84,6 +103,8 @@ flowchart TD
 ## Diagram Index
 
 - [Full System Flow](Architecture/full-system-flow.md)
+- [Orchestrated Work Flow](Architecture/orchestrated-work-flow.md)
+- [Portable Context Bridge](Architecture/portable-context-bridge.md)
 - [Repository Responsibilities](Architecture/repository-responsibilities.md)
 - [Installed Workspace Model](Architecture/installed-workspace-model.md)
 - [First Setup Flow](Architecture/first-setup-flow.md)
@@ -95,12 +116,14 @@ flowchart TD
 
 ## Core Model
 
-Business AI Starter Kit has two sides:
+Business AI Starter Kit has three ownership zones:
 
 - Public repo: source library, install handoff, seed files, scripts, future
   templates, architecture docs, license, security policy, and contribution guidance.
 - Private workspace: the user's local business context, projects, memory,
   automations, secrets metadata, and working files.
+- Private global bridge: optional user-level skill copies containing only a
+  separately approved snapshot, with no live path or write-back to the workspace.
 
 The user's workspace is not a fork of the public kit and not a package install.
 It is an independent local workspace with an ignored clone of the public repo at
@@ -118,8 +141,9 @@ Included now:
 - Local Git and pre-commit secret scanning.
 - `.business-ai-kit/source/` ignored source-cache update model.
 - `Agent-Instructions/` context, memory, inbox/outbox, signal, feedback, and state system.
-- Skills for harness learning (Codex and Claude Code), daily heartbeat, private GitHub backup, kit feedback, project planning, secrets, and updates.
-- Daily checkpoint workspace heartbeat instructions.
+- Orchestration-aware work routing with lead, worker, reviewer, worktree, evidence, and sequential fallback rules.
+- Optional explicit-invocation portable context for Codex, Claude Code, Cowork upload, and compatible custom skill targets.
+- Skills for harness learning (Codex and Claude Code), optional workspace checkpoint, private GitHub backup, kit feedback, project planning, secrets, and updates.
 - Local `.env` fallback and Doppler guidance for secrets.
 - Future templates placeholder.
 - Soft support references.
@@ -132,5 +156,5 @@ Deferred:
 - SaaS backend or UI.
 - Project/app templates in v1.
 - Full provider adapters for Infisical or 1Password.
-- Cross-agent sync beyond the current skills-compatible structure.
+- Persistent cross-harness agent networking or a custom agent message bus.
 - Vibe Canvas or any visual architecture app.

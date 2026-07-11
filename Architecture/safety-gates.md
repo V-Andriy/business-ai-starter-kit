@@ -18,6 +18,7 @@ flowchart TD
   TriggerType -- "Paid service or signup" --> Explain
   TriggerType -- "Delete, overwrite, or destructive edit" --> Explain
   TriggerType -- "External account or broad permission" --> Explain
+  TriggerType -- "User-level skill install or context leaving workspace" --> PortablePreview["Show exact Portable-Context snapshot and targets"]
   TriggerType -- "Project-specific autonomous execution" --> Explain
   TriggerType -- "Change AGENTS, privacy, secret behavior, or communication preference" --> Explain
 
@@ -28,6 +29,7 @@ flowchart TD
   Vault --> Metadata
   Metadata --> Scanner["Run secret scanner before commit, push, deploy, publish, or support handoff"]
   Scanner --> Explain
+  PortablePreview --> Scanner
 
   Explain --> Approval["Ask for explicit user approval"]
   Approval --> Approved{"Approved?"}
@@ -47,5 +49,6 @@ Must ask first:
 - moving private notes into public or client-facing outputs
 - changing `AGENTS.md`, privacy rules, secret behavior, or communication preferences
 - connecting external accounts or granting broad permissions
+- installing user-level skills or copying an approved context snapshot outside the workspace
 - storing, exposing, rotating, or migrating raw credentials
 - autonomous project-specific work beyond explicit authorization

@@ -33,6 +33,7 @@ flowchart TD
   AgentInstructions --> Outbox["Outbox.md handled work record"]
   AgentInstructions --> Map["Workspace-Map.md"]
   AgentInstructions --> Memory["Memory.md compact durable memory"]
+  AgentInstructions --> Portable["Portable-Context.md optional approved projection"]
   AgentInstructions --> Decisions["Decisions.md"]
   AgentInstructions --> State["Agent-State.md setup and permissions"]
   AgentInstructions --> AutomationLog["Automation-Log.md"]
@@ -51,17 +52,31 @@ flowchart TD
   Skills --> Orchestrator["Project-Orchestrator/SKILL.md"]
   Skills --> Secrets["Secrets-Vault/SKILL.md"]
   Skills --> UpdateReview["Update-Review/SKILL.md"]
+  Skills --> PortableManager["portable-workspace-context/SKILL.md"]
+
+  Portable --> PortableManager
+  PortableManager -. "approved physical snapshot; outside workspace" .-> GlobalSkills["User-level Codex or Claude skill"]
+  GlobalSkills -. "no live path or write-back" .-> Root
 
   Signals --> Incoming["Incoming.md"]
   Signals --> Outgoing["Outgoing.md"]
   Signals --> SignalsReadme["README.md"]
 
-  Projects --> ProjectBrief["Project Brief.md"]
-  Projects --> ProjectContext["Project Context/"]
-  Projects --> Working["Working Files/"]
-  Projects --> Final["Final Outputs/"]
-  Projects --> ProjectDecisions["Decisions.md"]
-  Projects --> NextActions["Next Actions.md"]
-  Projects --> Archive["Archive/"]
-  Projects --> OptionalAgents["Optional project AGENTS.md for repeated workflows or app/code work"]
+  Projects --> Minimum["Minimum project structure"]
+  Minimum --> ProjectBrief["Project Brief.md"]
+  Minimum --> Working["Working Files/"]
+  Minimum --> Final["Final Outputs/"]
+
+  Projects --> Optional["Add only when needed"]
+  Optional -.-> ProjectContext["Project Context/"]
+  Optional -.-> ProjectDecisions["Decisions.md"]
+  Optional -.-> NextActions["Next Actions.md"]
+  Optional -.-> Executive["Executive Brief.md"]
+  Optional -.-> Archive["Archive/"]
+  Optional -.-> OptionalAgents["Project AGENTS.md and CLAUDE.md"]
+
+  Orchestrator --> Lead["Lead owns scope, integration, and final result"]
+  Orchestrator --> Workers["Bounded workers with exclusive write scopes"]
+  Orchestrator --> Reviewer["Independent reviewer when risk justifies it"]
+  Orchestrator --> Fallback["Sequential fallback when native agents are unavailable"]
 ```

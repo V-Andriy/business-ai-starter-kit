@@ -42,6 +42,8 @@ Do not duplicate or improvise setup rules from memory. Follow the installed file
 
 Complete `Setup-Plan.md` end to end. Do not restate skill rules inside the install flow.
 
+Setup may offer the optional Portable Workspace Context bridge after the user confirms durable personalization. Never prepare it from private files automatically, install a user-level skill, or copy context outside the workspace without showing the exact snapshot and getting explicit approval. Declining it does not limit normal workspace use.
+
 Do not start project work, suggest first projects, build tools, or reorganize my material until `Setup-Plan.md` is complete or blocked on a specific decision. If I ask for other work during setup, acknowledge it, save it if useful, and return to the next setup step.
 
 Do not stop at "installation complete." Start the live onboarding conversation from `Setup-Plan.md`, ask one useful question at a time, briefly explain why each question matters, and adapt to my language.

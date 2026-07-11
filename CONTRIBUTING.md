@@ -1,7 +1,7 @@
 # Contributing
 
 Business AI Starter Kit is an early open-source MVP for creating private local
-AI workspaces in Codex.
+AI workspaces in Codex and Claude Code.
 
 ## Development Rules
 
@@ -26,6 +26,7 @@ find Seed -name '*.template' -o -name '*template*'
 Expected result:
 
 - File audit completes and reports any current cleanup targets.
+- Portable-context lifecycle, collision, integrity, and secret-scan tests pass.
 - Secret scan passes.
 - `find Seed ...` prints nothing.
 

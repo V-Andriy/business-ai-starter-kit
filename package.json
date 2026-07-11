@@ -6,7 +6,8 @@
   "scripts": {
     "audit:files": "node scripts/audit-files.mjs",
     "audit:files:strict": "node scripts/audit-files.mjs --strict",
+    "test:knowledge-bridge": "node --test scripts/knowledge_bridge.test.mjs",
     "secret:scan": "node Seed/Scripts/secret_scan.mjs Install.md Seed Templates Skills AGENTS.md README.md INDEX.md CHANGELOG.md SECURITY.md CONTRIBUTING.md NOTICE LICENSE ARCHITECTURE.md Architecture VERSION package.json scripts",
-    "check": "pnpm audit:files && pnpm secret:scan"
+    "check": "pnpm audit:files && pnpm test:knowledge-bridge && pnpm secret:scan"
   }
 }

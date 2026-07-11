@@ -1,6 +1,6 @@
 # Active Threads
 
-Purpose: current workstreams the agent should track across sessions and heartbeat runs.
+Purpose: current workstreams the agent should track across sessions and optional checkpoint runs.
 
 ## Threads
 
@@ -17,4 +17,4 @@ Purpose: current workstreams the agent should track across sessions and heartbea
   - Agent-Instructions/Setup-Plan.md
   - Agent-Instructions/User-Dossier.md
   - Agent-Instructions/Business-Dossier.md
-- Automation: Daily Checkpoint Workspace Heartbeat
+- Workspace checkpoint: decision pending

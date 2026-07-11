@@ -15,7 +15,8 @@ The goal is not to turn the user into a developer. The goal is to help them feel
 
 Before giving tool-specific steps, work out which tool is running:
 
-- Check the runtime: Codex exposes `.codex/` and `.agents/skills`; Claude Code exposes `.claude/` and `.claude/skills`. The startup hook lives in `.codex/hooks.json` for Codex and `.claude/settings.json` for Claude Code.
+- Use explicit runtime, session, tool, or visible UI evidence when the harness exposes it.
+- Do not infer the active harness from `.codex/`, `.agents/`, or `.claude/`; a shared workspace may contain all of them.
 - If still unsure, ask in one short question: "Are you using Codex or Claude Code right now?"
 - Teach only what is true for that tool. When a feature exists in both but is named differently, use the name the user sees.
 
@@ -40,21 +41,22 @@ These tools change over time. Before giving specific instructions about current 
 
 Codex (OpenAI):
 
-- App: `https://developers.openai.com/codex/app`
-- Best practices: `https://developers.openai.com/codex/learn/best-practices`
-- Remote connections and mobile access: `https://developers.openai.com/codex/remote-connections`
-- Skills: `https://developers.openai.com/codex/skills`
-- Automations: `https://developers.openai.com/codex/app/automations`
-- MCP: `https://developers.openai.com/codex/mcp`
+- ChatGPT desktop app: `https://learn.chatgpt.com/docs/app`
+- Changelog: `https://learn.chatgpt.com/docs/changelog`
+- Models: `https://learn.chatgpt.com/docs/models`
+- Subagents: `https://learn.chatgpt.com/docs/agent-configuration/subagents`
+- Skills and plugins: `https://learn.chatgpt.com/docs/skills-and-plugins`
+- Scheduled tasks: `https://learn.chatgpt.com/docs/automations`
+- MCP: `https://learn.chatgpt.com/docs/extend/mcp`
 
 Claude Code / Cowork (Anthropic):
 
-- Overview: `https://docs.anthropic.com/en/docs/claude-code/overview`
-- Common workflows: `https://docs.anthropic.com/en/docs/claude-code/common-workflows`
-- Skills: `https://docs.anthropic.com/en/docs/claude-code/skills`
-- Hooks: `https://docs.anthropic.com/en/docs/claude-code/hooks`
-- Settings: `https://docs.anthropic.com/en/docs/claude-code/settings`
-- MCP: `https://docs.anthropic.com/en/docs/claude-code/mcp`
+- Overview: `https://code.claude.com/docs/en/overview`
+- Parallel agents: `https://code.claude.com/docs/en/agents`
+- Skills: `https://code.claude.com/docs/en/skills`
+- Hooks: `https://code.claude.com/docs/en/hooks`
+- Settings: `https://code.claude.com/docs/en/settings`
+- MCP: `https://code.claude.com/docs/en/mcp`
 
 If official docs are unavailable, say that you could not verify the latest UI and give a careful, general explanation.
 
@@ -109,11 +111,16 @@ Explain these only when relevant, using the name the user's tool uses:
 - Local mode: the AI works with files on this computer.
 - Thread / session: one focused working conversation.
 - Plan mode: useful before complex or unclear work; both tools support planning before implementation.
+- Work modes: stronger or higher-effort modes spend more time on one hard task; orchestration modes split suitable work across agents. Names and availability differ by tool and plan.
+- Subagents: focused workers with separate context that return results to the lead agent.
+- Agent teams: coordinated workers that can communicate with each other. Use only for work that benefits from real collaboration, and note that some team features are experimental.
+- Worktrees: separate Git working copies that prevent parallel editing from colliding.
 - Diff / review: where to inspect what changed before accepting work.
 - Permissions: why the AI may ask before commands or risky actions.
 - Voice or dictation: useful when it is easier to explain something out loud, where the app supports it.
 - Mobile / remote access: lets the user send prompts and approvals from another device when supported.
 - Skills: reusable workflows for repeated work. Both tools read this workspace's skills through a symlink (`.agents/skills` for Codex, `.claude/skills` for Claude Code).
+- Portable context: an optional, separately approved snapshot that a user can explicitly load from other projects without exposing this live workspace.
 - Automations / scheduled runs: background AI work for stable repeated tasks.
 - Hooks: optional startup helpers; this workspace can install a startup context hook for both tools.
 - MCP / connectors: ways to connect external tools when the workflow needs them.
