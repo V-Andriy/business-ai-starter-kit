@@ -1,160 +1,71 @@
 # Business AI Starter Kit Architecture
 
-This is the high-level MVP architecture map. Detailed flow diagrams live in
-[Architecture/](Architecture/README.md). Markdown and Mermaid are the source of
-truth for architecture until a heavier visual layer is deliberately introduced.
-
-## Editing Standard
-
-- Keep this file as the high-level map.
-- Keep detailed diagrams in [Architecture/](Architecture/README.md).
-- Use one Mermaid diagram per file.
-- Do not use custom imports or render tooling for MVP.
-- Keep diagrams readable by humans, AI agents, Git diffs, GitHub, VS Code,
-  Obsidian, Typora, and Mermaid Live Editor.
-- If a diagram gets hard to edit, split it into smaller files and link them
-  from [Architecture/README.md](Architecture/README.md).
-
-## System Overview
+The public repo supplies a seed; each installed workspace is an independent
+private local folder. The source cache is disposable and ignored by Git.
 
 ```mermaid
 flowchart TD
-  Public["Public source repo"] --> Install["Install.md handoff"]
-  Public --> Seed["Seed/ real workspace starter"]
-  Public --> Scripts["Seed/Scripts/ helper scripts"]
-  Public --> Templates["Templates/ future library"]
-  Public --> Docs["README, INDEX, CHANGELOG, VERSION, Architecture/"]
-
-  Install --> Harness["Codex or Claude Code setup in target folder"]
-  Harness --> SafetyCheck{"Folder empty or clearly safe?"}
-  SafetyCheck -- "No" --> AskPath["Ask user where to create workspace"]
-  SafetyCheck -- "Yes" --> Private["Private local workspace"]
-  AskPath --> Private
-
-  Private --> Cache[".business-ai-kit/source/ ignored clone of public repo"]
-  Cache --> CopySeed["Copy Seed/ into workspace root"]
-  Seed --> CopySeed
-  Scripts --> CopySeed
-  CopySeed --> Git["Local Git on main with pre-commit scanner"]
-
-  Private --> Agents["AGENTS.md workspace behavior"]
-  Private --> Context["Agent-Instructions/ private context system"]
-  Private --> Projects["Plain-language project folders on demand"]
-  Private --> Env["Ignored .env for local raw secrets"]
-
-  Context --> Dossiers["User and business dossiers"]
-  Context --> Continuity["Current focus, active threads, workspace map"]
-  Context --> Queue["Inbox, outbox, signals, feedback notes"]
-  Context --> Logs["Automation log and improvement log"]
-  Context --> Memory["Compact memory and decisions"]
-  Context --> Skills["Skills as reusable workflows"]
-  Context --> Portable["Portable-Context.md approved projection"]
-  Context --> SecretMeta["Secrets-Vault.md metadata only"]
-
-  Skills --> ToolLearner["AI tool learner"]
-  Skills --> Heartbeat["Workspace heartbeat"]
-  Skills --> GithubBackup["GitHub backup"]
-  Skills --> KitFeedback["Kit feedback"]
-  Skills --> ProjectPlanning["Project planning"]
-  Skills --> ProjectOrchestrator["Project orchestrator"]
-  Skills --> SecretsVault["Secrets vault"]
-  Skills --> UpdateReview["Update review"]
-  Skills --> PortableManager["Portable context manager"]
-
-  Portable --> PortableManager
-  PortableManager --> BridgeApproval{"Preview, secret scan, and approval?"}
-  BridgeApproval -- "Yes" --> GlobalSnapshot["Private user-level snapshot and explicit consumer skill"]
-  BridgeApproval -- "No" --> Private
-  GlobalSnapshot --> OtherProjects["Other local AI projects"]
-  OtherProjects -. "no live access or write-back" .-> Private
-
-  Projects --> WorkShape{"Smallest useful execution shape"}
-  ProjectOrchestrator --> WorkShape
-  WorkShape -- "Sequential" --> Lead["Lead agent works directly"]
-  WorkShape -- "Independent tracks" --> Workers["Bounded workers with exclusive scope"]
-  Lead --> Integrate["Evidence, review, integration, validation"]
-  Workers --> Integrate
-
-  ToolLearner --> Onboarding["First-run onboarding and state fill"]
-  Onboarding --> HeartbeatChoice{"User enables workspace checkpoint?"}
-  HeartbeatChoice -- "Yes" --> HeartbeatSetup["Create low-noise checkpoint"]
-  HeartbeatChoice -- "No" --> Ready["Workspace ready"]
-  HeartbeatSetup --> Ready
-  HeartbeatSetup --> Loop["Workspace self-improvement loop"]
-  Loop --> Queue
-  Loop --> Continuity
-  Loop --> Memory
-  Loop --> Skills
-  Loop --> KitFeedback
-
-  UpdateReview --> Refresh["Refresh ignored source cache"]
-  Refresh --> Compare["Compare useful source changes"]
-  Compare --> Approval["Apply approved workspace changes only"]
-
-  SecretsVault --> SecretSafety["Raw secrets stay in .env or managed vault"]
-  SecretSafety --> Scanner["Explicit secret scan before commit, push, deploy, publish, or support handoff"]
-
-  KitFeedback --> UserApproval["User approval before feedback leaves workspace"]
-  UserApproval --> FeedbackPath["LinkedIn message or small upstream PR"]
-
-  Templates -. "MVP placeholder, not install dependency" .-> Projects
+  Public["Public source repo"] --> Install["Install.md safety checks"]
+  Public --> Seed["Seed starter files"]
+  Install --> Private["Private local workspace"]
+  Seed --> Private
+  Private --> Rules["AGENTS.md and Claude Code import"]
+  Private --> Context["Context and skills loaded on demand"]
+  Private --> History["Local Git and secret scanner"]
+  Private --> Output["Useful first output"]
+  Output --> Ongoing["Brief only for ongoing work"]
+  Private --> Cache["Ignored source cache for reviewed updates"]
+  Private --> Weekly["One small weekly check; verified schedule or manual fallback"]
+  Private -. "Explicit opt-in" .-> Optional["Hook, backup, delegation"]
 ```
 
-## Diagram Index
+## Operating Defaults
 
-- [Full System Flow](Architecture/full-system-flow.md)
-- [Orchestrated Work Flow](Architecture/orchestrated-work-flow.md)
-- [Portable Context Bridge](Architecture/portable-context-bridge.md)
-- [Repository Responsibilities](Architecture/repository-responsibilities.md)
-- [Installed Workspace Model](Architecture/installed-workspace-model.md)
-- [First Setup Flow](Architecture/first-setup-flow.md)
-- [Self-Improvement Loop](Architecture/self-improvement-loop.md)
-- [Templates Flow](Architecture/templates-flow.md)
-- [Update And Migration Flow](Architecture/update-and-migration-flow.md)
-- [Safety Gates](Architecture/safety-gates.md)
-- [Architecture Mind Map](Architecture/architecture-mindmap.md)
+One agent uses the current model and relevant sources. Brief user/business
+onboarding and profile confirmation are required before setup completes. One-off work needs no project scaffold. Ongoing work starts with a
+brief and output; additional trackers are created only when warranted.
 
-## Core Model
+Setup includes one small weekly maintenance check with confirmed timing and
+host consent, or a documented blocker and manual weekly fallback. Reviews
+inspect a narrow scope. No meaningful change means no status edits,
+log, commit, or scheduled notification. An activity hint is not a complete
+change record and does not prevent the cost of starting an AI run.
 
-Business AI Starter Kit has three ownership zones:
+Codex and Claude Code share instruction and skill files. Cowork and other
+harnesses need a separate check of current documentation. Avoid simultaneous
+edits to shared files.
 
-- Public repo: source library, install handoff, seed files, scripts, future
-  templates, architecture docs, license, security policy, and contribution guidance.
-- Private workspace: the user's local business context, projects, memory,
-  automations, secrets metadata, and working files.
-- Private global bridge: optional user-level skill copies containing only a
-  separately approved snapshot, with no live path or write-back to the workspace.
+## Detailed Flows
 
-The user's workspace is not a fork of the public kit and not a package install.
-It is an independent local workspace with an ignored clone of the public repo at
-`.business-ai-kit/source/` for source reference and update review.
+- [Full system](Architecture/full-system-flow.md)
+- [Repository responsibilities](Architecture/repository-responsibilities.md)
+- [Installed workspace](Architecture/installed-workspace-model.md)
+- [First setup](Architecture/first-setup-flow.md)
+- [Maintenance](Architecture/self-improvement-loop.md)
+- [Templates](Architecture/templates-flow.md)
+- [Updates](Architecture/update-and-migration-flow.md)
+- [Safety](Architecture/safety-gates.md)
+- [Mind map](Architecture/architecture-mindmap.md)
+- [Model and skill review](Architecture/model-and-skill-review.md)
 
-The public repo should never contain a user's private business context, client
-files, real credentials, or raw secrets.
+Keep diagrams aligned with [Seed/AGENTS.md](Seed/AGENTS.md). Use one logical
+Mermaid diagram per file and link new documents from the architecture index.
 
-## MVP Boundaries
+## Validation And Boundaries
 
-Included now:
+`pnpm check` audits files and scans for secrets. `pnpm check:context` tests
+bounded hook output, read-only behavior, and workspace activity hints in an
+isolated fixture. Manual behavioral scenarios are in the model/skill review.
 
-- Install flow for Codex and Claude Code (Cowork) from one shared workspace (`AGENTS.md` canonical, `CLAUDE.md` imports it; skills symlinked into `.agents/skills` and `.claude/skills`).
-- Private workspace seed with real starter files, not `.template` files.
-- Local Git and pre-commit secret scanning.
-- `.business-ai-kit/source/` ignored source-cache update model.
-- `Agent-Instructions/` context, memory, inbox/outbox, signal, feedback, and state system.
-- Orchestration-aware work routing with lead, worker, reviewer, worktree, evidence, and sequential fallback rules.
-- Optional explicit-invocation portable context for Codex, Claude Code, Cowork upload, and compatible custom skill targets.
-- Skills for harness learning (Codex and Claude Code), optional workspace checkpoint, private GitHub backup, kit feedback, project planning, secrets, and updates.
-- Local `.env` fallback and Doppler guidance for secrets.
-- Future templates placeholder.
-- Soft support references.
-- User-approved feedback path for LinkedIn messages or focused upstream PRs.
+The optional startup hook emits metadata and navigation pointers, not file
+contents. The gate inspects workspace evidence, not home session histories.
+Neither helper installs a schedule or authorizes external actions.
 
-Deferred:
+There is no UI, SaaS backend, or automatic project execution. Project and app
+templates remain deferred; the optional startup hook is the current exception.
+Private data never belongs in this public repo.
 
-- Full Hermes runtime dependency.
-- Full autonomous project execution without explicit user authorization.
-- SaaS backend or UI.
-- Project/app templates in v1.
-- Full provider adapters for Infisical or 1Password.
-- Persistent cross-harness agent networking or a custom agent message bus.
-- Vibe Canvas or any visual architecture app.
+## Optional Cross-Project Work
+
+- [Portable context bridge](Architecture/portable-context-bridge.md): exact-preview approval, detached snapshots, explicit consumer invocation, and revocation limits.
+- [Orchestrated work](Architecture/orchestrated-work-flow.md): one-agent default with approved bounded workers, exclusive ownership, evidence, and integration.

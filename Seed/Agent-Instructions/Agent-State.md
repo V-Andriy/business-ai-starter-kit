@@ -1,58 +1,29 @@
 # Agent State
 
-Purpose: current setup and capability facts. Procedures live in `AGENTS.md` and skills.
+Purpose: actual setup results and explicitly approved operating settings.
+Daily behavior lives in `../AGENTS.md`; do not duplicate its rules here.
 
 ## Setup
 
-- First-run onboarding: pending
-- Assistant identity calibration: pending
+- Essential local checks: pending
 - Secret scanner hook: pending
-- Workspace checkpoint: not configured
-- Private GitHub backup: not configured
+- Skills links: pending
 - Kit source cache: pending
-- First executive briefing: pending
-- Portable context bridge: not configured
+- Local Git checkpoint: pending
+- Required user/business onboarding: pending
+- Profile summary confirmation: pending
 
-## Portable Context Bridge
+## Configuration
 
-- Approved snapshot: not prepared
-- Workspace alias:
-- Installed targets:
-- Last export:
-- Freshness: not installed
-- Known bridge blocker:
+- Weekly maintenance setup: pending timing, timezone, and host consent
+- Verified schedule id and next run: not configured
+- Scheduling blocker/manual weekly fallback: none recorded
+- Approved automation ids and scopes: none
+- Portable context bridge: not configured; optional, no automatic refresh
+- Startup context hook: not installed
+- Private GitHub backup: not configured
+- Standing external-action authorization: none
 
-## Harness Capabilities
+## Blockers
 
-Current-session harness should be detected at runtime, not inferred from workspace folders.
-
-### Codex
-
-- Last verified:
-- Surface and version:
-- Available model roles: lead / worker / fast worker / reviewer
-- Native subagents or Ultra:
-- Background or cloud tasks:
-- Worktree isolation:
-- Scheduled tasks:
-
-### Claude Code Or Cowork
-
-- Last verified:
-- Surface and version:
-- Available model roles: lead / worker / fast worker / reviewer
-- Native subagents:
-- Agent view, teams, or workflows:
-- Worktree isolation:
-- Scheduled tasks:
-
-Record only verified capabilities. Do not assume a model, beta feature, plan entitlement, or scheduling surface exists.
-
-## Standing Choices
-
-- Workspace: local-first
-- Context: `AGENTS.md`, `Agent-Instructions/`, project-local instructions, and skills
-- Checkpoint schedule: none
-- Approved private backup remote:
-- User-approved autonomy:
-- Known blockers:
+None recorded yet. Replace pending results only after checking them.

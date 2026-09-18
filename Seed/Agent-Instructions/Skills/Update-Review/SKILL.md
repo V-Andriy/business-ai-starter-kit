@@ -5,19 +5,19 @@ description: Use when refreshing the Business AI Starter Kit source cache and re
 
 # Update Review
 
-Use this skill when the user asks to update the kit or when the heartbeat checks for useful updates.
+Use this skill when the user asks to update the kit or an explicitly approved heartbeat scope includes update review.
 
 ## Steps
 
 1. Refresh `.business-ai-kit/source/`.
 2. Read source `CHANGELOG.md`, `INDEX.md`, and `VERSION`.
-3. Read source guidance in `Seed/AGENTS.md`, `Seed/Agent-Instructions/Skills/`, and `Seed/Scripts/`.
+3. Inspect the relevant changed files or diffs; load only the skills and scripts needed to assess a useful update.
 4. Compare new guidance against the current workspace.
 5. Classify files as kit-owned, user-owned, or hybrid.
 6. Identify only useful updates.
 7. Explain updates in plain language.
 8. Apply only approved changes to user-owned or hybrid files.
-9. Log the review in `Automation-Log.md`.
+9. Log meaningful applied changes or a new actionable blocker in `Automation-Log.md`. A review with no useful change needs no log or status rewrite.
 
 ## Source Cache Recovery
 

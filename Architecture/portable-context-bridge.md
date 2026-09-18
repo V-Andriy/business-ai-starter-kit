@@ -49,7 +49,8 @@ flowchart LR
   Claude --> Lead
   Cowork --> Lead
   Custom --> Lead
-  Lead --> Workers --> Output
+  Lead --> Output
+  Lead -. "Only for approved delegation" .-> Workers --> Output
 
   Dossiers -. "never exported" .-> Blocked["No live workspace path"]
   Lead -. "no write-back" .-> Blocked

@@ -6,7 +6,7 @@ This file is for agents and contributors developing or inspecting this public re
 
 ## 1. Reference Mode - If You Cloned This Repo To Understand It
 
-Business AI Starter Kit is a starter system for creating private local AI workspaces for non-technical business users. It supports Codex and Claude Code (Cowork) from one shared workspace: `AGENTS.md` is the canonical instruction file (read by Codex) and `CLAUDE.md` imports it (read by Claude Code). Skills are shared from `Agent-Instructions/Skills/` via `.agents/skills` and `.claude/skills` symlinks.
+Business AI Starter Kit is a starter system for creating private local AI workspaces for non-technical business users. It supports Codex and Claude Code from one shared workspace: `AGENTS.md` is the canonical instruction file (read by Codex) and `CLAUDE.md` imports it (read by Claude Code). Skills are shared from `Agent-Instructions/Skills/` via `.agents/skills` and `.claude/skills` symlinks.
 
 The public repo has three important areas:
 
@@ -47,7 +47,7 @@ private user workspace = separate local workspace
 
 - `Install.md` is the only external setup instruction.
 - `Seed/` files are copied into private user workspaces. They must be real starter files, not `.template` files.
-- `Templates/` is a public source library area for future reusable templates. Keep it empty except documentation until templates are intentionally introduced.
+- `Templates/` is a public source library area for future reusable templates. Project and app templates remain future-facing. The optional startup hook template is the only current implementation.
 - First-run setup lives in `Install.md`, `Seed/Agent-Instructions/Setup-Plan.md`, `Seed/Agent-Instructions/Inbox.md`, and `Seed/Agent-Instructions/Active-Threads.md`.
 - Daily workspace behavior lives in `Seed/AGENTS.md`. `Seed/CLAUDE.md` is a thin bridge that imports `Seed/AGENTS.md`; keep the rules only in `AGENTS.md` so both harnesses stay in sync. Do not duplicate behavior into `CLAUDE.md`.
 - Update, safety, heartbeat, troubleshooting, and support workflows live in `Seed/Agent-Instructions/Skills/`.
@@ -62,13 +62,12 @@ private user workspace = separate local workspace
 - Never commit real secrets, API keys, client files, or private business context.
 - Keep `.env` ignored and `.env.example` safe with fake placeholders only.
 - Do not commit private planning notes, internal-only references, raw research dumps, client-sensitive context, temporary paths, editor state, or anything that should not be public.
-- Before committing, run:
+- The pre-commit hook scans staged content once. If no hook is installed, run
+`pnpm secret:scan -- --staged` before committing. Do not duplicate a successful
+hook scan for unchanged material. Routine reads and tool calls need no scan.
+Use the seed Secrets Vault skill for relevant checkpoint timing.
 
-```text
-pnpm secret:scan -- --staged
-```
-
-- For full local checks, run:
+- For an explicit full repository audit, run:
 
 ```text
 pnpm check
@@ -121,6 +120,6 @@ Before considering a change ready:
 - `Install.md` still protects non-empty folders.
 - `Seed/.gitignore` still blocks common secret and local-cache files.
 - `Seed/AGENTS.md` still tells agents where to edit skills.
-- `Templates/README.md` still says templates are future-facing unless templates have been deliberately added.
+- `Templates/README.md` distinguishes the optional startup hook from future project/app templates.
 - Support and troubleshooting guidance remain soft and low-pressure inside the seed.
 - No private `Planning/`, `context/`, `research/`, editor state, local note, or temporary material is tracked for public users.

@@ -1,26 +1,17 @@
 # Project Brief
 
-## Goal
+## Goal And Done Criteria
 
+State the useful outcome and how to recognize completion.
 
-## Owner
+## Inputs And Constraints
 
+Link relevant sources; separate confirmed facts from assumptions.
 
-## Why It Matters
+## Current Output
 
-
-## Inputs
-
-
-## Expected Output
-
-
-## Success Criteria
-
-
-## Assumptions
-
+Link the draft or deliverable and note any material limitation.
 
 ## Next Action
 
-
+State the next step, owner when relevant, and any decision needed.

@@ -1,15 +1,15 @@
 # Install Business AI Starter Kit
 
-Paste this whole block into Codex or Claude Code (Cowork) from the folder where you want your private AI workspace.
+Paste this whole block into Codex or Claude Code from the folder where you want your private AI workspace.
 
 ```text
 Set up my Business AI Starter Kit workspace from this repository.
 
 Source repository: https://github.com/V-Andriy/business-ai-starter-kit
 
-This kit supports Codex and Claude Code (Cowork) directly, and the same workspace can run in both at once. The instruction files are paired: `AGENTS.md` is canonical and Codex reads it; `CLAUDE.md` imports `AGENTS.md` so Claude Code reads the same rules. Skills are shared from `Agent-Instructions/Skills/` through `.agents/skills` (Codex) and `.claude/skills` (Claude Code). Run `pnpm skills:link` to create both symlinks.
+This kit supports Codex and Claude Code directly, using shared local files. Avoid concurrent edits to the same files. The instruction files are paired: `AGENTS.md` is canonical and Codex reads it; `CLAUDE.md` imports `AGENTS.md` so Claude Code reads the same rules. Skills are shared from `Agent-Instructions/Skills/` through `.agents/skills` (Codex) and `.claude/skills` (Claude Code). Run `pnpm skills:link` to create both symlinks.
 
-If you are running in a different AI coding harness, adapt the workspace to that harness. Identify the harness, read its relevant local or official documentation, map the starter-kit rules to its instruction, skill, automation, memory, and permission model, and solve compatibility issues yourself. Keep the user-facing behavior the same, but do not blindly apply Codex-specific setup when the harness needs a different mechanism.
+For Cowork or another AI harness, verify support before adapting the workspace. Identify the harness, read its relevant local or official documentation, map the starter-kit rules to its instruction, skill, automation, memory, and permission model, and solve compatibility issues yourself. Keep the user-facing behavior the same, but do not blindly apply Codex-specific setup when the harness needs a different mechanism.
 
 Use the source repository's `Seed/` folder as the workspace starter. If the source repository is not already available locally, clone it first into a temporary location or into `.business-ai-kit/source/` after confirming the target workspace folder is safe.
 
@@ -33,20 +33,19 @@ After copying, read these installed workspace files and treat them as the source
 - `AGENTS.md` (canonical rules; `CLAUDE.md` imports this file for Claude Code)
 - `Agent-Instructions/Setup-Plan.md`
 - `Agent-Instructions/Inbox.md`
-- `Agent-Instructions/Active-Threads.md`
-- `Agent-Instructions/Skills/`
+- Relevant skills only when `Setup-Plan.md` or the current task calls for them
 
 Run `Agent-Instructions/Setup-Plan.md` exactly as the setup checklist. When the setup plan points to a skill, follow that skill as the source of truth.
 
 Do not duplicate or improvise setup rules from memory. Follow the installed files.
 
-Complete `Setup-Plan.md` end to end. Do not restate skill rules inside the install flow.
+Complete the essential local checks and brief required user/business onboarding in `Setup-Plan.md`. Reuse information I already supplied, confirm a short profile summary, and make a useful first output along the way. Assistant naming is optional; do not force sensitive personal details.
 
-Setup may offer the optional Portable Workspace Context bridge after the user confirms durable personalization. Never prepare it from private files automatically, install a user-level skill, or copy context outside the workspace without showing the exact snapshot and getting explicit approval. Declining it does not limit normal workspace use.
+Set up one small weekly maintenance check as described in the installed skill. Explain its local scope and AI resource use, confirm day/time/timezone and required host consent, and record the verified schedule or a concrete blocker with manual weekly fallback. Use only the host's supported scheduler. Startup hooks and external backup remain optional. Use one agent and current model settings.
 
-Do not start project work, suggest first projects, build tools, or reorganize my material until `Setup-Plan.md` is complete or blocked on a specific decision. If I ask for other work during setup, acknowledge it, save it if useful, and return to the next setup step.
+Portable Workspace Context is optional after the required onboarding. Use the installed bridge skill only on request, with exact preview and approval before writing a snapshot outside the workspace. Do not enable it as a side effect of setup.
 
-Do not stop at "installation complete." Start the live onboarding conversation from `Setup-Plan.md`, ask one useful question at a time, briefly explain why each question matters, and adapt to my language.
+Do not stop at "installation complete." Deliver or begin the requested output. If I have not named an outcome, ask what would make this useful today.
 
 Keep `.business-ai-kit/source/` ignored by Git. Do not add analytics, telemetry, tracking, or background reporting.
 ```

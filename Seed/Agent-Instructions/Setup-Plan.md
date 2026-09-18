@@ -1,151 +1,111 @@
 # Setup Plan
 
-Purpose: temporary first-run checklist. Delete this file after setup is complete.
+Purpose: establish essential local safety, useful business context, and one
+small weekly maintenance check before marking first-time setup complete.
 
-Setup remains the active task until every required item is complete, declined, or recorded as a specific blocker. Do not start unrelated project work before then.
+## Essential Local Setup
 
-## Desired Result
+1. Confirm the workspace path and preserve existing files. If installation
+   needs a non-empty or unclear target, ask for a safe location before copying.
+2. Explain any cloud-sync or offloading risk for the chosen folder.
+3. Check Node.js LTS, Git, and pnpm. Explain any needed installation and use
+   the platform's supported installer. Use Corepack for pnpm when available;
+   npm is allowed only to bootstrap pnpm.
+4. Initialize local Git on `main` when possible and run `pnpm hooks:install`.
+5. Run `pnpm skills:link`; verify `.agents/skills` and `.claude/skills` point to
+   `Agent-Instructions/Skills/`. Keep `CLAUDE.md` importing `AGENTS.md`.
+6. Confirm `.env` and `.business-ai-kit/source/` are ignored. Run
+   `pnpm kit:update` if the public source cache is missing.
+7. Save coherent setup changes locally. The pre-commit hook scans the staged
+   snapshot automatically; follow `Skills/Secrets-Vault/SKILL.md` for any
+   missing hook, scan failure, or secret-bearing material.
 
-The user should finish setup with:
+Record actual results and concrete blockers in `Agent-State.md`. Do not run a
+separate full-workspace scan just because setup started.
+Codex and Claude Code are the supported instruction pairing. Check current
+documentation for other harnesses before claiming imports, hooks, skills, or
+scheduling work there. Startup hooks remain optional.
 
-- a calibrated assistant name and communication style
-- useful first-pass user and business context
-- local Git and secret scanning checked
-- shared skills available to the installed harnesses
-- optional cross-project portable context accepted, declined, or deferred
-- source cache checked
-- optional workspace checkpoint and private backup decided
-- a clear first useful outcome
+## Required First Conversation
 
-## Technical Setup
+Use a brief conversation to learn enough to help well. Reuse information
+already supplied or available in approved references; do not ask it again.
+Ask one or two closely related questions at a time. Explain why only when
+it is not obvious. Collect:
 
-1. Confirm the workspace path and that the target folder is safe.
-2. Warn before using iCloud Drive, Desktop, Documents, or another folder that may offload local files.
-3. Confirm `.business-ai-kit/source/` exists and is ignored, or create it with `pnpm kit:update`.
-4. Confirm Node.js LTS and pnpm are available.
-5. If pnpm is missing, use Corepack first. Use npm only as a temporary bootstrap fallback.
-6. Confirm local Git is initialized on `main`.
-7. Install the pre-commit secret scanner with `pnpm hooks:install` if needed.
-8. Run `pnpm skills:link` and confirm the harness can discover the canonical `Agent-Instructions/Skills/` folder.
-9. Offer `pnpm startup-hook:install` as an optional startup accelerator. Explain that it reads local workspace context and may require the tool to trust the hook.
-10. Record verified capabilities separately for each installed harness in `Agent-State.md`: subagents, background tasks, agent teams, worktrees, schedules, and available model roles. Leave unknown items blank.
-11. After durable personalization is confirmed, offer the optional Portable Workspace Context bridge. Explain that it copies only a separately reviewed snapshot into user-level skills; it never grants live workspace access. A decline is valid and does not limit normal workspace use.
+- the user's role and what the business or work does
+- the near-term outcome or problem the user wants help with
+- the current process, tools, and useful reference material
+- important constraints and privacy boundaries
+- preferred communication style
+- timezone and a suitable weekly maintenance day/time
 
-The standard links are `.agents/skills` for Codex and `.claude/skills` for Claude Code. If an older or different harness does not support the link, keep the canonical folder unchanged and adapt only its discovery mechanism.
+Assistant naming is optional. Do not require email, contact details, sensitive
+personal information, or a long biography. If the user prefers not to share
+an item, record that boundary and proceed with the stated limitation.
 
-## Start The Conversation
+Inspect supplied references before asking follow-up questions. If access fails,
+explain what is missing and offer an export or copied excerpt. For credentials,
+use `Skills/Secrets-Vault/SKILL.md` without repeating raw values.
 
-Make setup feel like useful onboarding, not a form.
+Show a short profile summary separating confirmed facts, assumptions, and
+unknowns. Ask the user to confirm or correct it before setup is complete.
+Save useful confirmed user facts in `User-Dossier.md`, business facts in
+`Business-Dossier.md`, and project detail in the relevant brief. Update
+`Soul.md` only for assistant identity and communication preferences.
 
-- Introduce the assistant as a practical partner for projects, decisions, research, drafts, workflows, and tools.
-- Explain that the workspace remembers useful context locally and keeps a Git change history.
-- Offer the starter name Bob and let the user choose another name.
-- Ask how the user wants the assistant to communicate.
-- Ask for one to three useful sources: website, LinkedIn, company page, document, screenshot, notes, proposal, writing sample, or voice explanation.
-- Ask one focused question at a time and explain briefly why it matters.
-- Respond to each answer before moving on.
+## First Useful Output
 
-Keep the introduction natural and adapted to the user's language. Do not use a long fixed script.
+Use onboarding to understand the requested outcome, then make a useful first
+draft promptly. Do not turn every answer into another profile question.
+A draft can be an onboarding milestone, but it does not replace the required
+profile confirmation or weekly maintenance setup.
 
-If the user is new to the tool, load `Agent-Instructions/Skills/AI-Tool-Learner/SKILL.md` and give only the next useful orientation tip.
+If no outcome is named, offer a small relevant choice: a customer message,
+options comparison, meeting action list, or process checklist.
+A one-off task needs no project scaffold. Use `Skills/Project-Planning/SKILL.md`
+for work that will continue across sessions.
 
-## Gather Useful Context
+## Weekly Maintenance Setup
 
-Collect only what will improve future work:
+Follow `Skills/Workspace-Heartbeat/SKILL.md` to configure one small weekly check.
+Explain its local scope, weekly cadence, AI resource use, and how to pause it.
+Confirm the timezone/day/time and any consent required by the host scheduler.
+Use the host's actual supported scheduling tool; do not fabricate capability
+or install an alternate scheduler silently.
 
-- user and assistant names
-- communication preferences
-- role and business context
-- active work, priorities, constraints, and opportunities
-- useful reference sources
-- public or client-facing privacy boundaries
-- the first outcome that would make the workspace useful
+Check for an existing matching schedule before creating one. Verify the saved
+configuration and record its id, scope, timezone, and next run in `Agent-State.md`.
+If scheduling is unavailable or consent is withheld, record the concrete blocker
+and a manual weekly fallback. Never label that fallback an active automation.
+The fallback is an explicit limitation, not a reason to invent unattended work.
 
-Do not ask the user to repeat information that can be found safely in supplied sources.
+## Optional Capabilities
 
-If a source cannot be accessed, explain what failed and offer the simplest fallback: supported browser access, screenshots, a PDF export, copied text, or a rough summary. Record an unresolved source only when it still matters.
+Offer only when relevant:
 
-Credentials, tokens, API keys, passwords, and private keys follow `Agent-Instructions/Skills/Secrets-Vault/SKILL.md`.
+- Private GitHub backup: `Skills/GitHub-Backup/SKILL.md`; external setup and
+  first push require approval. Local Git is enough for local continuity.
+- Startup context hook: opt-in via `pnpm startup-hook:install`; explain its
+  navigation hints and any host trust prompt before installation.
+- Feedback: `Skills/Kit-Feedback/SKILL.md`; external sharing requires approval.
 
-## Confirm Before Durable Personalization
+- Portable context: `Skills/portable-workspace-context/SKILL.md`; curate only
+  `Portable-Context.md` for cross-project use. Exact preview and approval are
+  required before installing or refreshing the user-level snapshot. It is not
+  a live link, and setup does not require enabling it.
 
-Before writing dossiers, show a compact preview:
+Keep the current model/settings by default. Extra trackers and agents are not
+setup requirements.
 
-```text
-Here is what I understood.
+## Close Setup
 
-About you:
-- ...
+Verify essential local checks, the confirmed short profile, and one verified
+weekly schedule or a documented scheduling blocker with manual weekly fallback.
+Record actual results without claiming unperformed checks passed. Keep setup
+partial if an essential safety check or profile confirmation remains unresolved.
 
-About the work or business:
-- ...
-
-Communication preferences:
-- ...
-
-Useful first outcome:
-- ...
-
-Unclear or assumed:
-- ...
-
-What should I correct, and what must stay out of public or client-facing work?
-```
-
-After confirmation, update only the relevant files:
-
-- `Soul.md` for assistant identity and relationship
-- `User-Dossier.md` for stable user context
-- `Business-Dossier.md` for broad work and business context
-- `Current-Focus.md` and `Active-Threads.md` for current work
-- `Workspace-Map.md` for useful structure
-- `Memory.md` for compact durable lessons
-- `Decisions.md` for accepted workspace decisions
-- `Agent-State.md` for setup facts, capabilities, permissions, and blockers
-
-## Optional Workspace Checkpoint
-
-Offer one low-noise scheduled checkpoint using `Agent-Instructions/Skills/Workspace-Heartbeat/SKILL.md`.
-
-Explain:
-
-- it reviews meaningful changes and the inbox
-- it stops quickly when there is no work
-- it leaves user-facing items in `Inbox.md`
-- it can consume model usage
-- it can be changed or disabled later
-
-Create it only with user approval. Multiple daily role-specific checkpoints are an advanced option, not a setup requirement.
-
-## Finish Setup
-
-1. Handle remaining setup items in `Inbox.md`.
-2. Offer optional private GitHub backup and use `GitHub-Backup/SKILL.md` if accepted.
-3. Explain what is local, what was saved, and what needs future approval.
-4. Ask once whether the user wants to send onboarding feedback. Nothing leaves the workspace without approval.
-5. Move handled setup items to `Outbox.md`.
-6. Run the final audit.
-7. Update `Active-Threads.md` and `Agent-State.md`.
-8. Delete this file.
-
-## Final Audit
-
-Verify or record a specific blocker for:
-
-- safe workspace path and any cloud-sync warning
-- ignored source cache
-- Node.js and pnpm
-- local Git on `main`
-- pre-commit scanner and passing `pnpm secret:scan`
-- skill discovery for installed harnesses
-- optional startup hook decision
-- verified orchestration capabilities
-- portable context bridge accepted, declined, deferred, or specifically blocked
-- checkpoint accepted, declined, or blocked
-- private GitHub backup accepted, declined, or blocked
-- assistant name and communication style
-- useful context and privacy boundaries
-- only real future items remaining in `Inbox.md`
-- a clean local commit when the scan passes
-
-Do not mark setup complete while an unrecorded required item remains.
+Move handled setup items from `Inbox.md` to `Outbox.md`; keep only real blockers
+or follow-ups. Remove setup from active threads when complete. Remove this
+temporary checklist only after completion; retain it for unresolved essentials.
+Tell the user what is ready, any fallback limitation, and the next useful action.

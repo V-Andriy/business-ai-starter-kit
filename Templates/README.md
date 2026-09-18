@@ -1,6 +1,6 @@
 # Templates
 
-Optional reusable templates live here.
+The optional startup hook lives here. Project and app templates remain future-facing.
 
 Templates are source-library material. The seed workspace does not depend on them during normal setup.
 
@@ -18,4 +18,4 @@ Do not force templates into work that is already simple. Use them when they save
 
 ## Available Templates
 
-- [Chat Start Accelerator Hook](Chat-Start-Accelerator-Hook/README.md) - optional Codex startup hook for faster workspace context loading.
+- [Chat Start Accelerator Hook](Chat-Start-Accelerator-Hook/README.md) - opt-in Codex/Claude Code hook with bounded metadata and navigation pointers.

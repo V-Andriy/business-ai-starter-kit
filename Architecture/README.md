@@ -27,13 +27,11 @@ update the implementation deliberately. Do not leave the flow ambiguous.
 ## Diagrams
 
 - [Full System Flow](full-system-flow.md) - end-to-end MVP flow from public repo to private workspace, setup, normal work, updates, templates, secrets, safety, and heartbeat.
-- [Orchestrated Work Flow](orchestrated-work-flow.md) - lead, worker, reviewer, model-role, worktree, evidence, integration, and fallback flow for substantial work.
-- [Portable Context Bridge](portable-context-bridge.md) - reviewed one-way snapshots, managed global consumers, multi-workspace aliases, and revocation boundaries.
 - [Repository Responsibilities](repository-responsibilities.md) - public source repo versus private user workspace ownership and copy/cache boundaries.
 - [Installed Workspace Model](installed-workspace-model.md) - files and folders expected in the private workspace after setup.
-- [First Setup Flow](first-setup-flow.md) - install, source-cache, onboarding, capability detection, optional checkpoint, and blocker recording.
-- [Self-Improvement Loop](self-improvement-loop.md) - optional checkpoint, inbox/outbox, active threads, memory, skills, signals, Git awareness, and safe autonomy limits.
-- [Templates Flow](templates-flow.md) - MVP placeholder behavior and future template review/application flow.
+- [First Setup Flow](first-setup-flow.md) - install, source-cache, essential checks, brief required onboarding, weekly maintenance, and a useful output.
+- [Self-Improvement Loop](self-improvement-loop.md) - one small weekly maintenance check with no no-op writes.
+- [Templates Flow](templates-flow.md) - optional startup hook and future project/app template boundaries.
 - [Update And Migration Flow](update-and-migration-flow.md) - source cache refresh, recovery, ownership classification, approval, scan, local commit, and logging.
 - [Safety Gates](safety-gates.md) - actions that require approval, secret handling, scanner use, and audit logging.
 - [Architecture Mind Map](architecture-mindmap.md) - compact brain map of the project logic.
@@ -47,3 +45,12 @@ update the implementation deliberately. Do not leave the flow ambiguous.
 Mermaid is the architecture source of truth until the project deliberately adopts
 a heavier architecture-as-code tool or a local visual layer such as the future
 Vibe Canvas concept.
+
+## Review And Acceptance
+
+- [Model and skill review](model-and-skill-review.md) - verified sources, design rationale, and manual acceptance scenarios.
+
+## Optional Cross-Project Work
+
+- [Portable context bridge](portable-context-bridge.md): exact-preview approval, detached snapshots, explicit consumer invocation, and revocation limits.
+- [Orchestrated work](orchestrated-work-flow.md): one-agent default with approved bounded workers, exclusive ownership, evidence, and integration.

@@ -1,9 +1,7 @@
 # CLAUDE.md
 
-This workspace's operating instructions are shared across AI harnesses.
-
-Claude Code, Cowork, and Codex all run from the same rules. The canonical
-instructions live in `AGENTS.md`. Read and follow that file as the source of
-truth, then load specific `Agent-Instructions/` files before acting.
+Claude Code imports the canonical workspace rules from `AGENTS.md`.
+Keep shared behavior there and load other context only when relevant.
+Cowork and other harnesses require a separate compatibility check.
 
 @AGENTS.md

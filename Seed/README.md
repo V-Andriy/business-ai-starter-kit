@@ -1,147 +1,100 @@
 # My AI Workspace
 
-This is your private Business AI Starter Kit workspace.
-
-Use it to organize business context, projects, workflows, research, documents, decisions, and AI-assisted work in one local folder.
-
-You do not need to manage the files manually. Ask the AI for the outcome you want; it should keep the workspace organized and explain only what matters.
-
-The AI should lead with the result and keep explanations practical. It should preserve important decisions, caveats, and next steps while trimming repetition and optional background.
+Use this private local folder for business drafts, research, decisions, and
+work you want to continue later. Ask for the outcome you need; the AI handles
+the files and explains what matters.
 
 ## Start Here
 
-Ask:
+Try one request with the inputs you already have:
 
 ```text
-Help me organize my current AI priorities and pick the first project.
+Compare these options and recommend one. Show the evidence and what is unknown.
 ```
-
-or:
 
 ```text
-Review my workspace and tell me the next useful step.
+Draft a clear customer follow-up using these notes. Do not send it.
 ```
-
-Good first inputs:
-
-- your website or LinkedIn profile
-- a messy note, transcript, or screenshot
-- a business idea you want to turn into a project
-- a workflow you repeat and want to make easier
-
-This workspace works in both Codex and Claude Code (Cowork). If your AI tool itself feels unfamiliar, ask:
 
 ```text
-Show me how to use this tool for this workspace in plain language.
+Turn these meeting notes into decisions and actions with owners and dates.
 ```
 
-The AI should explain only what helps the next step, such as voice or dictation, planning before building, reviewing changes, permissions, or using the tool from another device when available.
+```text
+Turn this repeated process into a short checklist someone else can follow.
+```
 
-## What The AI Should Do
+First-time setup includes a short conversation about your work, objective,
+process, constraints, privacy, and preferences. The AI reuses what you already
+shared and asks you to confirm a brief summary. Naming it is optional, and you
+can decline to share sensitive details. A useful draft follows promptly.
+A single draft needs no project structure; ongoing work starts with a brief.
 
-- ask only for real business decisions, missing context, or safety approvals
-- create project folders only when real work starts
-- keep decisions, memory, and next actions organized
-- protect secrets and private notes
-- suggest improvements, but ask before sharing anything outside the workspace
-- record useful maintenance in inbox/outbox so you can see what happened while you were away
-- coordinate focused AI workers for large tasks while one lead agent checks and integrates the result
+## How It Works
+
+- Codex reads [AGENTS.md](AGENTS.md); Claude Code imports it via [CLAUDE.md](CLAUDE.md).
+- Relevant context loads when needed, with one agent by default.
+- The AI keeps local history; the commit hook scans staged content once.
+- Secret-bearing changes and external handoffs get relevant checks, not routine scans.
+- Extra trackers, hooks, and connectors are not prerequisites.
+- Setup includes one small weekly local maintenance check.
+- Cowork and other tools need a compatibility check before using tool-specific features.
+
+If the tool is unfamiliar, ask for the next step in plain language. You do not
+need a full software tour before doing useful work.
 
 ## Main Areas
 
-- `Agent-Instructions/` - the AI's operating context, memory, skills, safety notes, and workspace state.
-- Project folders - created in the root when real work starts.
-- `.business-ai-kit/` - internal source reference for updates and kit instructions.
+- `Agent-Instructions/`: context, skills, handoffs, and workspace settings.
+- Project folders: ongoing work, with sources and outputs kept together.
+- [.business-ai-kit/source.md](.business-ai-kit/source.md): source-cache reference for updates.
 
-## Useful Requests
+The AI should update only the files affected by new information. Private notes
+are not automatically suitable for customer-facing outputs.
 
-Ask the AI:
+## Maintenance And Updates
 
-```text
-Help me set up my first business project in this workspace.
-```
+Setup confirms the day/time and timezone for one weekly maintenance check,
+explains its scope, and obtains any host consent. If scheduling is unavailable,
+the AI records a blocker and a manual weekly fallback. Unchanged state stays
+quiet. You can ask for an extra manual review. AI checks consume usage;
+a local activity hint does not avoid the cost of starting an AI run.
 
-or:
-
-```text
-Review my workspace and tell me the next useful step.
-```
-
-You do not need to manage the files manually. The AI should keep the workspace organized, ask only for real business decisions or safety approvals, and turn useful context into project files, decisions, memory, or reusable workflows.
-
-```text
-Turn this rough idea into a project plan and first draft.
-```
-
-```text
-Use orchestrator mode for this project. Split only the independent parts, protect parallel file changes, verify the work, and return one clear result.
-```
-
-```text
-Review these notes and tell me what decisions I need to make.
-```
-
-```text
-Draft feedback for Andrii about what worked or what was confusing.
-```
-
-## Updating The Kit
-
-Ask the AI:
+To review kit improvements, ask:
 
 ```text
 Update my Business AI Starter Kit.
 ```
 
-The AI will refresh `.business-ai-kit/source/`, review useful changes, and ask before changing your workspace files.
+The AI refreshes the source cache, reviews changes, preserves your context,
+and asks before changing sensitive behavior or user-owned files.
 
-## Use Approved Context In Other Projects
+## Portable Context Across Projects
 
-You can optionally create a small, reviewed snapshot of reusable preferences and business context for Codex or Claude Code to use in other local projects. It does not expose this workspace, dossiers, private notes, secrets, or project folders.
+You can optionally prepare a small approved snapshot for use in other projects.
+The bridge exports only `Agent-Instructions/Portable-Context.md`, never live
+access to dossiers, private notes, projects, or credentials. Each install or
+refresh needs an exact preview, a relevant secret check, and explicit approval.
+It does not refresh automatically or run during weekly maintenance.
 
-Ask:
+Invoke `$business-ai-workspace` in Codex or `/business-ai-workspace` in Claude
+Code to load the installed consumer. Multiple workspaces use distinct aliases.
+Target-project rules remain authoritative. Local storage is not local inference:
+the active provider can process the approved snapshot when you invoke it.
 
-```text
-Prepare my Portable Workspace Context and show me exactly what would be available in other projects.
-```
+The bridge can also create a detached Cowork ZIP for manual upload. Verify the
+current Cowork skill interface and obtain separate approval before uploading.
+Disabling a local snapshot prevents future reads but cannot erase existing
+conversation context or copies already uploaded elsewhere.
 
-The AI will help curate `Agent-Instructions/Portable-Context.md`, run a secret scan, and ask before installing or refreshing any user-level skill. Nothing is enabled automatically. In another project, explicitly ask:
 
-```text
-Use my Business AI workspace context for this task.
-```
+## Privacy And Support
 
-Codex and Claude Code can use managed local copies. Cowork requires a separate ZIP upload because its personal skills are managed in the app. Disable or uninstall the bridge from this source workspace when you no longer want future chats to load it; existing conversation history cannot be recalled.
+The kit adds no analytics or background reporting. The AI tool you use has
+its own data handling terms. External sharing, publishing, account connections,
+spending, and destructive actions need your authorization.
 
-The files are stored locally, but invoking the skill allows the active Codex or Claude service to process the approved context under that provider's data controls. Creating a Cowork ZIP stays local; uploading it is a separate external-sharing action and sends that detached copy to the user's Claude account.
-
-## Privacy
-
-This workspace is local-first. There is no analytics, telemetry, tracking, or background reporting.
-
-If something here could improve the public kit for other users, the AI should ask before preparing feedback or a pull request.
-
-## Feedback
-
-Andrii welcomes practical feedback from early users.
-
-Useful feedback:
-
-- what you tried to build
-- where setup or instructions were confusing
-- what workflow, document, automation, app, or template would help you
-- what the AI did well
-- what made the workspace hard to use
-
-Ask the AI:
-
-```text
-Draft feedback for Andrii about what I tried to build and what would make this kit more useful.
-```
-
-## Support
-
-If you are stuck or frustrated after trying the AI's guidance, you can contact Andrii:
-
-- LinkedIn: https://www.linkedin.com/in/andrii-veselov/
-- Website: https://scalebound.app
+Local Git is the default. Private GitHub backup and feedback are optional.
+For help or feedback, contact Andrii on
+[LinkedIn](https://www.linkedin.com/in/andrii-veselov/) or
+[scalebound.app](https://scalebound.app).

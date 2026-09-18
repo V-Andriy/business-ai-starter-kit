@@ -7,9 +7,11 @@ Purpose: record durable workspace decisions.
 - This workspace uses local Git by default.
 - Private GitHub backup is optional and user-approved.
 - Real secrets are not stored in markdown files.
+- Cross-project context uses only an explicitly approved snapshot of `Portable-Context.md`; no live access or automatic refresh.
 - `Agent-Instructions/Skills/` is the canonical skills folder.
-- A workspace checkpoint is optional and user-approved.
-- When enabled, the checkpoint starts with a lightweight activity gate and stops when there is no meaningful work.
+- First-time setup includes a short confirmed business profile and one small weekly maintenance check.
+- Weekly and manual reviews use the smallest relevant scope; unchanged state creates no logs.
+- If host scheduling is unavailable, record a blocker and manual weekly fallback.
 - `Agent-Instructions/Soul.md` stores assistant identity and communication behavior.
 - Project-local `AGENTS.md` files may be added when a project needs recurring instructions.
 

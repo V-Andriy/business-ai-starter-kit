@@ -16,7 +16,7 @@ AI workspaces in Codex and Claude Code.
 
 ## Before Submitting Changes
 
-Run:
+For an explicit repository audit, run:
 
 ```text
 pnpm check
@@ -39,5 +39,4 @@ documentation graph and file sizes fully clean.
 - `Seed/` contains real starter files copied into private user workspaces.
 - `Seed/Agent-Instructions/Skills/` is the canonical skills folder.
 - `Seed/Scripts/` should stay small, local, auditable, and dependency-light.
-- `Templates/` is reserved for future reusable templates and should stay empty
-  except documentation until templates are intentionally introduced.
+- `Templates/` contains the optional startup hook. Project/app templates remain future work.

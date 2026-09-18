@@ -1,127 +1,132 @@
 # Business AI Starter Kit
 
-Business AI Starter Kit helps executives, business owners, operators, and professionals set up a private local AI workspace in Codex or Claude Code (Cowork). The same workspace runs in both, and you can switch between them anytime.
+A private local workspace for business work with Codex or Claude Code.
+Ask for an outcome, get a useful first draft, and keep just enough context to
+continue later. Status: alpha, for guided pilots and early users.
 
-It is not a prompt pack. It gives the AI a simple workspace structure, clear operating rules, safety defaults, and reusable workflows so the user can organize real business work without learning developer tooling first.
+## Start With Useful Work
 
-Status: alpha open-source MVP for guided pilots and first users.
+Use the kit to compare options, write business material, turn meeting notes
+into actions, or document a repeatable process. It provides a small set of
+workflows, local change history, secret scanning, and clear privacy boundaries.
 
-This project is early. Feedback is welcome, especially when it points to clearer setup, better workflows, useful starter templates, or simpler instructions.
-
-## What It Does
-
-- Creates a private local workspace from the files in `Seed/`.
-- Runs in Codex and Claude Code (Cowork) from one shared workspace, so you are not locked into a single tool.
-- Helps the AI start a live onboarding conversation instead of ending at a technical install.
-- Teaches first-time users small practical habits in plain language, matched to the tool they are in, including voice or dictation, planning, review, permissions, and mobile access when relevant.
-- Keeps user context, decisions, memory, inbox/outbox, and reusable workflows organized.
-- Can install an optional, explicit-invocation global skill that carries only a separately approved context snapshot into other local projects.
-- Adds safety defaults for secrets, local Git, and private files.
-- Creates project folders only when real work starts.
-- Uses one lead agent for the outcome and adds bounded worker or reviewer passes only when they materially improve the result.
-- Supports an optional low-noise checkpoint that reviews meaningful changes, keeps state current, and stops quickly when there is no work.
-- Uses opt-in feedback only. There is no analytics, telemetry, tracking, or background reporting.
+- One agent and the current model settings are the default.
+- Context and skills load when relevant to the task.
+- A brief required onboarding establishes business context and confirms a short profile.
+- Ongoing projects start with one brief and the actual output.
+- Setup includes one small weekly maintenance check; startup hooks remain optional.
+- Local Git is the default; external backup needs approval.
 
 ## Quick Start
 
-1. Open [Codex](https://openai.com/codex/) in ChatGPT desktop, the CLI, or your IDE, or open [Claude Code](https://www.anthropic.com/claude-code) (Cowork).
-2. Create or open the folder where you want your private AI workspace.
-3. Open a new chat in that folder.
-4. Paste this message:
+1. Open Codex or Claude Code in a folder for your private workspace.
+2. Paste this message:
 
 ```text
-Set up my Business AI Starter Kit workspace using the official install instructions:
-
+Set up my Business AI Starter Kit workspace using the official instructions:
 https://raw.githubusercontent.com/V-Andriy/business-ai-starter-kit/refs/heads/main/Install.md
 
-Follow that file exactly. After installation, guide me through the first onboarding conversation.
+Follow the folder safety checks, then help me produce a useful first output.
 ```
 
-5. Let the AI guide you. It will inspect the folder, set up the workspace, and ask for a few useful links, files, screenshots, notes, or a voice recording so it can understand you and your work.
+The agent checks the folder before copying anything, prepares local tools and
+safety checks, and asks what would make the workspace useful today. Existing
+files are not overwritten without approval. A short conversation covers your role,
+business objective, current process, constraints, privacy, and communication
+preferences. The agent reuses what you already shared and confirms its summary.
+Naming the assistant is optional; sensitive personal details are not required.
 
-The AI will inspect the folder, copy `Seed/`, initialize local Git, install safety hooks, link skills for your tool, create a private source cache, and explain what it is doing in plain language. Then it will start a real conversation: introduce itself, ask how you want it to communicate, invite you to share a few useful business sources, and adapt from how you naturally communicate.
-
-After reviewing the sources, the AI should show a short dossier preview for you to confirm or correct before it writes durable user and business context into the workspace.
-
-The first useful request after setup is:
+Try a concrete request:
 
 ```text
-Help me organize my current AI priorities and pick the first project.
+Compare these three suppliers against these requirements and give me a short
+recommendation with sources and open questions.
 ```
-
-For a larger project, ask:
 
 ```text
-Use orchestrator mode. Break this into safe workstreams, delegate independent parts when useful, verify the results, and give me one integrated outcome.
+Turn these meeting notes into decisions, open questions, and owner/action/date
+items. Mark missing owners or dates rather than guessing.
 ```
 
-The kit adapts to the models and agent features available in the current tool. It does not require premium models, agent teams, or experimental multi-agent features for normal work.
+## What Stays Simple
+
+A quick draft needs no project folder. Work that continues across sessions gets
+a small project brief; extra trackers are added only when needed. The agent
+reads the relevant sources rather than every dossier and log at startup.
+
+Setup includes one weekly local maintenance check with confirmed timing and
+host consent. It stays quiet when nothing meaningful changes. If the host
+cannot schedule it, the agent records a blocker and a manual weekly fallback.
+Manual reviews are also available. AI checks consume usage when they run. The kit
+cannot guarantee a particular monthly-plan allowance, token saving, or price.
+A local activity gate helps narrow a review after it starts; it is not a way
+to avoid the cost of launching an AI run.
+
+## Tool Compatibility
+
+Codex uses `AGENTS.md`; Claude Code imports it from `CLAUDE.md`. Both use the
+canonical skills folder through their respective links. Avoid simultaneous
+edits to the same files. Cowork is a separate product surface: verify its
+current support before assuming Claude Code imports, hooks, or skills work
+there. Other harnesses also need a documentation-based compatibility check.
+
+See the [model and skill review](Architecture/model-and-skill-review.md) for
+sources, design decisions, and manual acceptance scenarios.
 
 ## Portable Context Across Projects
 
-After onboarding, users can ask the workspace to prepare Portable Workspace Context. The bridge copies one reviewed file into self-contained user-level skills for Codex and Claude Code; Cowork can receive the same snapshot as a manually uploaded skill package. It supports several source workspaces through unique aliases.
+You can optionally prepare a small approved snapshot for use in other projects.
+The bridge exports only `Agent-Instructions/Portable-Context.md`, never live
+access to dossiers, private notes, projects, or credentials. Each install or
+refresh needs an exact preview, a relevant secret check, and explicit approval.
+It does not refresh automatically or run during weekly maintenance.
 
-This is deliberately not live workspace access. The consumer cannot read dossiers, private notes, projects, `.env`, queues, or the source workspace. Install and refresh require an exact preview, a secret scan, and explicit approval. The consumer runs only when the user asks for it, treats the target project's instructions as authoritative, and cannot write back.
+Invoke `$business-ai-workspace` in Codex or `/business-ai-workspace` in Claude
+Code to load the installed consumer. Multiple workspaces use distinct aliases.
+Target-project rules remain authoritative. Local storage is not local inference:
+the active provider can process the approved snapshot when you invoke it.
 
-Snapshots are stored locally, but explicit invocation lets the active AI service process the approved content under that provider's data controls. A Cowork package stays local until the user separately uploads it to their Claude account.
+The bridge can also create a detached Cowork ZIP for manual upload. Verify the
+current Cowork skill interface and obtain separate approval before uploading.
+Disabling a local snapshot prevents future reads but cannot erase existing
+conversation context or copies already uploaded elsewhere.
 
-From another project, invoke `$business-ai-workspace` in Codex or `/business-ai-workspace` in Claude Code. In Cowork, enable the uploaded skill and explicitly ask Claude to use the Business AI workspace context.
 
-## Share
+## Privacy And Recovery
 
-To share Business AI Starter Kit with a friend, send them this repository and the install prompt below.
+Your workspace is separate from this public repository. Keep private business
+context, client files, notes, and credentials there. Secret scanning reduces
+accidental exposure; it does not replace reviewing an external handoff.
 
-Repository:
-
-```text
-https://github.com/V-Andriy/business-ai-starter-kit
-```
-
-Install prompt:
-
-```text
-Set up my Business AI Starter Kit workspace using the official install instructions:
-
-https://raw.githubusercontent.com/V-Andriy/business-ai-starter-kit/refs/heads/main/Install.md
-
-Follow that file exactly. After installation, guide me through the first onboarding conversation.
-```
-
-## Privacy
-
-Your private workspace is separate from this public repository. Business context, client files, `.env`, private notes, and project work should stay in the private workspace.
-
-Portable Context is optional. Its installed snapshots are private copies in the user's home folder and remain available to supported local harnesses until disabled or removed. Removing a snapshot cannot erase content already loaded into an existing conversation.
-
-Feedback to the public kit is optional. If the AI notices a useful improvement, it should ask before preparing a LinkedIn message or a small pull request.
-
-## Help
-
-If you get stuck, something feels too technical, or you want help shaping what to build with this workspace, contact Andrii. Short feedback is welcome: what worked, what was confusing, what you tried to build, and what would make the kit more useful.
-
-- LinkedIn: https://www.linkedin.com/in/andrii-veselov/
-- Website: https://scalebound.app
+The kit adds no analytics, telemetry, or background reporting. Your chosen AI
+tool and any explicitly connected service have their own data handling terms.
+The agent asks before external sharing, publishing, account connections,
+spending, or destructive actions. Feedback and private GitHub backup are optional.
 
 ## Repository Map
 
-- `Install.md` - short external install instruction for Codex and Claude Code.
-- `Seed/` - files copied into a user's private workspace.
-- `Seed/Scripts/` - helper scripts copied into the user workspace.
-- `Templates/` - reserved for future project, app, and skill templates.
-- `Architecture/` - Mermaid architecture diagrams for maintainers and contributors.
-- `SECURITY.md` - security reporting and secret-handling notes.
-- `CONTRIBUTING.md` - contribution and release-check guidance.
+- [Install.md](Install.md): external setup instruction.
+- [Seed/](Seed/README.md): real starter files copied to a private workspace.
+- [INDEX.md](INDEX.md): file and workflow navigation.
+- [ARCHITECTURE.md](ARCHITECTURE.md): system model and detailed diagrams.
+- [Templates/](Templates/README.md): optional startup hook; project/app templates remain future work.
+- [SECURITY.md](SECURITY.md): security reporting and secret handling.
+- [CONTRIBUTING.md](CONTRIBUTING.md): contribution and release checks.
 
-## MVP Boundaries
+Maintainers use `pnpm check` for audit and secret scans and `pnpm check:context`
+for the isolated startup-hook and activity-gate checks. `pnpm check` is an
+explicit repository audit with a full public-file secret scan. Ordinary
+`pnpm secret:scan` checks changed files; the commit hook checks staged content
+once. Routine read-only work does not need scanning.
 
-This version focuses on install, private workspace behavior, safety, orchestration, opt-in portable context, update flow, checkpoint maintenance, project organization, and feedback.
+## Boundaries And Support
 
-Project templates, app templates, full external-runtime compatibility, all secret-provider adapters, a UI, SaaS backend, and full autonomous project execution are intentionally deferred.
+The kit focuses on useful business outputs, local continuity, safety, and
+reviewed updates. It does not add a SaaS backend, UI, or unattended project
+execution. Project and app templates remain outside the current scope.
 
-The private user workspace is local-first by default. Private GitHub backup can be added after setup if the user approves it.
+For practical feedback or help, contact Andrii on
+[LinkedIn](https://www.linkedin.com/in/andrii-veselov/) or
+[scalebound.app](https://scalebound.app). Nothing is sent automatically.
 
-## License
-
-Business AI Starter Kit is licensed under the [Apache License 2.0](LICENSE).
-
-Copyright 2026 Andrii Veselov.
+Licensed under [Apache License 2.0](LICENSE). Copyright 2026 Andrii Veselov.

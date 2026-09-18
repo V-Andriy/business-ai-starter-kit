@@ -4,13 +4,13 @@ Purpose: what matters right now.
 
 ## Active Priorities
 
-- Complete first-run assistant calibration and setup.
-- Build a first useful understanding from user-provided references.
-- Choose the first useful business project or workflow.
+- Complete essential local safety checks.
+- Deliver the first useful output the user wants.
+- Complete brief required user/business onboarding and weekly maintenance setup.
 
 ## Recommended Next Action
 
-Start with assistant name, style, technical detail level, and reference collection. Inspect references first, then show the user a first dossier preview and ask what is wrong or missing.
+Follow the short setup conversation, reusing supplied context. Confirm the profile and weekly maintenance timing, then close setup and continue the useful output.
 
 ## Watch Items
 

@@ -18,6 +18,7 @@
     "bridge:package:cowork": "node Scripts/knowledge_bridge.mjs package-cowork --workspace .",
     "secret:scan": "node Scripts/secret_scan.mjs",
     "secret:scan:staged": "node Scripts/secret_scan.mjs --staged",
-    "heartbeat:gate": "node Scripts/heartbeat_gate.mjs --workspace ."
+    "heartbeat:gate": "node Scripts/heartbeat_gate.mjs --workspace .",
+    "secret:scan:all": "node Scripts/secret_scan.mjs --all"
   }
 }

@@ -15,6 +15,6 @@ Purpose: help the AI navigate this workspace without scanning everything every t
 
 ## Projects
 
-No project folders yet. Create one only when real work starts.
+No project folders yet. Create one for ongoing work or explicit project organization.
 
-When a project will continue across sessions, add a short project-local `AGENTS.md` so future agent sessions can load the right context when working inside that folder.
+Start ongoing projects with a brief and the actual output. Add project-local `AGENTS.md` only when recurring rules differ from workspace defaults.

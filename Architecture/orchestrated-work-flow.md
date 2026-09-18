@@ -10,9 +10,9 @@ flowchart TD
   Frame --> Shape{"Smallest useful execution shape"}
 
   Shape -- "Sequential or tightly coupled" --> Solo["Lead works directly"]
-  Shape -- "Independent bounded tracks" --> NativeSubagents{"Native subagents available?"}
+  Shape -- "Explicitly approved independent tracks" --> NativeSubagents{"Native subagents available?"}
   Shape -- "Workers must coordinate" --> NativeTeam{"Agent team available and approved?"}
-  Shape -- "Large repeated pattern" --> Workflow["Scripted workflow or batch"]
+  Shape -- "Authorized repeated pattern" --> Workflow["Scripted workflow or batch"]
 
   NativeSubagents -- "Yes" --> Subagents["Focused subagents"]
   NativeSubagents -- "No" --> Sequential["Sequential role passes"]
@@ -38,7 +38,7 @@ flowchart TD
   Review -- "No" --> Integrate["Lead integrates in dependency order"]
   Reviewer --> Integrate
 
-  Integrate --> Validate["Run relevant tests, scan, and safety gates"]
+  Integrate --> Validate["Run relevant checks and Secrets Vault checkpoints"]
   Validate --> Result{"Success criteria met?"}
   Result -- "No, local fix remains" --> Lead
   Result -- "No, decision or approval needed" --> Inbox["Record clear user decision in Inbox"]
@@ -47,18 +47,14 @@ flowchart TD
 
 ## Role Policy
 
-- Lead: strongest practical reasoning available for decomposition, ambiguity,
-  integration, and final synthesis.
-- Worker: balanced capability for implementation, research, and tool use.
-- Fast worker: efficient capability for bounded search, classification, and
-  deterministic processing.
-- Reviewer: fresh strong context for independent verification when the risk
-  justifies it.
+One agent and the current model/settings are the default. Delegation requires
+an explicit request or approved bounded plan, including its additional usage.
+The lead owns decomposition and integration; workers own bounded outputs; a
+reviewer checks evidence independently when warranted and authorized.
 
-Model names are examples, not architecture. The harness may select models by
-role, inherit one model for every agent, or provide no native subagents. The
-workflow falls back to sequential role passes without changing the safety or
-evidence requirements.
+Verify native capabilities before selecting subagents, teams, workflows, or
+worktrees. If unavailable, use sequential passes with the same ownership and
+evidence requirements. Do not upgrade models or reasoning by role automatically.
 
 ## Boundaries
 
@@ -69,7 +65,6 @@ evidence requirements.
 - When portable context is used, the lead loads the selected snapshot and gives
   workers only the minimum relevant excerpt instead of distributing the full snapshot.
 - Parallel writers need non-overlapping ownership or worktree isolation.
-- Claude Code agent view is a Research Preview; agent teams are experimental
-  and disabled by default. OpenAI Responses API Multi-agent is beta. The kit
-  does not depend on these features.
+- Check current host documentation before using experimental orchestration
+  features. None is required for normal workspace work.
 - Persistent cross-harness agent networking remains outside the MVP.

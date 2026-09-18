@@ -1,189 +1,117 @@
 ---
 name: workspace-heartbeat
-description: Use for a low-noise scheduled workspace checkpoint that reviews meaningful changes, maintains durable state, and hands important findings to the next live conversation.
+description: Use to configure and run the required small weekly workspace maintenance check, or a requested manual review.
 ---
 
 # Workspace Heartbeat
 
-The heartbeat is a maintenance checkpoint, not permission to start new project work.
+Keep maintenance narrow and useful. First-time setup includes one small weekly
+check. Configure it through the actual host scheduler after confirming timing
+and required consent; use a documented manual weekly fallback if unavailable.
+Follow `../../../AGENTS.md` for safety, local history, and context handling.
 
-Its job is to notice meaningful changes, keep durable state usable, and leave important user-facing items in `Inbox.md`.
+## Choose The Scope
 
-## Default Shape
+For a manual request, identify the issue or folder the user wants checked.
+The setup schedule runs once weekly and covers local workspace continuity:
+actionable inbox changes, stale ongoing-work pointers, and confirmed context
+that needs a small correction. Confirm day/time, timezone, and host consent.
+Explain how to pause it and that AI runs consume the
+host's usage allowance or credits; a local activity gate inside an AI run does
+not prevent the cost of starting that run.
 
-Use one scheduled checkpoint by default. Offer multiple role-specific checkpoints only when the workspace has enough activity to justify their usage and maintenance cost.
+Use the current configured model and settings unless the user requests a
+change. Do not increase the cadence or expand the scope without approval.
+Check for an existing matching automation before creating one.
+Use the host's supported scheduling tool and verify the saved configuration.
+Record the verified id, scope, timezone, and next run in `Agent-State.md`; log
+setup once. If the host cannot schedule it or consent is withheld, record the
+blocker and manual weekly fallback. Do not claim an automation was created.
 
-A checkpoint must:
+A general maintenance request does not authorize project execution, external
+research, account connections, or instruction rewrites. Keep those outside
+the run unless explicitly included in the approved scope.
 
-1. Load `AGENTS.md` and the current workspace state.
-2. Run the activity gate.
-3. Stop quickly when nothing meaningful changed.
-4. Make only low-risk in-scope maintenance changes.
-5. Leave questions, warnings, recommendations, and approvals in `Inbox.md`.
-6. Keep one compact audit entry.
+Never prepare, install, refresh, package, remove, or broaden portable context
+from maintenance. If verified evidence shows a stale snapshot, leave one
+proposal for the next live conversation and its exact-preview approval.
+Use one agent; routine weekly maintenance does not authorize worker teams.
 
-## Model Routing
+## Smallest Useful Check
 
-Do not always use the strongest available model.
+1. Read the approved scope and the relevant status or source only.
+2. Inspect `git status --short` when file changes matter to the review.
+3. Use `pnpm heartbeat:gate` if an activity snapshot will help choose which
+   files need inspection. It is an activity hint, not a complete activity record
+   or an AI billing control. A false `needs_deep_review` does not override an
+   explicit request or due deadline; clean commits may still need scoped review.
+4. Read only changed or relevant sections. Do not load every dossier, log,
+   project, or chat history for a routine check.
+5. Stop when there is no meaningful new evidence or actionable change.
 
-- Use a fast or efficient model for the activity gate, simple classification, and deterministic cleanup.
-- Use a balanced worker for ordinary state maintenance.
-- Use a strong reasoning model only when evidence supports a difficult synthesis or instruction review.
-- Use a fresh reviewer for a broad or behavior-changing instruction proposal.
+Old unanswered decisions are not new activity. Logs created by maintenance
+are not a reason to launch another broad review. Do not browse for something
+to report or invent improvements to justify a run.
 
-If the scheduling surface cannot route models by stage, choose a balanced default and escalate only in a live task. Never require a premium model or experimental orchestration feature for the heartbeat.
+## Allowed Work
 
-## Activity Gate
+Within the approved scope, a review may:
 
-Run:
+- correct a stale pointer or status using verified evidence
+- consolidate duplicate handoffs without losing their source detail
+- capture a confirmed preference or lesson in its owning file
+- identify a concrete blocker or changed decision for the user
 
-```text
-pnpm heartbeat:gate
-```
+Change only the owning file. Avoid copying the same status into dossiers,
+focus, threads, logs, and project trackers. Use project pointers when enough.
+Do not close work merely because the user has not answered. Mark it waiting
+or paused; close only when complete or abandoned by the user.
 
-Then inspect only enough evidence to decide whether useful work exists:
+For related repositories, verify their current state before reporting a
+pending action. Do not modify those repositories under a workspace review.
+Use strong evidence for any approved durable instruction edit: an explicit
+correction, repeated observed problem, or verified documentation.
 
-- `Inbox.md`
-- `Current-Focus.md`
-- `Active-Threads.md`
-- `Agent-State.md`
-- `Signals/Incoming.md`
-- `git status --short`
-- recent relevant workspace or session changes when available
+## No Change Means No Write
 
-An unchanged pending decision is not new activity.
+When nothing meaningful changed:
 
-## Modes
+- write no automation log, inbox item, status refresh, or commit
+- send no routine notification from a scheduled run
+- stop; for a manual review, report the requested findings, including unchanged
+  pending items when relevant. Say no action is needed only after verifying it
 
-### No-Op
+For a meaningful change, keep one compact audit entry in `Automation-Log.md`
+with the result and relevant file pointer. Use `Improvement-Log.md` instead
+for a substantive skill improvement; do not duplicate the narrative.
+Follow the root Git rules for a completed local maintenance batch. Secret
+scanning follows `../Secrets-Vault/SKILL.md`; read-only reviews and unchanged
+runs do not trigger a scan.
 
-Use when there is no meaningful change or action.
+## User Handoff
 
-- Do not rewrite state files.
-- Do not create a new inbox item.
-- Append at most one short no-op entry to `Automation-Log.md`.
-- Stop.
+Put a new decision, failure, or required action in `Agent-Instructions/Inbox.md`
+with enough context to explain why it matters and a link to details.
+Keep unchanged questions untouched. Do not repeatedly notify the user.
+An automation chat does not prove the user saw the handoff. Move it to
+`Outbox.md` only after resolution or an explicitly recorded stale outcome.
 
-### Triage
+Never infer permission from an unattended user being unavailable. Stop before
+an action outside the saved authorization and record the needed decision.
 
-Use when new information needs classification or handoff.
+## Scheduling Prompt
 
-- Group duplicate inbox items.
-- Mark stale time-sensitive items clearly.
-- Move handled items to `Outbox.md` only when delivery rules are satisfied.
-- Leave a compact decision, risk, or blocker for the live agent.
-
-### Maintenance
-
-Use for factual state drift.
-
-- Refresh stale pointers in current focus, active threads, workspace map, or project next actions.
-- Add confirmed durable context to the correct dossier or memory file.
-- Keep the change smaller than the evidence.
-
-### Improvement
-
-Use only with strong evidence of repeated friction or an accepted better workflow.
-
-- Patch the narrowest workspace-owned skill or instruction.
-- Do not rewrite broad rules from one weak signal.
-- Log the evidence and the improvement in `Improvement-Log.md`.
-- Leave broad, risky, or user-owned instruction changes as a proposal.
-
-### Escalation
-
-Use when the next action crosses an approval boundary, expands project scope, needs a user decision, or cannot be completed safely.
-
-- Do not perform the action.
-- Write one clear item to `Inbox.md`: what happened, why it matters, and what decision is needed.
-- Record the blocker in the relevant active thread.
-
-## Allowed Maintenance
-
-Without new approval, a checkpoint may:
-
-- inspect local workspace state
-- update factual status and pointers
-- consolidate duplicate queue items
-- move genuinely handled work to the outbox
-- add a compact confirmed memory or dossier fact
-- fix a small broken local reference
-- improve a workspace-owned skill from strong repeated evidence
-- make a coherent local commit after a clean scan
-- push to an already approved private backup remote
-
-The approval boundaries in `AGENTS.md` always apply. A scheduler, stronger model, or subagent does not expand authorization.
-
-Never prepare, broaden, install, refresh, package, or remove Portable Workspace Context from a checkpoint. If the local snapshot appears stale, leave a proposal in `Inbox.md`; the next live conversation must show the exact preview and obtain approval.
-
-## Orchestration
-
-Most checkpoints should use one agent.
-
-Use a focused read-only subagent only when an independent review would materially improve a difficult instruction or state diagnosis. Do not start agent teams, high-concurrency modes, dynamic workflows, or project implementation from a routine heartbeat.
-
-Ephemeral worker state belongs in the harness. Use `Signals/` only for durable pointers that must survive into another session or automation.
-
-## Git And Evidence
-
-- Check Git status before writing.
-- Preserve user changes and unrelated files.
-- Base updates on current files, not assumptions from old logs.
-- Stage only the intended files, run `pnpm secret:scan:staged`, then commit.
-- Commit only a coherent maintenance change.
-- Do not push unless a private backup remote is already configured and approved.
-
-## User Delivery
-
-Automation output is not delivered user communication.
-
-Put anything the user must see in `Inbox.md`. Include:
-
-- discovery or status
-- practical consequence
-- requested decision or attention
-- relevant file or project pointer
-
-The next live agent must surface the item before marking it handled.
-
-## Default Scheduled Prompt
+Adapt this to the approved scope; leave schedule and model in the tool config:
 
 ```text
-Run the Business AI Starter Kit workspace checkpoint.
-
-Read AGENTS.md, then load and follow Agent-Instructions/Skills/Workspace-Heartbeat/SKILL.md. Run pnpm heartbeat:gate, inspect the required state and git status, and choose exactly one mode: No-Op, Triage, Maintenance, Improvement, or Escalation.
-
-Stay within the current user authorization and the approval boundaries in AGENTS.md. Do not start new project work. Keep user-facing findings in Agent-Instructions/Inbox.md because this automation chat is not a delivery channel.
-
-If nothing meaningful changed, write at most one short no-op log entry and stop. If files change, stage only the intended files, run pnpm secret:scan:staged, and make one coherent local commit. Push only to an already approved private backup remote.
+Review [approved scope] for [specific meaningful change]. Follow
+Agent-Instructions/Skills/Workspace-Heartbeat/SKILL.md. Read only the context
+needed for this check. Make only the approved local maintenance changes.
+Stay quiet and write nothing when the state is unchanged or non-actionable.
+Notify only on a meaningful change, completion, failure, or required user
+action, and save an actionable Inbox.md handoff when needed.
 ```
 
-## Optional Role Split
-
-For a busy workspace, the user may approve separate checkpoints:
-
-- morning: durable context and current business focus
-- midday: queue and state cleanup
-- late day: repeated friction and instruction improvement
-
-Each scheduled run must still use the activity gate and one mode. Do not create multiple schedules by default.
-
-## Audit Trail
-
-Use only the files that match the outcome:
-
-- `Automation-Log.md` for one compact run record
-- `Inbox.md` for user-facing handoff
-- `Outbox.md` for handled inbox items
-- `Improvement-Log.md` for durable instruction improvements
-- `Signals/Incoming.md` or `Signals/Outgoing.md` for cross-session pointers
-
-Keep entries factual and short. Do not imply progress when no useful change occurred.
-
-## Done Criteria
-
-- The checkpoint selected one mode from current evidence.
-- No-op runs stayed quiet.
-- Changes were narrow, safe, and verified.
-- Anything the user must see is in `Inbox.md`.
-- The audit trail matches what actually happened.
+To disable or change a schedule, use its recorded id and verify the resulting
+state. Do not delete unrelated automations or treat manual review as consent
+to create a recurring schedule.

@@ -12,154 +12,106 @@ const patterns = [
   ['Private key block', /-----BEGIN (RSA |EC |OPENSSH |DSA )?PRIVATE KEY-----/],
   ['Generic secret assignment', /\b(api[_-]?key|secret|token|password)\b\s*[:=]\s*['"]?([A-Za-z0-9_./+=-]{24,})/i],
 ];
+const skipDirs = new Set(['.git', 'node_modules', '__pycache__', '.venv', 'venv', '.next', 'dist', 'build']);
+const binaryExtensions = new Set(['.png', '.jpg', '.jpeg', '.gif', '.webp', '.pdf', '.zip', '.tar', '.gz', '.sqlite', '.db']);
 
-const safePlaceholder = /<SECRET:[A-Z0-9_]+>/;
-const skipDirs = new Set([
-  '.git',
-  '.business-ai-kit/source',
-  'node_modules',
-  '__pycache__',
-  '.venv',
-  'venv',
-  '.next',
-  'dist',
-  'build',
-]);
-const skipSuffixes = new Set([
-  '.png',
-  '.jpg',
-  '.jpeg',
-  '.gif',
-  '.webp',
-  '.pdf',
-  '.zip',
-  '.tar',
-  '.gz',
-  '.sqlite',
-  '.db',
-]);
-const safeFilenames = new Set(['.env.example']);
-
-function parseArgs(argv) {
-  const args = { paths: [], staged: false };
-  for (const arg of argv) {
-    if (arg === '--staged') {
-      args.staged = true;
-    } else if (arg === '-h' || arg === '--help') {
-      printHelp();
-      process.exit(0);
-    } else {
-      args.paths.push(arg);
-    }
+function git(args, cwd = process.cwd(), encoding = 'utf8') {
+  const result = spawnSync('git', args, { cwd, encoding, maxBuffer: 32 * 1024 * 1024 });
+  if (result.error || result.status !== 0) {
+    throw new Error('Git scan input unavailable. Use explicit file paths outside a Git workspace.');
   }
-  return args;
+  return result.stdout;
 }
 
-function printHelp() {
-  console.log(`Usage: node Scripts/secret_scan.mjs [--staged] [paths...]
-
-Scan files for likely secrets. Defaults to the current directory.`);
+function gitPaths(args, root) {
+  return git(args, root).split('\0').filter(Boolean);
 }
 
-function runGit(args) {
-  const result = spawnSync('git', args, { encoding: 'utf8' });
-  if (result.status !== 0) return [];
-  return result.stdout.split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
+function skip(file) {
+  const parts = file.split(path.sep);
+  return parts.some((part) => skipDirs.has(part))
+    || parts.join('/').includes('.business-ai-kit/source/')
+    || binaryExtensions.has(path.extname(file).toLowerCase());
 }
 
-function stagedFiles() {
-  return runGit(['diff', '--cached', '--name-only', '--diff-filter=ACMR']);
-}
-
-function normalizePath(filePath) {
-  return filePath.split(path.sep).join('/');
-}
-
-function shouldSkip(filePath) {
-  const pathText = normalizePath(filePath);
-  if (safeFilenames.has(path.basename(filePath))) return true;
-  if (skipSuffixes.has(path.extname(filePath).toLowerCase())) return true;
-  return [...skipDirs].some((item) => pathText === item || pathText.startsWith(`${item}/`));
-}
-
-function walk(root, files) {
-  let stats;
-  try {
-    stats = fs.statSync(root);
-  } catch {
-    return;
-  }
-
-  if (stats.isFile()) {
-    if (!shouldSkip(root)) files.push(root);
-    return;
-  }
-
-  if (!stats.isDirectory()) return;
-
-  for (const entry of fs.readdirSync(root)) {
-    const child = path.join(root, entry);
-    if (!shouldSkip(child)) walk(child, files);
+function walk(file, files) {
+  if (skip(file)) return;
+  const stat = fs.lstatSync(file);
+  if (stat.isSymbolicLink()) return;
+  if (stat.isFile()) files.push(file);
+  else if (stat.isDirectory()) {
+    for (const name of fs.readdirSync(file)) walk(path.join(file, name), files);
   }
 }
 
-function candidateFiles(paths, staged) {
-  if (staged) {
-    return stagedFiles().filter((filePath) => fs.existsSync(filePath) && !shouldSkip(filePath));
+function inputs(args) {
+  const staged = args.includes('--staged');
+  const all = args.includes('--all');
+  if (staged && all) throw new Error('Choose --staged or --all, not both.');
+  const paths = args.filter((arg) => !['--', '--staged', '--all'].includes(arg));
+  if (paths.some((arg) => arg.startsWith('--'))) throw new Error('Unknown scan option.');
+  // --staged takes precedence over paths from a package script.
+  if (paths.length && !staged && !all) {
+    const files = [];
+    for (const file of paths) walk(file, files);
+    return { root: process.cwd(), files, staged: false };
   }
-
-  const roots = paths.length ? paths : ['.'];
-  const files = [];
-  for (const root of roots) {
-    walk(root, files);
-  }
-  return files;
+  const root = git(['rev-parse', '--show-toplevel']).trim();
+  const stagedPaths = () => gitPaths(['diff', '--cached', '--name-only', '-z', '--diff-filter=ACMRT'], root);
+  const files = staged ? stagedPaths() : all
+    ? gitPaths(['ls-files', '-z', '--cached', '--others', '--exclude-standard'], root)
+    : [
+      ...stagedPaths(),
+      ...gitPaths(['diff', '--name-only', '-z', '--diff-filter=ACMRT'], root),
+      ...gitPaths(['ls-files', '-z', '--others', '--exclude-standard'], root),
+    ];
+  return { root, files, staged };
 }
 
-function scanFile(filePath) {
-  let text;
-  try {
-    text = fs.readFileSync(filePath, 'utf8');
-  } catch {
-    return [];
-  }
-
-  const findings = [];
-  const lines = text.split(/\r?\n/);
-  lines.forEach((line, index) => {
-    if (safePlaceholder.test(line)) return;
-    for (const [label, pattern] of patterns) {
-      if (pattern.test(line)) {
-        findings.push({ lineNo: index + 1, label });
-        break;
-      }
-    }
-  });
-  return findings;
+function read(file, root, staged) {
+  if (staged) return git(['show', `:${file}`], root, null);
+  const absolute = path.resolve(root, file);
+  // Deleted files and symlinks contain no working-tree text to inspect.
+  if (!fs.existsSync(absolute) || fs.lstatSync(absolute).isSymbolicLink()) return null;
+  return fs.readFileSync(absolute);
 }
 
 function main() {
-  const args = parseArgs(process.argv.slice(2));
-  const files = candidateFiles(args.paths, args.staged);
-  const allFindings = [];
-
-  for (const filePath of files) {
-    for (const finding of scanFile(filePath)) {
-      allFindings.push({ filePath, ...finding });
-    }
+  const args = process.argv.slice(2);
+  if (args.includes('--help') || args.includes('-h')) {
+    console.log('Usage: node Scripts/secret_scan.mjs [--staged | --all | paths...]\nDefault: changed and new non-ignored Git files. --staged scans index contents; --all audits all non-ignored Git files.');
+    return 0;
   }
-
-  if (allFindings.length) {
-    console.log('Secret scan failed. Review these files before committing:');
-    for (const finding of allFindings) {
-      console.log(`- ${finding.filePath}:${finding.lineNo} (${finding.label})`);
+  try {
+    const { root, files, staged } = inputs(args);
+    let checked = 0;
+    let found = false;
+    for (const file of new Set(files)) {
+      if (skip(file)) continue;
+      const data = read(file, root, staged);
+      if (!data || data.includes(0)) continue;
+      checked += 1;
+      data.toString('utf8').split(/\r?\n/).forEach((line, index) => {
+        // Ignore the placeholder itself, never the rest of a line or example file.
+        const content = line.replace(/<SECRET:[A-Z0-9_]+>/g, '');
+        const match = patterns.find(([, pattern]) => pattern.test(content));
+        if (match) {
+          found = true;
+          console.log(`- ${JSON.stringify(file)}:${index + 1} (${match[0]})`);
+        }
+      });
     }
-    console.log('Replace raw values with <SECRET:NAME> and store values in .env or Doppler.');
+    if (found) {
+      console.log('Secret scan failed. Remove raw credentials from these files before sharing or committing.');
+      return 1;
+    }
+    console.log(checked ? `Secret scan passed (${checked} file(s) checked).` : 'Secret scan skipped: no eligible changed files.');
+    return 0;
+  } catch (error) {
+    // Report no file contents or Git output, which could contain credentials.
+    console.error(`Secret scan could not complete: ${error.code || error.message}`);
     return 1;
   }
-
-  console.log(`Secret scan passed (${files.length} file(s) checked).`);
-  return 0;
 }
 
 process.exit(main());
