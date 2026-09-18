@@ -1,142 +1,62 @@
 ---
 name: project-planning
-description: Use when the user starts a new business project, workflow, automation, report, website, or app idea.
+description: Use when business work will continue across sessions and needs a small project brief, or when the user explicitly requests project organization.
 ---
 
 # Project Planning
 
-Use this skill to turn a rough business request into an organized project folder.
+Give the user a useful output before building management structure.
+A one-off answer, comparison, email, or draft normally needs no project folder.
 
-## When To Create A Project
+## When A Project Helps
 
-Create a root-level project folder when the work:
+Create a project when the user asks for one or the work has ongoing context,
+multiple outputs, or decisions that must survive across sessions.
+Use a plain business name. Keep business work in its project, without numeric
+folder prefixes or a taxonomy the user must learn.
 
-- will continue beyond one reply
-- has its own context or outputs
-- needs decisions or next actions tracked
-- would confuse future work if mixed into another project
-- involves customer-facing, executive, financial, operational, legal, hiring, or automation decisions
-
-Suggest a project when the user's work would benefit from:
-
-- a calculator
-- a dashboard
-- a small app
-- an automation
-- a repeatable workflow
-- a checklist or operating system
-- a research tracker
-- a decision tool
-
-Keep the suggestion concrete and small. Explain the useful first version before proposing a larger build.
-
-## Default Project Structure
+Start with only:
 
 ```text
 Project Name/
-  AGENTS.md
-  CLAUDE.md
   Project Brief.md
-  Executive Brief.md
-  Project Context/
-  Working Files/
-  Final Outputs/
-  Decisions.md
-  Next Actions.md
-  Archive/
+  [the actual draft or output]
 ```
 
-When creating these files, use the starter files in `starter-files/` if present. Adapt headings to the project, but keep the same decision-focused shape.
+Use `starter-files/Project Brief.md` as a small guide. Capture the goal,
+useful inputs, constraints, current result, next action, and done criteria.
+Keep unknowns explicit. Do not block a draft on filling every heading.
 
-## Rules
+## Add Structure Only When Needed
 
-- Use plain business names for project folders.
-- Use plain section folder names that a non-technical user would understand, such as `Strategy`, `Source Materials`, `Resumes`, `Applications`, `Interview Prep`, and `Final Outputs`.
-- Do not use numeric prefixes like `00-Strategy`, `01-Source-Materials`, or internal taxonomy labels unless the user asks for that structure or a tool requires it.
-- Do not create project folders before real work starts.
-- Keep app/build code inside the relevant project.
-- Add project-local `AGENTS.md` for recurring project rules, safety boundaries, tools, and context-loading notes. Add a project-local `CLAUDE.md` that imports it (`@AGENTS.md`) so Claude Code reads the same project rules.
-- Keep bulky source material in `Project Context/`; summarize durable facts in the brief or decisions.
-- Update `Workspace-Map.md`, `Current-Focus.md`, and `Active-Threads.md`.
-- Ask before making a project public, sharing files externally, deploying apps, or connecting real accounts.
-- Keep `Executive Brief.md` short: objective, current status, key decisions, risks, and next action.
-- After the first project reaches a useful result, ask once whether the user wants to send Andrii feedback about the first-project experience.
+- `Source Materials/`: enough source files to need their own location.
+- `Working Files/` or `Final Outputs/`: multiple versions or deliverables.
+- `Decisions.md`: decisions have become difficult to follow in the brief.
+- `Next Actions.md`: several actions, owners, or dependencies need tracking.
+- `Executive Brief.md`: a stakeholder needs a separate short status view.
+- `AGENTS.md`: recurring project rules differ from the workspace defaults.
+- `CLAUDE.md`: alongside project `AGENTS.md`, importing `@AGENTS.md` for Claude Code.
 
-## Project Autonomy
+The remaining `starter-files/` are optional starting points, not a checklist.
+Do not copy them all or create empty folders in anticipation of future work.
+Keep each fact in one place and use links in other files.
 
-After the user clearly asks for a project, create the minimum useful structure and first draft without over-questioning.
+## Work And Memory
 
-Safe defaults:
+Make the first draft with available information and mark assumptions.
+Ask when an unknown changes business direction, privacy, budget, claims,
+legal risk, or customer commitments. Follow workspace approval boundaries.
 
-- create the folder
-- write a first `Project Brief.md`
-- write a short `Executive Brief.md` when the project affects business decisions or will continue across sessions
-- create `Decisions.md` and `Next Actions.md`
-- add a project-local `AGENTS.md` (plus a `CLAUDE.md` that imports it) when the project will continue across sessions
-- update global workspace state
+Add one pointer to `Active-Threads.md` for work that will resume. Update
+`Workspace-Map.md` only if navigation needs a new entry. Update current focus
+only when the priority changes. Do not duplicate the brief in global files.
 
-Ask when the missing answer changes business direction, public claims, budget, privacy, legal/compliance risk, or customer-facing commitments.
+Maintain the brief when a decision or next action changes, not after every
+reply. For multi-step work, load `../Project-Orchestrator/SKILL.md` only when
+it would help manage dependencies or verification.
 
-Use `Agent-Instructions/Skills/Project-Orchestrator/SKILL.md` for large, multi-step, or context-heavy projects when available.
+## Ready To Resume
 
-## Project AGENTS.md
-
-Write the rules once in `AGENTS.md` and add a one-line `CLAUDE.md` next to it containing `@AGENTS.md`, so Codex and Claude Code share the same project rules. Use the `starter-files/` versions when present.
-
-Keep project-local instructions short:
-
-```text
-# Project Instructions
-
-Purpose:
-
-Current objective:
-
-Important context:
-
-Safety boundaries:
-
-Working files:
-
-Done criteria:
-```
-
-Keep this file practical. The user should not need to manage agent infrastructure.
-
-## First Project Brief
-
-Capture:
-
-- goal
-- owner
-- why it matters
-- inputs
-- expected output
-- success criteria
-- next action
-
-## Executive Brief
-
-Use this format:
-
-```text
-# Executive Brief
-
-## Current Point
-
-One short paragraph on what this project is and where it stands.
-
-## Decisions Needed
-
-- 
-
-## Risks Or Constraints
-
-- 
-
-## Next Action
-
-- 
-```
-
-Keep this file current enough that the user can open it and understand the project in under one minute.
+The project is organized enough when the user can find the output and the
+next session can identify the objective, relevant inputs, and next action.
+Extra trackers are useful only when they make that easier.

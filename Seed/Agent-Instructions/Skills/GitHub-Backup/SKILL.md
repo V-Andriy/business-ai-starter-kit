@@ -18,7 +18,7 @@ This skill is only for setting up or changing the private GitHub backup. Routine
 - Explain GitHub in plain language: it is a cloud backup and history for the workspace.
 - Keep the user out of terminal details where possible.
 - Ask before pushing workspace content to GitHub.
-- Run the secret scanner before the first push.
+- Check the first-push payload using `../Secrets-Vault/SKILL.md`; scan relevant unverified material without duplicating an unchanged successful hook scan.
 - Do not push `.env`, `.business-ai-kit/source/`, local caches, private raw exports, or credentials.
 
 ## Setup Flow
@@ -32,7 +32,7 @@ This skill is only for setting up or changing the private GitHub backup. Routine
 4. Check authentication with `gh auth status`.
 5. If not authenticated, run `gh auth login` and guide the user through the browser/OAuth step.
 6. Confirm the repository name.
-7. Run the secret scanner.
+7. Follow `../Secrets-Vault/SKILL.md` for the relevant handoff check.
 8. Create a private GitHub repository.
 9. Add the remote.
 10. Push the current branch.
@@ -72,7 +72,7 @@ After that, I can handle the local setup and open the login flow for you.
 
 - The user approved GitHub backup.
 - GitHub authentication works.
-- Secret scan passes.
+- Required secret checkpoint passes under the Secrets Vault policy.
 - The remote repository is private.
 - The workspace is pushed.
 - The backup status is recorded.

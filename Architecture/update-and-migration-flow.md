@@ -7,7 +7,7 @@ for anything user-owned, hybrid, sensitive, or behavior-changing.
 ```mermaid
 flowchart TD
   Trigger{"Update trigger"} --> Manual["User asks: Update my Business AI Starter Kit"]
-  Trigger --> Scheduled["Optional scheduled update review"]
+  Trigger --> Scheduled["Explicitly approved scheduled update scope"]
   Manual --> Skill["Run Update-Review skill"]
   Scheduled --> Skill
 
@@ -19,14 +19,14 @@ flowchart TD
   Backup --> FreshClone["Clone fresh public kit into source/"]
   CacheState -- "Network or Git failure" --> Recover["Try simple recovery, then record blocker if unresolved"]
 
-  Clone --> ReadSource["Read VERSION, CHANGELOG, INDEX, README, ARCHITECTURE, Seed, Skills, Scripts, Templates"]
+  Clone --> ReadSource["Read release summary and relevant changed files"]
   Pull --> ReadSource
   FreshClone --> ReadSource
   Recover --> Usable["Leave workspace usable and log failure"]
 
   ReadSource --> Compare["Compare source changes against installed workspace"]
   Compare --> Useful{"Useful for this workspace?"}
-  Useful -- "No" --> NoChange["Log no useful update"]
+  Useful -- "No" --> NoChange["Stop without log or status edits"]
   Useful -- "Yes" --> Ownership["Classify ownership and risk"]
 
   Ownership --> ChangeType{"Change type"}
@@ -46,7 +46,7 @@ flowchart TD
 
   ApplySafe --> ScanNeed{"Commit or external handoff involved?"}
   ApplyApproved --> ScanNeed
-  ScanNeed -- "Yes" --> SecretScan["Run secret scanner"]
+  ScanNeed -- "Yes" --> SecretScan["Follow Secrets Vault scan timing; no duplicate hook scan"]
   ScanNeed -- "No" --> LogReview["Log review in Automation-Log.md"]
   SecretScan --> ScanResult{"Scanner passed?"}
   ScanResult -- "Yes" --> LocalCommit["Commit workspace file changes locally with plain-language message when appropriate"]
@@ -54,6 +54,5 @@ flowchart TD
   Cleanup --> LogReview
   LocalCommit --> LogReview
   LeaveCurrent --> LogReview
-  NoChange --> LogReview
   Usable --> LogReview
 ```

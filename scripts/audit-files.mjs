@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import fs from 'node:fs';
 import path from 'node:path';
+import { spawnSync } from 'node:child_process';
 
 const docsRoots = ['AGENTS.md', 'README.md', 'INDEX.md', 'Seed/AGENTS.md'];
 
@@ -26,8 +27,12 @@ const codeExtensions = new Set(['.js', '.mjs', '.cjs', '.ts', '.tsx', '.jsx']);
 
 const exceptions = {
   tinyDocs: {
+    'Architecture/templates-flow.md': 'Focused diagram of the optional source-library template boundary.',
+    'Seed/Agent-Instructions/Skills/Project-Planning/starter-files/AGENTS.md': 'Optional project-specific rules; deliberately avoids repeating workspace instructions.',
+    'Seed/Agent-Instructions/Skills/Project-Planning/starter-files/Project Brief.md': 'Minimal ongoing-project brief; grows with real project context.',
+    'Seed/.business-ai-kit/source.md': 'Compact public source and disposable-cache pointer copied into private workspaces.',
     'Templates/README.md': 'Intentional placeholder until templates are introduced.',
-    'Seed/CLAUDE.md': 'Thin Claude Code / Cowork bridge that imports Seed/AGENTS.md; rules stay in AGENTS.md.',
+    'Seed/CLAUDE.md': 'Thin Claude Code bridge that imports Seed/AGENTS.md; rules stay in AGENTS.md.',
     'Seed/Agent-Instructions/Skills/Project-Planning/starter-files/CLAUDE.md': 'Project-local Claude Code bridge that imports the project AGENTS.md; intentionally tiny.',
     'Seed/Agent-Instructions/Automation-Log.md': 'Starter log file, expected to grow in a private workspace.',
     'Seed/Agent-Instructions/Improvement-Log.md': 'Starter log file, expected to grow in a private workspace.',
@@ -49,16 +54,10 @@ const exceptions = {
     'Seed/Agent-Instructions/Skills/Project-Planning/starter-files/Executive Brief.md': 'Project starter executive brief, intentionally compact.',
     'Seed/Agent-Instructions/Skills/Project-Planning/starter-files/Next Actions.md': 'Project starter action list, intentionally compact.',
   },
-  largeDocs: {
-    'Seed/AGENTS.md': 'Canonical private workspace behavior contract; split only when behavior boundaries are clearer.',
-    'Seed/Agent-Instructions/Skills/Workspace-Heartbeat/SKILL.md': 'Canonical heartbeat workflow; split only when reusable subflows are clearer.',
-  },
+  largeDocs: {},
   tinyCode: {},
   largeCode: {},
-  orphanDocs: {
-    'Planning/context/00-brain-dump.md': 'Known cleanup target; private planning material should not stay tracked long-term.',
-    'Planning/context/source-map.md': 'Known cleanup target; private planning material should not stay tracked long-term.',
-  },
+  orphanDocs: {},
 };
 
 function parseArgs(argv) {
@@ -147,7 +146,14 @@ function auditSize(filePath, kind, count, issues) {
 
 function main() {
   const args = parseArgs(process.argv.slice(2));
-  const files = walk(process.cwd());
+  // Audit the public working tree, including new files, but not ignored private notes.
+  const listing = spawnSync('git', ['ls-files', '-z', '--cached', '--others', '--exclude-standard'], {
+    encoding: 'utf8',
+    maxBuffer: 10 * 1024 * 1024,
+  });
+  const files = listing.status === 0
+    ? [...new Set(listing.stdout.split('\0').filter(Boolean))].filter((file) => fs.existsSync(file) && fs.statSync(file).isFile())
+    : walk(process.cwd());
   const docFiles = files.filter((filePath) => docExtensions.has(path.extname(filePath)));
   const codeFiles = files.filter((filePath) => codeExtensions.has(path.extname(filePath)));
   const reachable = reachableDocs(docFiles);

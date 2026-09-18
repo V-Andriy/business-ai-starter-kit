@@ -114,7 +114,7 @@ Use when there is a concrete public-kit improvement.
 4. Explain the proposed change in plain language.
 5. Ask the user before creating a branch, fork, commit, push, or pull request.
 6. Make the smallest change that solves the issue.
-7. Run the secret scanner on the changed files.
+7. Follow `../Secrets-Vault/SKILL.md` for changed contribution files; do not duplicate an unchanged successful check.
 8. Create one focused pull request per issue when GitHub access is available.
 
 If GitHub access is unavailable, prepare a concise patch summary and LinkedIn message instead.
@@ -153,5 +153,5 @@ Do you want me to prepare a small contribution for the public project, or would 
 - Or the user declined and the decline was recorded.
 - Private details were removed.
 - Simple feedback is ready as a LinkedIn message, or the upstream change is a small focused branch/PR.
-- The secret scanner was run on any files being contributed.
+- Contribution material passed the relevant Secrets Vault checkpoint.
 - Any follow-up is recorded in `Agent-Instructions/Outbox.md` or the relevant project notes.

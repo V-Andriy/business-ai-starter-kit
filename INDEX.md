@@ -13,17 +13,17 @@
 - [Skills/Instruction-Governance/SKILL.md](Skills/Instruction-Governance/SKILL.md) - maintainer skill for clear, non-duplicated instruction changes.
 - [Seed/README.md](Seed/README.md) - private workspace starter readme.
 - [Seed/AGENTS.md](Seed/AGENTS.md) - canonical live workspace agent instructions after install (read by Codex).
-- [Seed/CLAUDE.md](Seed/CLAUDE.md) - Claude Code / Cowork entry point that imports `Seed/AGENTS.md`.
+- [Seed/CLAUDE.md](Seed/CLAUDE.md) - Claude Code entry point that imports `Seed/AGENTS.md`.
 - [Seed/Agent-Instructions/Soul.md](Seed/Agent-Instructions/Soul.md) - durable assistant identity, tone, and felt user experience.
 - [Seed/Agent-Instructions/Setup-Plan.md](Seed/Agent-Instructions/Setup-Plan.md) - temporary first-run setup plan deleted after setup.
 - [Seed/Agent-Instructions/Skills/AI-Tool-Learner/SKILL.md](Seed/Agent-Instructions/Skills/AI-Tool-Learner/SKILL.md) - plain-language usage guidance for first-time or non-technical users, harness-aware for Codex and Claude Code.
-- [Seed/Agent-Instructions/Skills/Workspace-Heartbeat/SKILL.md](Seed/Agent-Instructions/Skills/Workspace-Heartbeat/SKILL.md) - daily checkpoint heartbeat behavior.
+- [Seed/Agent-Instructions/Skills/Workspace-Heartbeat/SKILL.md](Seed/Agent-Instructions/Skills/Workspace-Heartbeat/SKILL.md) - required small weekly maintenance and requested manual reviews.
 - [Seed/Agent-Instructions/Skills/GitHub-Backup/SKILL.md](Seed/Agent-Instructions/Skills/GitHub-Backup/SKILL.md) - optional private GitHub backup workflow.
 - [Seed/Agent-Instructions/Skills/Kit-Feedback/SKILL.md](Seed/Agent-Instructions/Skills/Kit-Feedback/SKILL.md) - user-approved feedback and upstream improvement workflow.
 - [Seed/Agent-Instructions/Skills/Update-Review/SKILL.md](Seed/Agent-Instructions/Skills/Update-Review/SKILL.md) - source cache refresh and update review.
 - [Seed/Agent-Instructions/Skills/Secrets-Vault/SKILL.md](Seed/Agent-Instructions/Skills/Secrets-Vault/SKILL.md) - secrets and scanner workflow.
-- [Seed/Agent-Instructions/Skills/Project-Planning/SKILL.md](Seed/Agent-Instructions/Skills/Project-Planning/SKILL.md) - new project setup and executive briefing.
-- [Seed/Agent-Instructions/Skills/Project-Orchestrator/SKILL.md](Seed/Agent-Instructions/Skills/Project-Orchestrator/SKILL.md) - large project orchestration and subagent guidance.
+- [Seed/Agent-Instructions/Skills/Project-Planning/SKILL.md](Seed/Agent-Instructions/Skills/Project-Planning/SKILL.md) - minimal organization for ongoing work.
+- [Seed/Agent-Instructions/Skills/Project-Orchestrator/SKILL.md](Seed/Agent-Instructions/Skills/Project-Orchestrator/SKILL.md) - single-agent planning and optional approved delegation.
 - [Templates/README.md](Templates/README.md) - optional reusable templates note.
 - [Templates/Chat-Start-Accelerator-Hook/README.md](Templates/Chat-Start-Accelerator-Hook/README.md) - optional startup hook template for Codex and Claude Code.
 
@@ -68,6 +68,15 @@ These scripts live inside `Seed/` because they are copied into the user's worksp
 - [Seed/Agent-Instructions/Skills/Project-Planning/starter-files/Decisions.md](Seed/Agent-Instructions/Skills/Project-Planning/starter-files/Decisions.md) - project decision log starter.
 - [Seed/Scripts/secret_scan.mjs](Seed/Scripts/secret_scan.mjs) - local secret scanner for staged files or paths.
 - [Seed/Scripts/link_skills.mjs](Seed/Scripts/link_skills.mjs) - creates `.agents/skills` (Codex) and `.claude/skills` (Claude Code) as symlinks to the workspace skills folder.
-- [Seed/Scripts/heartbeat_gate.mjs](Seed/Scripts/heartbeat_gate.mjs) - lightweight heartbeat activity snapshot for inbox, signals, git changes, and recent Codex or Claude Code session candidates.
+- [Seed/Scripts/heartbeat_gate.mjs](Seed/Scripts/heartbeat_gate.mjs) - workspace-only activity hints; no home session-history scanning.
 - [Seed/Scripts/install_git_hooks.mjs](Seed/Scripts/install_git_hooks.mjs) - installs a pre-commit hook that runs the scanner.
 - [Seed/Scripts/update_kit.mjs](Seed/Scripts/update_kit.mjs) - refreshes `.business-ai-kit/source/`.
+
+## Business Workflows And Review
+
+- [Research-Brief](Seed/Agent-Instructions/Skills/Research-Brief/SKILL.md) - focused business workflow loaded only when relevant.
+- [Business-Writing](Seed/Agent-Instructions/Skills/Business-Writing/SKILL.md) - focused business workflow loaded only when relevant.
+- [Meeting-Actions](Seed/Agent-Instructions/Skills/Meeting-Actions/SKILL.md) - focused business workflow loaded only when relevant.
+- [Process-SOP](Seed/Agent-Instructions/Skills/Process-SOP/SKILL.md) - focused business workflow loaded only when relevant.
+- [Model and skill review](Architecture/model-and-skill-review.md) - sources and manual acceptance scenarios.
+- [Source-cache pointer](Seed/.business-ai-kit/source.md) - installed update reference.

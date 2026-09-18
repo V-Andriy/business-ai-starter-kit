@@ -1,24 +1,16 @@
 # Project Instructions
 
-Purpose:
+Purpose: project-specific recurring rules only.
+Workspace rules continue to apply; avoid repeating them here.
 
-Current objective:
+## Context
 
-Important context:
+Read `Project Brief.md` and only the sources needed for the current step.
 
-Safety boundaries:
+## Additional Boundaries
 
-- Ask before sharing, publishing, deploying, connecting accounts, spending money, or using private notes in external outputs.
+Record project-specific constraints when they differ from workspace defaults.
 
-Working files:
+## Validation
 
-- `Project Brief.md` - stable context and success criteria.
-- `Executive Brief.md` - one-minute status, decisions, risks, and next action.
-- `Decisions.md` - approved decisions.
-- `Next Actions.md` - current action list.
-- `Project Context/` - source material and notes.
-- `Working Files/` - drafts and work in progress.
-- `Final Outputs/` - approved deliverables.
-
-Done criteria:
-
+Record the checks this project's outputs need before delivery.

@@ -1,73 +1,57 @@
 ---
 name: project-orchestrator
-description: Use for large, multi-step, context-heavy, or long-running workspace projects that benefit from decomposition, clean context, staged execution, or subagents when available.
+description: Use when an authorized project needs several dependent steps, focused verification, or an explicitly requested delegation plan.
 ---
 
 # Project Orchestrator
 
-Use this skill when a project is too large for one clean pass.
+Use one agent by default. Break complex work into a few concrete steps without
+creating extra roles, trackers, or agents for routine drafting and research.
 
-The goal is to keep work moving without overloading the main chat.
+## Plan Only What Helps
 
-## When To Use
+Read the project brief and the sources needed for the next step.
+Define the desired output, constraints, done criteria, and key dependencies.
+Keep a short plan in the conversation or existing brief. Add a separate task
+tracker only when multiple owners or dependencies warrant it.
+Produce an early useful draft or working slice before expanding the plan.
 
-Use this skill for:
+## Execute And Verify
 
-- multi-step builds
-- audits or research passes
-- app, automation, dashboard, or calculator projects
-- project cleanup or migration
-- work that touches many files
-- work that needs separate research, implementation, and review tracks
-- work where subagents would keep context cleaner
+Within the current authorization, complete ordinary local work and relevant
+checks. Review claims against sources and test behavior affected by changes.
+Do not repeat checks that already passed unless changes or failures justify it.
+Keep detailed context in project files and global state as a short pointer.
 
-## Operating Rules
+Use the current model and reasoning setting by default. Do not automatically
+switch to the newest or most expensive model, or promise fixed usage savings.
 
-- Read the project files first.
-- Define the current objective, constraints, next action, and done criteria.
-- Split the work into small tracks.
-- Keep project state in the project folder.
-- Keep global state in `Active-Threads.md`, `Current-Focus.md`, and `Workspace-Map.md`.
-- Use subagents when the environment supports them and the task benefits from parallel research, review, testing, or implementation.
-- Do not use subagents for private secrets, credentials, or unnecessary work.
-- Review subagent outputs before trusting them.
-- Integrate results in the main thread.
+## Optional Delegation
 
-## Subagent Pattern
+Use subagents only when the user explicitly requests delegation or approves a
+concrete parallel plan with useful independent tasks. Explain the likely
+additional AI usage before requesting that approval.
+Do not delegate work that can be finished with a simple local step.
 
-Use subagents for bounded work:
+For each approved worker, provide a bounded task, the relevant files, expected
+output, and ownership boundaries. Share no unrelated private context or raw
+credentials. Avoid overlapping edits. Review evidence and integrate results
+before presenting the final output; a worker's claim is not validation.
 
-- research one topic
-- review one file or module
-- test one behavior
-- inspect one design option
-- draft one artifact
+## Continuation Boundary
 
-Give each subagent:
+A saved next action helps resume work; it does not authorize unattended work.
+Continue in the current user-requested session within its scope. Start a
+scheduled or background run only after an explicit request defining its scope.
+Use the Workspace Heartbeat skill for maintenance schedules.
 
-- the narrow task
-- the relevant files or context
-- the expected output
-- what not to touch
+Stop before external actions, spending, destructive changes, or material scope
+expansion unless explicitly authorized. If blocked, record the specific need
+in the project brief and add an inbox handoff only when it needs later attention.
 
-Do not pass unrelated private context.
+## Finish
 
-## Project Continuation
-
-Autonomous continuation is allowed when:
-
-- the project already exists
-- the next action is written in project files or `Active-Threads.md`
-- the task is local and low-risk
-- no user decision is missing
-- no publishing, deployment, paid service, external account, secret change, or public/client-facing claim is involved
-
-If the next action needs the user, write the decision request in `Inbox.md` and stop.
-
-## Done Criteria
-
-- The project has a clear next action or completed output.
-- Decisions and blockers are recorded.
-- Useful outputs are in the project folder.
-- Global workspace state is updated.
-- Git status is checked after meaningful file work.
+Deliver the output, the meaningful validation result, and any remaining
+limitation. Update the existing brief or action tracker with the next step.
+Follow root workspace rules for safety, local Git, and external approval.
+Do not create extra status documents or logs merely to show activity.

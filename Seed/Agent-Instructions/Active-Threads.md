@@ -1,20 +1,14 @@
 # Active Threads
 
-Purpose: current workstreams the agent should track across sessions and heartbeat runs.
+Purpose: short pointers to ongoing work that should resume across sessions.
+Project briefs own detailed status, decisions, and next actions.
+A listed next action does not authorize unattended execution.
 
 ## Threads
 
 ### First Setup
 
-- Project: Workspace setup
-- Status: Active
-- Current objective: Complete the temporary setup plan, offer private GitHub backup, then remove setup from active work.
-- Next useful action: Follow `Agent-Instructions/Setup-Plan.md`.
-- Blockers:
-- Last updated:
-- Decision needed: Communication style, useful references, public-output boundaries, and first useful business project or workflow.
-- Related files:
-  - Agent-Instructions/Setup-Plan.md
-  - Agent-Instructions/User-Dossier.md
-  - Agent-Instructions/Business-Dossier.md
-- Automation: Daily Checkpoint Workspace Heartbeat
+- Status: Pending essential local checks.
+- Next action: Complete local checks, brief onboarding, profile confirmation, and weekly maintenance setup; deliver a useful first output.
+- Required user/business onboarding: Pending.
+- Weekly maintenance: Pending host scheduling check and confirmed timing.

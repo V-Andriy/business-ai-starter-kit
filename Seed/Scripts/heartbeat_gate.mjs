@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 import fs from 'node:fs';
-import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 
@@ -38,7 +37,9 @@ function hasPendingMarkdownItems(filePath) {
   if (!text.trim()) return false;
   return text.split(/\r?\n/).some((line) => {
     const stripped = line.trim();
-    return stripped.startsWith('- ') && !stripped.toLowerCase().startsWith('- no ');
+    return stripped.startsWith('- ')
+      && !stripped.toLowerCase().startsWith('- no ')
+      && !/^- \[x\]/i.test(stripped);
   });
 }
 
@@ -50,18 +51,7 @@ function fileMtime(filePath) {
   }
 }
 
-function statusPathMtime(workspace, statusLine) {
-  let rawPath = statusLine.slice(3).trim();
-  if (rawPath.includes(' -> ')) rawPath = rawPath.split(' -> ', 2)[1].trim();
-  rawPath = rawPath.replace(/^"|"$/g, '');
-  try {
-    return fs.statSync(path.join(workspace, rawPath)).mtimeMs / 1000;
-  } catch {
-    return Number.POSITIVE_INFINITY;
-  }
-}
-
-function gitStatus(workspace, since) {
+function gitStatus(workspace) {
   const result = spawnSync('git', ['status', '--short'], {
     cwd: workspace,
     encoding: 'utf8',
@@ -74,7 +64,6 @@ function gitStatus(workspace, since) {
   for (const line of result.stdout.split(/\r?\n/)) {
     if (!line.trim()) continue;
     if (ignoredPrefixes.some((prefix) => line.startsWith(prefix))) continue;
-    if (since && statusPathMtime(workspace, line) <= since) continue;
     lines.push(line);
   }
   return lines;
@@ -90,58 +79,6 @@ function newestMtime(paths) {
     }
   }
   return mtimes.length ? Math.max(...mtimes) : 0;
-}
-
-function walkFiles(root, visit) {
-  let entries;
-  try {
-    entries = fs.readdirSync(root, { withFileTypes: true });
-  } catch {
-    return false;
-  }
-
-  for (const entry of entries) {
-    const child = path.join(root, entry.name);
-    if (entry.isDirectory()) {
-      if (walkFiles(child, visit)) return true;
-    } else if (entry.isFile()) {
-      if (visit(child)) return true;
-    }
-  }
-  return false;
-}
-
-function recentSessionCandidates(workspace, since) {
-  // Codex stores sessions under ~/.codex/sessions; Claude Code stores them
-  // under ~/.claude/projects. Scan both so the activity gate works in either
-  // harness. Both write the workspace path into the session content.
-  const sessionRoots = [
-    path.join(os.homedir(), '.codex', 'sessions'),
-    path.join(os.homedir(), '.claude', 'projects'),
-  ].filter((root) => fs.existsSync(root));
-  if (!sessionRoots.length) return [];
-
-  const candidates = [];
-  const workspaceName = path.basename(workspace);
-  const workspaceText = workspace;
-
-  for (const sessionsRoot of sessionRoots) {
-    walkFiles(sessionsRoot, (filePath) => {
-      try {
-        if (fs.statSync(filePath).mtimeMs / 1000 <= since) return false;
-        const sample = fs.readFileSync(filePath, 'utf8').slice(0, 200000);
-        if (sample.includes(workspaceText) || sample.includes(workspaceName)) {
-          candidates.push(filePath);
-        }
-      } catch {
-        return false;
-      }
-      return candidates.length >= 20;
-    });
-    if (candidates.length >= 20) break;
-  }
-
-  return candidates;
 }
 
 function iso(timestampSeconds) {
@@ -167,14 +104,12 @@ function main() {
   const signalsChanged =
     (incomingSignal && fileMtime(incomingSignalPath) > lastStateTime) ||
     (outgoingSignal && fileMtime(outgoingSignalPath) > lastStateTime);
-  const statusLines = gitStatus(workspace, lastStateTime);
-  const sessionCandidates = recentSessionCandidates(workspace, lastStateTime);
+  const statusLines = gitStatus(workspace);
 
   const reasons = [];
   if (inboxChanged) reasons.push('changed inbox items');
   if (signalsChanged) reasons.push('changed signals');
   if (statusLines.length) reasons.push('workspace git changes');
-  if (sessionCandidates.length) reasons.push('recent assistant session evidence');
 
   const result = {
     workspace,
@@ -189,10 +124,11 @@ function main() {
       outgoing_signal: outgoingSignal,
       signals_changed_since_last_state: signalsChanged,
       git_status_count: statusLines.length,
-      recent_session_candidate_count: sessionCandidates.length,
     },
     git_status: statusLines.slice(0, 50),
-    recent_session_candidates: sessionCandidates,
+    // This is a local hint, not a scheduler or a complete activity history.
+    scope: 'workspace files only; no assistant session history is read',
+    limitations: 'Activity hint only. Log timestamps are not processing checkpoints; clean commits and deadlines require an explicit scoped check.',
   };
 
   console.log(JSON.stringify(result, null, 2));

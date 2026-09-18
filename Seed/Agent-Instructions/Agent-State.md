@@ -1,44 +1,28 @@
 # Agent State
 
-Purpose: concise operating state for agents and automations.
+Purpose: actual setup results and explicitly approved operating settings.
+Daily behavior lives in `../AGENTS.md`; do not duplicate its rules here.
 
 ## Setup
 
-- First-run onboarding: pending
-- Assistant identity calibration: pending
+- Essential local checks: pending
 - Secret scanner hook: pending
-- Daily checkpoint heartbeat automations: pending
-- Heartbeat model policy: use the latest available capable model with an activity gate that stops when there is no meaningful work
-- Private GitHub backup: not configured
+- Skills links: pending
 - Kit source cache: pending
-- Context model: `AGENTS.md`, `Agent-Instructions/`, project-local `AGENTS.md`, and skills
-- First executive briefing: pending
+- Local Git checkpoint: pending
+- Required user/business onboarding: pending
+- Profile summary confirmation: pending
 
-## Operating Loop
+## Configuration
 
-- Startup should read soul, current focus, active threads, workspace map, inbox, and agent state.
-- Heartbeat should process inbox, review recent chat/session evidence, check Git, update workspace state, maintain dossiers and compact memory, review docs/skills, and log useful changes.
-- Heartbeat should first check for new chats/session evidence, workspace changes, Git status, inbox items, active-thread changes, Signals, and blockers. If nothing changed, it should stop after a short log entry.
-- Heartbeat can use `pnpm heartbeat:gate` as a lightweight activity snapshot before deep review.
-- Heartbeat should choose No-Op, Triage, Improvement, or Escalation mode based on evidence.
-- Skills are procedural memory and should be updated only when a workflow improvement is durable.
-- User and broad work/business context belong in dossiers. Detailed project context belongs in project folders. Procedures belong in skills.
-- Executive-facing work should keep facts, assumptions, decisions, risks, and next actions distinct.
-- Feedback to the public kit is user-approved only. No analytics, telemetry, or background reporting.
+- Weekly maintenance setup: pending timing, timezone, and host consent
+- Verified schedule id and next run: not configured
+- Scheduling blocker/manual weekly fallback: none recorded
+- Approved automation ids and scopes: none
+- Startup context hook: not installed
+- Private GitHub backup: not configured
+- Standing external-action authorization: none
 
-## Safety Boundaries
+## Blockers
 
-- Ask before publishing, deploying, deleting user work, spending money, or sharing workspace context outside the local workspace.
-- Use the Secrets Vault skill for credentials, tokens, passwords, API keys, private keys, and secret storage changes.
-- Ask before connecting external accounts or granting broad permissions.
-
-## Standing Defaults
-
-- Local-first workspace.
-- Git-aware workspace with proactive local commits after meaningful completed changes.
-- If private GitHub backup is configured and approved, push clean commits regularly so the cloud copy stays current.
-- Persistent operator behavior: when intent is clear, try reasonable paths, solve technical issues, and ask the user only when their decision or access is required.
-- Brief user-facing summaries unless the user asks for detail.
-- Create project folders only when real work starts.
-- Keep private notes, raw source material, and internal context out of public or client-facing outputs unless approved.
-- Explain technical actions in plain language: what is happening, why it matters, what the agent is doing, and what the user needs to do.
+None recorded yet. Replace pending results only after checking them.

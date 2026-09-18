@@ -29,8 +29,9 @@ before committing, sharing, publishing, or deploying work.
 - Rotate any credential that was accidentally pasted into chat, committed, or
   shared externally.
 
-Before publishing or contributing, run:
+Use [Secrets Vault](Seed/Agent-Instructions/Skills/Secrets-Vault/SKILL.md) for
+checkpoint timing. The commit hook scans staged content once. Scan relevant
+unverified changes before an external handoff; routine reads need no scan.
 
-```text
-pnpm secret:scan
-```
+`pnpm secret:scan` checks changed files. Use a path for a targeted check, or
+`pnpm secret:scan:all` only for an explicit full audit.

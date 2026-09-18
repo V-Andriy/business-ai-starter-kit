@@ -26,7 +26,7 @@ flowchart TD
   SecretStorage -- "Real business, production, team, payments, customer data" --> Vault["Recommend managed vault such as Doppler"]
   Env --> Metadata["Write only metadata and placeholders to Secrets-Vault.md"]
   Vault --> Metadata
-  Metadata --> Scanner["Run secret scanner before commit, push, deploy, publish, or support handoff"]
+  Metadata --> Scanner["Secrets Vault checkpoint: staged hook once or relevant unverified handoff material"]
   Scanner --> Explain
 
   Explain --> Approval["Ask for explicit user approval"]
