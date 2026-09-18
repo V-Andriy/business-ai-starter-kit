@@ -46,6 +46,9 @@ tour only when requested. Use the terms visible in the user's tool.
 - Skills: use a workflow for a repeated task; avoid installing a large library.
 - Automations: an explicit recurring task uses AI resources when it runs.
 - Connectors: use only when the requested task needs an external service.
+- Portable context: an explicitly invoked approved snapshot for another project,
+  managed by `../portable-workspace-context/SKILL.md`. Explain provider processing,
+  exact-preview approval, and revocation limits before installation.
 
 Keep the current model/settings by default. Explain that consumption depends
 on workload and tool limits; do not promise a $20 plan will cover a workload.

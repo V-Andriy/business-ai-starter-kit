@@ -50,7 +50,9 @@ pnpm secret:scan:all
 The no-argument command scans changed files, not the entire workspace.
 A path limits the check to relevant material. The staged command checks Git's
 index snapshot; deleted files are not new content. `--all` is the explicit
-full audit (`pnpm secret:scan:all`). Read results without printing secret values.
+full audit (`pnpm secret:scan:all`) of tracked and non-ignored Git files.
+Ignored `.env` vault storage is excluded by default; an explicit path can check
+a particular file when needed. Read results without printing secret values.
 
 ## If A Check Finds A Secret
 

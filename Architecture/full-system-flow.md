@@ -13,6 +13,7 @@ flowchart TD
   Work --> Request{"Current request"}
   Request -- "One-off" --> Draft["Answer or draft"]
   Request -- "Ongoing" --> Brief["Project brief and output"]
+  Request -- "Portable context" --> Bridge["Exact preview and approval for snapshot only"]
   Request -- "Credentials" --> Secrets["Secrets Vault skill"]
   Request -- "Update" --> Update["Review relevant source changes"]
   Request -- "Maintenance" --> Manual["Scoped manual check"]

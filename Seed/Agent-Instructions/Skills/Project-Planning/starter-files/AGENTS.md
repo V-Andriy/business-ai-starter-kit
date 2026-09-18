@@ -14,3 +14,6 @@ Record project-specific constraints when they differ from workspace defaults.
 ## Validation
 
 Record the checks this project's outputs need before delivery.
+
+For approved parallel work, assign exclusive file ownership; use worktrees
+when separate state is needed and sequence any overlapping edits.

@@ -19,6 +19,7 @@ Daily behavior lives in `../AGENTS.md`; do not duplicate its rules here.
 - Verified schedule id and next run: not configured
 - Scheduling blocker/manual weekly fallback: none recorded
 - Approved automation ids and scopes: none
+- Portable context bridge: not configured; optional, no automatic refresh
 - Startup context hook: not installed
 - Private GitHub backup: not configured
 - Standing external-action authorization: none

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Business AI Workspace"
+  short_description: "Use approved workspace context anywhere"
+  default_prompt: "Use $business-ai-workspace to load my approved portable context for this task."
+
+policy:
+  allow_implicit_invocation: false

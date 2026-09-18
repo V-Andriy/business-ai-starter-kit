@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Added optional portable context with exact-preview approvals, managed snapshots, explicit-invocation consumers, multi-workspace aliases, and manual Cowork packaging.
+- Added bounded delegation ownership, isolated worktree guidance, evidence review, and sequential fallback while retaining the single-agent default.
+
 - Simplified canonical workspace rules and context loading; one agent and current model settings are the default.
 - Kept brief first-time business onboarding and profile confirmation required, with an early useful output and optional assistant naming.
 - Reduced heartbeat to one small weekly setup schedule, with verified host support or a documented manual fallback; unchanged state creates no logs.

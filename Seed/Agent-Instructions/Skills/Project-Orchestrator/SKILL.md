@@ -33,10 +33,41 @@ concrete parallel plan with useful independent tasks. Explain the likely
 additional AI usage before requesting that approval.
 Do not delegate work that can be finished with a simple local step.
 
-For each approved worker, provide a bounded task, the relevant files, expected
-output, and ownership boundaries. Share no unrelated private context or raw
-credentials. Avoid overlapping edits. Review evidence and integrate results
-before presenting the final output; a worker's claim is not validation.
+For each approved worker, specify outcome, inputs, owned files or systems,
+files not to touch, required evidence, return format, and stop condition.
+Give research/review workers read-only scope. Share only necessary context;
+when using portable context, give excerpts rather than the full snapshot.
+
+## Ownership And Routing
+
+The lead owns scope, integration, safety, and the final result. Workers own
+bounded tasks; a reviewer supplies independent evidence when the risk warrants
+it. Keep the current model/settings unless the user approves a change. Role
+names do not require premium models, experimental teams, or extra agents.
+
+Assume workers share files unless isolation is verified. Give each writer
+exclusive ownership. Use separate worktrees/branches when separate Git or
+filesystem state is needed; sequence overlapping edits even with worktrees.
+If isolation is unavailable, parallelize only approved read-only tracks and
+keep writes with the lead. Preserve user changes and unrelated untracked files.
+
+Verify actual harness capabilities before using teams, background sessions,
+worktrees, or scripted workflows. Fall back to sequential passes when native
+support is missing. Background execution needs its own explicit authorization.
+Keep ephemeral worker state in the harness; save only durable project decisions,
+evidence, and cross-session handoffs in workspace files.
+
+Start independent approved tracks together and wait for inputs before dependent
+work. Send corrections to an existing worker and stop obsolete work instead of
+spawning replacements. Workers may propose scope changes, not authorize them.
+
+## Integrate Evidence
+
+Review each result and relevant diff, resolve contradictions, and integrate in
+dependency order. Run the smallest relevant checks, expanding only when risk or
+new failures warrant it. A worker's completion or self-review is not proof the
+user's outcome is complete. For approved independent review, keep the reviewer
+focused on material risk and success criteria. Return one coherent result.
 
 ## Continuation Boundary
 

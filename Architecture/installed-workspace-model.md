@@ -9,6 +9,8 @@ flowchart TD
   Root --> Scripts["Local scanner, links, update, activity hint"]
   Root --> Cache["Ignored .business-ai-kit/source"]
   Root --> Env["Ignored .env; metadata only in Markdown"]
+  Context --> Portable["Portable-Context.md optional approved export source"]
+  Portable -. "Preview and explicit approval" .-> Snapshot["Detached user-level consumer snapshot"]
   Context --> Skills["Relevant business or maintenance skill"]
   Context --> Memory["Dossiers, memory, decisions as needed"]
   Context --> Handoff["Inbox and ongoing-work pointers"]

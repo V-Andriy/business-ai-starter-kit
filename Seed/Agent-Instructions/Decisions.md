@@ -7,6 +7,7 @@ Purpose: record durable workspace decisions.
 - This workspace uses local Git by default.
 - Private GitHub backup is optional and user-approved.
 - Real secrets are not stored in markdown files.
+- Cross-project context uses only an explicitly approved snapshot of `Portable-Context.md`; no live access or automatic refresh.
 - `Agent-Instructions/Skills/` is the canonical skills folder.
 - First-time setup includes a short confirmed business profile and one small weekly maintenance check.
 - Weekly and manual reviews use the smallest relevant scope; unchanged state creates no logs.

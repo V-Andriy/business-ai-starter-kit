@@ -28,6 +28,11 @@ mindmap
       Brief required onboarding
       Weekly small maintenance
       No-op runs stay quiet
+    Optional portable context
+      Exact preview and approval
+      Snapshot only no live access
+      Explicit invocation
+      No automatic refresh
     Approval
       External sharing
       Destructive changes

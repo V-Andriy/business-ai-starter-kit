@@ -73,6 +73,25 @@ there. Other harnesses also need a documentation-based compatibility check.
 See the [model and skill review](Architecture/model-and-skill-review.md) for
 sources, design decisions, and manual acceptance scenarios.
 
+## Portable Context Across Projects
+
+You can optionally prepare a small approved snapshot for use in other projects.
+The bridge exports only `Agent-Instructions/Portable-Context.md`, never live
+access to dossiers, private notes, projects, or credentials. Each install or
+refresh needs an exact preview, a relevant secret check, and explicit approval.
+It does not refresh automatically or run during weekly maintenance.
+
+Invoke `$business-ai-workspace` in Codex or `/business-ai-workspace` in Claude
+Code to load the installed consumer. Multiple workspaces use distinct aliases.
+Target-project rules remain authoritative. Local storage is not local inference:
+the active provider can process the approved snapshot when you invoke it.
+
+The bridge can also create a detached Cowork ZIP for manual upload. Verify the
+current Cowork skill interface and obtain separate approval before uploading.
+Disabling a local snapshot prevents future reads but cannot erase existing
+conversation context or copies already uploaded elsewhere.
+
+
 ## Privacy And Recovery
 
 Your workspace is separate from this public repository. Keep private business

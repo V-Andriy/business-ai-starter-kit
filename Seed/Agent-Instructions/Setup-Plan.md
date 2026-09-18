@@ -90,6 +90,11 @@ Offer only when relevant:
   navigation hints and any host trust prompt before installation.
 - Feedback: `Skills/Kit-Feedback/SKILL.md`; external sharing requires approval.
 
+- Portable context: `Skills/portable-workspace-context/SKILL.md`; curate only
+  `Portable-Context.md` for cross-project use. Exact preview and approval are
+  required before installing or refreshing the user-level snapshot. It is not
+  a live link, and setup does not require enabling it.
+
 Keep the current model/settings by default. Extra trackers and agents are not
 setup requirements.
 

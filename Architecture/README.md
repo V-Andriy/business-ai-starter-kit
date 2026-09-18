@@ -49,3 +49,8 @@ Vibe Canvas concept.
 ## Review And Acceptance
 
 - [Model and skill review](model-and-skill-review.md) - verified sources, design rationale, and manual acceptance scenarios.
+
+## Optional Cross-Project Work
+
+- [Portable context bridge](portable-context-bridge.md): exact-preview approval, detached snapshots, explicit consumer invocation, and revocation limits.
+- [Orchestrated work](orchestrated-work-flow.md): one-agent default with approved bounded workers, exclusive ownership, evidence, and integration.

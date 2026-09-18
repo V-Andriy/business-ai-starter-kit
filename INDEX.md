@@ -80,3 +80,13 @@ These scripts live inside `Seed/` because they are copied into the user's worksp
 - [Process-SOP](Seed/Agent-Instructions/Skills/Process-SOP/SKILL.md) - focused business workflow loaded only when relevant.
 - [Model and skill review](Architecture/model-and-skill-review.md) - sources and manual acceptance scenarios.
 - [Source-cache pointer](Seed/.business-ai-kit/source.md) - installed update reference.
+
+## Portable Context And Orchestration
+
+- [Portable bridge architecture](Architecture/portable-context-bridge.md) - approved snapshots and revocation boundaries.
+- [Orchestrated work flow](Architecture/orchestrated-work-flow.md) - bounded approved delegation and integration.
+- [Portable context source](Seed/Agent-Instructions/Portable-Context.md) - the only eligible export file.
+- [Portable context manager skill](Seed/Agent-Instructions/Skills/portable-workspace-context/SKILL.md) - preview, approval, installation, lifecycle, and packaging.
+- [Consumer skill](Seed/Agent-Instructions/Skills/portable-workspace-context/assets/business-ai-workspace/SKILL.md) - explicit invocation from other projects.
+- [Bridge helper](Seed/Scripts/knowledge_bridge.mjs) - managed local snapshots.
+- [Bridge tests](scripts/knowledge_bridge.test.mjs) - isolated lifecycle and privacy checks.

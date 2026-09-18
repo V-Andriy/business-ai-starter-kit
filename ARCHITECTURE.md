@@ -64,3 +64,8 @@ Neither helper installs a schedule or authorizes external actions.
 There is no UI, SaaS backend, or automatic project execution. Project and app
 templates remain deferred; the optional startup hook is the current exception.
 Private data never belongs in this public repo.
+
+## Optional Cross-Project Work
+
+- [Portable context bridge](Architecture/portable-context-bridge.md): exact-preview approval, detached snapshots, explicit consumer invocation, and revocation limits.
+- [Orchestrated work](Architecture/orchestrated-work-flow.md): one-agent default with approved bounded workers, exclusive ownership, evidence, and integration.

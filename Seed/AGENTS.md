@@ -102,6 +102,15 @@ Keep `Inbox.md` for actionable handoffs. Surface important items in live chat;
 move resolved or explicitly stale items to `Outbox.md`. An automation's own
 chat does not prove the user saw its question or recommendation.
 
+## Portable Context
+
+Only `Agent-Instructions/Portable-Context.md` may be exported through the
+optional `Skills/portable-workspace-context/SKILL.md` workflow. Show the exact
+snapshot and targets and obtain approval before each install or refresh.
+Never expose the live workspace or auto-refresh from maintenance. The consumer
+runs only on explicit invocation; target-project rules remain authoritative.
+Local snapshots can be processed by the active AI provider when invoked.
+
 ## Skills And Maintenance
 
 `Agent-Instructions/Skills/` is the canonical skills folder. Load only skills

@@ -43,6 +43,8 @@ Complete the essential local checks and brief required user/business onboarding 
 
 Set up one small weekly maintenance check as described in the installed skill. Explain its local scope and AI resource use, confirm day/time/timezone and required host consent, and record the verified schedule or a concrete blocker with manual weekly fallback. Use only the host's supported scheduler. Startup hooks and external backup remain optional. Use one agent and current model settings.
 
+Portable Workspace Context is optional after the required onboarding. Use the installed bridge skill only on request, with exact preview and approval before writing a snapshot outside the workspace. Do not enable it as a side effect of setup.
+
 Do not stop at "installation complete." Deliver or begin the requested output. If I have not named an outcome, ask what would make this useful today.
 
 Keep `.business-ai-kit/source/` ignored by Git. Do not add analytics, telemetry, tracking, or background reporting.

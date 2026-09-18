@@ -7,9 +7,10 @@
     "audit:files": "node scripts/audit-files.mjs",
     "audit:files:strict": "node scripts/audit-files.mjs --strict",
     "secret:scan": "node Seed/Scripts/secret_scan.mjs",
-    "check": "pnpm audit:files && pnpm secret:scan:all && pnpm check:context && pnpm check:secrets",
+    "check": "pnpm audit:files && pnpm secret:scan:all && pnpm check:context && pnpm check:secrets && pnpm test:knowledge-bridge",
     "check:context": "node scripts/check-context-helpers.mjs",
     "secret:scan:all": "node Seed/Scripts/secret_scan.mjs Install.md Seed Templates Skills AGENTS.md README.md INDEX.md CHANGELOG.md SECURITY.md CONTRIBUTING.md NOTICE LICENSE ARCHITECTURE.md Architecture VERSION package.json scripts",
-    "check:secrets": "node scripts/check-secret-scan.mjs"
+    "check:secrets": "node scripts/check-secret-scan.mjs",
+    "test:knowledge-bridge": "node --test scripts/knowledge_bridge.test.mjs"
   }
 }

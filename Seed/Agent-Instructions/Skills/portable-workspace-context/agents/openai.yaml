@@ -1,0 +1,4 @@
+interface:
+  display_name: "Portable Workspace Context"
+  short_description: "Manage safe cross-project workspace context"
+  default_prompt: "Use $portable-workspace-context to review and install my approved global workspace context."

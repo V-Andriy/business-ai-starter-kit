@@ -62,7 +62,7 @@ current documentation check before claiming imports, hooks, or discovery.
 
 ## Local Evidence
 
-The canonical seed rules were reduced from 229 lines to 132 lines.
+The canonical seed rules were reduced from 229 lines to 141 lines.
 An isolated comparison on the same seed measured hook `additionalContext`
 length at 12,847 characters before and 424 after the script change. This is a
 character-count observation, not a token, latency, or billing benchmark.

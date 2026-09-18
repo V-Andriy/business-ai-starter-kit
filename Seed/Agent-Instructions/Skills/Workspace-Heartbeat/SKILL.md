@@ -32,6 +32,11 @@ A general maintenance request does not authorize project execution, external
 research, account connections, or instruction rewrites. Keep those outside
 the run unless explicitly included in the approved scope.
 
+Never prepare, install, refresh, package, remove, or broaden portable context
+from maintenance. If verified evidence shows a stale snapshot, leave one
+proposal for the next live conversation and its exact-preview approval.
+Use one agent; routine weekly maintenance does not authorize worker teams.
+
 ## Smallest Useful Check
 
 1. Read the approved scope and the relevant status or source only.

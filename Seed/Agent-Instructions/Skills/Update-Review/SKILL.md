@@ -48,6 +48,7 @@ Kit-owned:
 User-owned:
 
 - dossiers
+- `Portable-Context.md` and its approval state
 - private notes
 - project work
 - real `.env`
@@ -73,6 +74,8 @@ When kit updates mention another AI harness, skills, memory, context files, or a
 - do not add runtime requirements unless the user asks
 - prefer symlinks for skills compatibility instead of copying skill folders
 - keep procedures in skills and facts in memory/dossiers
+
+The portable-context bridge is an intentional exception to normal workspace skill symlinks. Its user-level consumer is a private, self-contained snapshot so other projects never receive a path back into this workspace. Kit updates may update the manager and bundled consumer source, but must not rewrite `Portable-Context.md`, refresh an installed snapshot, change its targets, or mutate `~/.business-ai-kit/bridge/` without a new preview and user approval.
 
 ## Output Pattern
 
